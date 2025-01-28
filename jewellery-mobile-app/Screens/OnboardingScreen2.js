@@ -1,42 +1,47 @@
-import React,{useEffect} from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native';
 
 export default function OnboardingScreen2({ navigation }) {
-      useEffect(() => {
-        setTimeout(() => {
-          navigation.replace('Onboarding3');
-        }, 3000); 
-      }, [navigation]);
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('Onboarding3');
+    }, 3000); 
+  }, [navigation]);
+
   return (
     <View style={styles.container2}>
-      {/* Background shape */}
-      <View style={styles.backgroundShape} />
-       {/* Bottom cone shape */}
-            <View style={styles.bottomCone} />
+      {/* Background image */}
+      <ImageBackground 
+        source={require('../assets/bg-2.png')} 
+        style={styles.backgroundImage2}
+       
+      >
+        {/* Bottom cone shape */}
+        <View style={styles.bottomCone} />
 
-      {/* Image */}
-      <Image source={require('../assets/ob-ring.png')} style={styles.image2} />
+        {/* Image */}
+        <Image source={require('../assets/ob-ring.png')} style={styles.image2} />
 
-      {/* Title */}
-      <Text style={styles.title2}>Quality That Shine Bright</Text>
+        {/* Title */}
+        <Text style={styles.title2}>Quality That Shine Bright</Text>
 
-      {/* Description */}
-      <Text style={styles.description2}>
-        Enjoy premium-grade jewelry made with precision. Designed to last and dazzle every day.
-      </Text>
+        {/* Description */}
+        <Text style={styles.description2}>
+          Enjoy premium-grade jewelry made with precision. Designed to last and dazzle every day.
+        </Text>
 
-      
+        {/* Next Button */}
+        <TouchableOpacity style={styles.nextButton2} onPress={() => navigation.navigate('Onboarding3')}>
+          <Text style={styles.nextText2}>→</Text>
+        </TouchableOpacity>
 
-      {/* Next Button */}
-      <TouchableOpacity style={styles.nextButton2} onPress={() => navigation.navigate('Onboarding3')}>
-        <Text style={styles.nextText2}>→</Text>
-      </TouchableOpacity>
-      {/* Dots for slides */}
-      <View style={styles.dotsContainer}>
-        <View style={styles.dot} />
-        <View style={[styles.dot, styles.activeDot]} />
-        <View style={styles.dot} />
-      </View>
+        {/* Dots for slides */}
+        <View style={styles.dotsContainer}>
+          <View style={styles.dot} />
+          <View style={[styles.dot, styles.activeDot]} />
+          <View style={styles.dot} />
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -49,20 +54,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
-  backgroundShape: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right:0,
-    width: '150%',
-    height: '45%',
-    backgroundColor: '#957A97', 
-    marginTop:50,
- borderTopLeftRadius:250,
-  borderBottomRightRadius:250,
+  backgroundImage2: {
+    flex: 1,
+    width: '112%',
+    height: '60%',
+    justifyContent: 'center', 
+    alignItems: 'center',
 
- 
   },
+ 
   bottomCone: {
     position: 'absolute',
     bottom: 0,
@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#957A97',
     transform: [{ rotate: '270deg' }],
     borderBottomRightRadius: 200,
-   
   },
   image2: {
     width: '80%',
     height: '40%',
     resizeMode: 'contain',
     marginTop: 30,
-    alignSelf: 'center', 
+    alignSelf: 'center',
+    position: 'relative', 
   },
   title2: {
     fontSize: 20, 
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: -10,
-    marginRight:-250,
+    marginRight: -250,
   },
   dot: {
     width: 10,
@@ -119,9 +119,8 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingHorizontal: 20,
     marginTop: 20,
-    marginRight:-250,
-    marginBottom:30,
-   
+    marginRight: -250,
+    marginBottom: 30,
   },
   nextText2: {
     color: 'white',

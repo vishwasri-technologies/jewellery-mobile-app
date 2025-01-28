@@ -6,18 +6,22 @@ import OnboardingScreen1 from './Screens/OnboardingScreen1';
 import OnboardingScreen2 from './Screens/OnboardingScreen2';
 import OnboardingScreen3 from './Screens/OnboardingScreen3';
 import { StatusBar } from 'expo-status-bar';
+import SignIn from "./Screens/SignIn";
+import SignUp from "./Screens/SignUp";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar style="light" backgroundColor="black" /> 
+      <StatusBar style="light" backgroundColor="#47154B" /> 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Onboarding1" component={OnboardingScreen1} />
         <Stack.Screen name="Onboarding2" component={OnboardingScreen2} />
         <Stack.Screen name="Onboarding3" component={OnboardingScreen3} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
       </Stack.Navigator>
     </NavigationContainer>
   );
