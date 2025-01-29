@@ -58,26 +58,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: '60%',
-    marginTop:60,
+    marginTop:42,
     marginRight:-40,
     
   },
   bottomCone: {
     position: 'absolute',
     bottom: 0,
-    left: -90,
+    left: -100,
     width: 200,
-    height: 150,
+    height: 100,
     backgroundColor: '#957A97',
     transform: [{ rotate: '270deg' }],
-    borderBottomRightRadius: 200,
+    // borderBottomRightRadius: 200,
+    borderBottomRightRadius:100,
+    borderBottomLeftRadius:100,
   },
   image1: {
     width: '80%',
     height: '40%',
     resizeMode: 'contain',
     marginTop: 120,
-    marginRight: -130,
+    marginRight: -70,
   },
   title1: {
     fontSize: 20,
@@ -85,6 +87,8 @@ const styles = StyleSheet.create({
     color: '#4E1B50',
     textAlign: 'center',
     marginVertical: 10,
+    marginLeft:-40,
+   
     marginTop: 40,
   },
   description1: {
@@ -94,13 +98,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     lineHeight: 24,
     width: '70%',
+    marginLeft:-40,
   },
   dotsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: -10,
-    marginRight: -250,
+    marginBottom: -2,
+    marginRight: -200,
   },
   dot: {
     width: 10,
@@ -117,9 +122,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     padding: 10,
     paddingHorizontal: 20,
-    marginTop: 20,
-    marginBottom: 30,
-    marginRight: -250,
+   
+    marginBottom: 10,
+    marginRight: -200,
   },
   nextText1: {
     color: 'white',

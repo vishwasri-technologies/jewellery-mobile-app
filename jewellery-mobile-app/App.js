@@ -8,6 +8,11 @@ import OnboardingScreen3 from './Screens/OnboardingScreen3';
 import { StatusBar } from 'expo-status-bar';
 import SignIn from "./Screens/SignIn";
 import SignUp from "./Screens/SignUp";
+import Home from './Screens/Home';
+import UpdatePasswordScreen from "./Screens/Forgot"; 
+import Wishlist from './Screens/Wishlist';
+import Cart from './Screens/Cart';
+import Categories from './Screens/Categories';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +27,12 @@ export default function App() {
         <Stack.Screen name="Onboarding3" component={OnboardingScreen3} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="forgot" component={UpdatePasswordScreen} />
+        <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="wishlist" component={ Wishlist} />
+        <Stack.Screen name="cart" component={Cart} />
+        <Stack.Screen name="categories" component={Categories} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
