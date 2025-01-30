@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { 
   View, 
   Text, 
@@ -10,11 +10,7 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default function OnboardingScreen2({ navigation }) {
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.replace('Onboarding3');
-    }, 3000);
-  }, [navigation]);
+ 
 
   return (
     <View style={styles.container}>

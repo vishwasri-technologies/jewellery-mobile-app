@@ -136,13 +136,14 @@
 
 
 
-
-import React from 'react';
-import { View, Text, Image, TextInput, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TextInput, ScrollView, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
+
+const { width: screenWidth } = Dimensions.get('window'); // Get screen width
 
 const categories = [
   { name: 'Necklace', image: require('../assets/necklace.png') },
@@ -152,14 +153,23 @@ const categories = [
 ];
 
 const products = [
-  { name: 'Simple Butterfly Pearl Earrings', price: '₹250', image: require('../assets/pr-1.png') },
-  { name: 'Elegant Gold Hoop Earrings', price: '₹300', image: require('../assets/pr-2.png') },
-  { name: 'Heart-shaped Diamond Earrings', price: '₹500', image: require('../assets/pr-3.png') },
-  { name: 'Classic Stud Earrings', price: '₹150', image: require('../assets/pr-4.png') },
+  { id: 1, name: 'Simple Butterfly Pearl Earrings', price: '₹250', image: require('../assets/pr-1.png') },
+  { id: 2, name: 'Elegant Gold Hoop Earrings', price: '₹300', image: require('../assets/pr-2.png') },
+  { id: 3, name: 'Heart-shaped Diamond Earrings', price: '₹500', image: require('../assets/pr-3.png') },
+  { id: 4, image: require('../assets/pr-4.png') },
+  { id: 5, image: require('../assets/pr-5.png') },
+  { id: 6, image: require('../assets/pr-6.png') },
 ];
 
 const Home = () => {
   const navigation = useNavigation();
+  const [currentPage, setCurrentPage] = useState(0); // State to track current page
+
+  const handleScroll = (event) => {
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const pageIndex = Math.round(offsetX / screenWidth); // Calculate current page
+    setCurrentPage(pageIndex);
+  };
 
   return (
     <View style={styles.container}>
@@ -199,23 +209,58 @@ const Home = () => {
           </ScrollView>
         </View>
 
-        {/* Banner Image */}
+        {/* Banner Section with Pagination */}
         <View style={styles.banner}>
-          <Image source={require('../assets/hs-1.png')} style={styles.bannerImage} />
-          <Image source={require('../assets/hs-2.png')} style={styles.bannerImage} />
-          <Image source={require('../assets/hs-3.png')} style={styles.bannerImage} />
-          <Image source={require('../assets/hs-4.png')} style={styles.bannerImage} />
+          <ScrollView
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}
+          >
+            <Image source={require('../assets/hs-2.png')} style={styles.bannerImage} />
+            <Image source={require('../assets/hs-1.png')} style={styles.bannerImage} />
+            <Image source={require('../assets/hs-3.png')} style={styles.bannerImage} />
+            <Image source={require('../assets/hs-4.png')} style={styles.bannerImage} />
+          </ScrollView>
+          <View style={styles.pagination}>
+            {[0, 1, 2, 3].map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.dot,
+                  currentPage === index ? styles.activeDot : styles.inactiveDot,
+                ]}
+              />
+            ))}
+          </View>
         </View>
 
         {/* Product Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Our Bestseller</Text>
-          <View style={styles.productGrid}>
-            {products.map((product, index) => (
-              <View key={index} style={styles.product}>
+
+          {/* Horizontal Scroll for IDs 1, 2, 3 */}
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+            {products.slice(0, 3).map((product, index) => (
+              <View key={index} style={styles.horizontalProduct}>
                 <Image source={product.image} style={styles.productImage} />
                 <Text style={styles.productName}>{product.name}</Text>
                 <Text style={styles.productPrice}>{product.price}</Text>
+              </View>
+            ))}
+          </ScrollView>
+
+          {/* Centered Product ID 4 */}
+          <View style={styles.centeredProduct}>
+            <Image source={products[3].image} style={styles.productImage4} />
+          </View>
+
+          {/* Bottom Row for IDs 5, 6 */}
+          <View style={styles.bottomRow}>
+            {products.slice(4).map((product, index) => (
+              <View key={index} style={styles.bottomProduct}>
+                <Image source={product.image} style={styles.productImage} />
               </View>
             ))}
           </View>
@@ -262,17 +307,29 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   section: { paddingHorizontal: wp('5%'), marginBottom: hp('2%') },
-  sectionTitle: { fontSize: hp('2.4%'), fontWeight: 'bold', color: '#4E1B50', marginBottom: hp('1.5%') },
+  sectionTitle: { fontSize: hp('2.4%'), fontWeight: 'bold', color: '#4E1B50', marginBottom: hp('1.5%'),marginTop:hp('1.5%'),color:"black" },
   category: { alignItems: 'center', marginRight: wp('4%') },
-  categoryImage: { width: wp('18%'), height: wp('18%'), borderRadius: wp('9%') },
-  categoryText: { marginTop: hp('1%'), fontSize: hp('1.8%'), color: '#4E1B50' },
-  banner: { paddingHorizontal: wp('5%'), marginBottom: hp('2%') },
-  bannerImage: { width: wp('90%'), height: hp('25%'), borderRadius: wp('3%') },
-  productGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
-  product: { width: wp('45%'), alignItems: 'center', marginBottom: hp('2%') },
+  categoryImage: { width: wp('28%'), height: wp('28%'), borderRadius: wp('2%') },
+  categoryText: { marginTop: hp('1%'), fontSize: hp('1.8%'), color: 'black' },
+  banner: { marginBottom: hp('2%') },
+  bannerImage: { width: screenWidth, height: hp('25%'), resizeMode: 'cover', borderRadius: wp('4%') },
+  pagination: { flexDirection: 'row', justifyContent: 'center', marginTop: hp('1%') },
+  dot: { width: wp('2%'), height: wp('2%'), borderRadius: wp('1%'), marginHorizontal: wp('1%') },
+  activeDot: { backgroundColor: '#4E1B50' },
+  inactiveDot: { backgroundColor: '#CCCCCC' },
+  horizontalScroll: { marginBottom: hp('2%') },
+  horizontalProduct: { width: wp('40%'), alignItems: 'center', marginRight: wp('4%') },
+  centeredProduct: { alignItems: 'center', marginBottom: hp('2%'),  },
+  bottomRow: { flexDirection: 'row', justifyContent: 'space-between' },
+  bottomProduct: { width: wp('45%'), alignItems: 'center' },
   productImage: { width: wp('40%'), height: hp('20%'), borderRadius: wp('2%') },
+  productImage4: { 
+    width: wp('90%'),  
+    height: hp('25%'), 
+    borderRadius: wp('2%'),
+  },
   productName: { marginTop: hp('1%'), fontSize: hp('1.8%'), color: '#4E1B50', textAlign: 'center' },
-  productPrice: { fontSize: hp('1.8%'), color: '#957A97' },
+  productPrice: { fontSize: hp('1.8%'), color: 'red' },
 });
 
 export default Home;
