@@ -1,5 +1,13 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  Image, 
+  TouchableOpacity, 
+  ImageBackground
+} from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default function OnboardingScreen1({ navigation }) {
   useEffect(() => {
@@ -50,69 +58,64 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: wp('5%'), // 5% of screen width
   },
   backgroundImage: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: '60%',
-    marginTop:42,
-    marginRight:-40,
-    
+    height: hp('60%'), // 60% of screen height
+    marginTop: hp('5%'), // 5% of screen height
+    marginLeft:wp('9%'),
   },
   bottomCone: {
     position: 'absolute',
     bottom: 0,
-    left: -100,
-    width: 200,
-    height: 100,
+    left: -wp('25%'), // 25% of screen width
+    width: wp('50%'), // 50% of screen width
+    height: hp('12%'), // 12% of screen height
     backgroundColor: '#957A97',
     transform: [{ rotate: '270deg' }],
-    // borderBottomRightRadius: 200,
-    borderBottomRightRadius:100,
-    borderBottomLeftRadius:100,
+    borderBottomRightRadius: wp('25%'),
+    borderBottomLeftRadius: wp('25%'),
   },
   image1: {
-    width: '80%',
-    height: '40%',
+    width: wp('80%'), // 80% of screen width
+    height: hp('35%'), // 35% of screen height
     resizeMode: 'contain',
-    marginTop: 120,
-    marginRight: -70,
+    marginTop: hp('16%'), // 15% of screen height
+    marginLeft:wp('24%'),
+
   },
   title1: {
-    fontSize: 20,
+    fontSize: wp('5%'), // 5% of screen width
     fontWeight: 'bold',
     color: '#4E1B50',
     textAlign: 'center',
-    marginVertical: 10,
-    marginLeft:-40,
-   
-    marginTop: 40,
+    marginVertical: hp('2%'), // 2% of screen height
   },
   description1: {
-    fontSize: 16,
+    fontSize: wp('4%'), // 4% of screen width
     color: '#4E1B50',
     textAlign: 'center',
-    marginBottom: 20,
-    lineHeight: 24,
-    width: '70%',
-    marginLeft:-40,
+    lineHeight: hp('3%'), // 3% of screen height
+    width: '80%',
   },
   dotsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: -2,
-    marginRight: -200,
+    marginBottom: hp('2%'), // 2% of screen height
+    marginLeft:wp("59%"),
   },
   dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+    width: wp('2.5%'), // 2.5% of screen width
+    height: wp('2.5%'),
+    borderRadius: wp('1.25%'), // Half of width
     backgroundColor: '#D3C5D6',
-    marginHorizontal: 5,
+    marginHorizontal: wp('1.5%'), // 1.5% of screen width
+    
   },
   activeDot: {
     backgroundColor: '#4E1B50',
@@ -120,14 +123,13 @@ const styles = StyleSheet.create({
   nextButton1: {
     backgroundColor: '#4E1B50',
     borderRadius: 50,
-    padding: 10,
-    paddingHorizontal: 20,
-   
-    marginBottom: 10,
-    marginRight: -200,
+    paddingVertical: hp('1.5%'), // 1.5% of screen height
+    paddingHorizontal: wp('6%'), // 6% of screen width
+    marginBottom: hp('2%'), // 2% of screen height
+    marginLeft:wp("59%"),
   },
   nextText1: {
     color: 'white',
-    fontSize: 28,
+    fontSize: wp('7%'), // 7% of screen width
   },
 });
