@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     left: 0,
     width: wp(100),
     height: hp(50),
-    marginTop: hp(3),
+    marginTop: hp(4),
   },
   bottomCone: {
     position: 'absolute',
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     height: hp(40),
     resizeMode: 'contain',
     alignSelf: 'flex-end',
-    marginTop: hp(3),
+    marginTop: hp(0),
     marginRight: wp(20),
   },
   title3: {
