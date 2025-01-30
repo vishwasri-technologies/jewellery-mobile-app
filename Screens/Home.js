@@ -152,10 +152,10 @@ const categories = [
 ];
 
 const products = [
-  { name: 'Simple Butterfly Pearl Earrings', price: '₹250', image: require('../assets/earrings1.png') },
-  { name: 'Elegant Gold Hoop Earrings', price: '₹300', image: require('../assets/earrings2.png') },
-  { name: 'Heart-shaped Diamond Earrings', price: '₹500', image: require('../assets/earrings3.png') },
-  { name: 'Classic Stud Earrings', price: '₹150', image: require('../assets/earrings4.png') },
+  { name: 'Simple Butterfly Pearl Earrings', price: '₹250', image: require('../assets/pr-1.png') },
+  { name: 'Elegant Gold Hoop Earrings', price: '₹300', image: require('../assets/pr-2.png') },
+  { name: 'Heart-shaped Diamond Earrings', price: '₹500', image: require('../assets/pr-3.png') },
+  { name: 'Classic Stud Earrings', price: '₹150', image: require('../assets/pr-4.png') },
 ];
 
 const Home = () => {
@@ -201,7 +201,10 @@ const Home = () => {
 
         {/* Banner Image */}
         <View style={styles.banner}>
-          <Image source={require('../assets/banner.png')} style={styles.bannerImage} />
+          <Image source={require('../assets/hs-1.png')} style={styles.bannerImage} />
+          <Image source={require('../assets/hs-2.png')} style={styles.bannerImage} />
+          <Image source={require('../assets/hs-3.png')} style={styles.bannerImage} />
+          <Image source={require('../assets/hs-4.png')} style={styles.bannerImage} />
         </View>
 
         {/* Product Section */}
