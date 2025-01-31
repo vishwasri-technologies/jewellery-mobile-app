@@ -1,58 +1,63 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import BottomNavBar from './BottomNavbar';
+import { View, Text } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import MenScreen from './MenScreen';
+import WomenScreen from './WomenScreen';
+import KidsScreen from './KidsScreen';
+
+const TopTab = createMaterialTopTabNavigator();
 
 const Categories = () => {
-  const handlePress = () => {
-    alert('Hello, React Native!');
-  };
-
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Categories</Text>
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
-          <Text style={styles.buttonText}>Press categories</Text>
-        </TouchableOpacity>
+    <View style={{ flex: 1 }}>
+      {/* Heading */}
+      <View style={{ alignItems: 'flex-start', marginTop: 50, paddingLeft: 20 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#47154B' }}>
+          Categories
+        </Text>
       </View>
-      <View style={styles.bottomNavContainer}>
-        <BottomNavBar />
-      </View>
+
+      {/* Tab Navigator */}
+      <TopTab.Navigator
+        screenOptions={{
+          tabBarLabelStyle: { fontSize: 14, fontWeight: 'bold', marginTop: 20, width: 'auto' },
+          tabBarIndicatorStyle: { backgroundColor: 'purple' },
+          swipeEnabled: false,  // Disable swipe navigation
+        }}
+      >
+        <TopTab.Screen
+          name="Men"
+          component={MenScreen}
+          listeners={({ navigation }) => ({
+            tabPress: e => {
+              e.preventDefault(); // Prevent default behavior
+              navigation.navigate('Men'); // Explicitly navigate
+            },
+          })}
+        />
+        <TopTab.Screen
+          name="Women"
+          component={WomenScreen}
+          listeners={({ navigation }) => ({
+            tabPress: e => {
+              e.preventDefault(); // Prevent default behavior
+              navigation.navigate('Women'); // Explicitly navigate
+            },
+          })}
+        />
+        <TopTab.Screen
+          name="Kids"
+          component={KidsScreen}
+          listeners={({ navigation }) => ({
+            tabPress: e => {
+              e.preventDefault(); // Prevent default behavior
+              navigation.navigate('Kids'); // Explicitly navigate
+            },
+          })}
+        />
+      </TopTab.Navigator>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between', // Ensures navbar stays at the bottom
-    alignItems: 'center',
-    backgroundColor: '#f8f8f8',
-    width: '100%', // Ensures full width
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  bottomNavContainer: {
-    width: '100%', // Ensure BottomNavBar takes the full width
-    alignSelf: 'stretch',
-  },
-});
 
 export default Categories;

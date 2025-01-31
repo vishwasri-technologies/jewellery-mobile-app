@@ -15,6 +15,9 @@ import Cart from './Screens/Cart';
 import Categories from './Screens/Categories';
 import Profile from "./Screens/Profile";
 import EditProfile from "./Screens/Editprofile";
+// import MenScreen from './Screens/MenScreen';
+// import WomenScreen from './Screens/WomenScreen';
+// import KidsScreen from './Screens/KidsScreen';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +39,9 @@ export default function App() {
         <Stack.Screen name="categories" component={Categories} />
         <Stack.Screen name="profile" component={Profile} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
+        {/* <Stack.Screen name="Men" component={MenScreen} />
+        <Stack.Screen name="Women" component={WomenScreen} />
+        <Stack.Screen name="Kids" component={KidsScreen} /> */}
 
       </Stack.Navigator>
     </NavigationContainer>

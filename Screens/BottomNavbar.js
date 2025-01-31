@@ -22,9 +22,9 @@ const BottomNavBar = () => {
         <Text style={styles.navText}>Cart</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('categories')}>
-        <Icon name="cog-outline" size={hp('3%')} color="white" />
-        <Text style={styles.navText}>Settings</Text>
-      </TouchableOpacity>
+  <Icon name="view-grid" size={hp('3%')} color="white" />
+  <Text style={styles.navText}>Categories</Text>
+</TouchableOpacity>
     </View>
   );
 };

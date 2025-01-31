@@ -13,10 +13,11 @@ import BottomNavBar from './BottomNavbar';
 const { width: screenWidth } = Dimensions.get('window'); 
 
 const categories = [
-  { name: 'Necklace', image: require('../assets/necklace.png') },
-  { name: 'Bracelet', image: require('../assets/bracelet.png') },
-  { name: 'Bangles', image: require('../assets/bangles.png') },
-  { name: 'Chains', image: require('../assets/chains.png') },
+  { name: 'Men', image: require('../assets/categories/Men.png') },
+  { name: 'Women', image: require('../assets/categories/Women.png') },
+  { name: 'Kids', image: require('../assets/categories/kids.png') },
+ 
+  
 ];
 
 const products = [
@@ -175,8 +176,8 @@ const styles = StyleSheet.create({
   },
   section: { paddingHorizontal: wp('5%'), marginBottom: hp('2%') },
   sectionTitle: { fontSize: hp('2.4%'), fontWeight: 'bold', color: '#4E1B50', marginBottom: hp('1.5%'),marginTop:hp('1.5%'),color:"black" },
-  category: { alignItems: 'center', marginRight: wp('4%') },
-  categoryImage: { width: wp('28%'), height: wp('28%'), borderRadius: wp('2%') },
+  category: { alignItems: 'center', marginRight: wp('2%') },
+  categoryImage: { width: wp('28%'), height: wp('28%') },
   categoryText: { marginTop: hp('1%'), fontSize: hp('1.8%'), color: 'black' },
   banner: { marginBottom: hp('2%') },
   bannerImage: { width: screenWidth, height: hp('25%'), resizeMode: 'cover', borderRadius: wp('4%') },
