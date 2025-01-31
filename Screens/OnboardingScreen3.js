@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   image3: {
     width: wp(80),
-    height: hp(40),
+    height: hp(47),
     resizeMode: 'contain',
     alignSelf: 'flex-end',
     marginTop: hp(0),
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: hp(-1),
-    marginRight: wp(-50),
+    // marginBottom: hp(0),
+    marginRight: wp(-60),
   },
   dot: {
     width: wp(2.5),
@@ -108,6 +108,8 @@ const styles = StyleSheet.create({
     borderRadius: wp(1.25),
     backgroundColor: '#D3C5D6',
     marginHorizontal: wp(1.25),
+    bottom:hp(6),
+   
   },
   activeDot: {
     backgroundColor: '#4E1B50',
@@ -116,10 +118,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#4E1B50',
     borderRadius: wp(50),
     padding: hp(1.5),
-    paddingHorizontal: wp(5),
+    paddingHorizontal: wp(6),
     marginTop: hp(2),
-    marginRight: wp(-50),
-    marginBottom: hp(3),
+    marginRight: wp(-60),
+    marginBottom: hp(9),
   },
   nextText3: {
     color: 'white',
