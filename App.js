@@ -14,6 +14,7 @@ import Wishlist from './Screens/Wishlist';
 import Cart from './Screens/Cart';
 import Categories from './Screens/Categories';
 import Profile from "./Screens/Profile";
+import EditProfile from "./Screens/Editprofile";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ export default function App() {
         <Stack.Screen name="cart" component={Cart} />
         <Stack.Screen name="categories" component={Categories} />
         <Stack.Screen name="profile" component={Profile} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
 
       </Stack.Navigator>
     </NavigationContainer>

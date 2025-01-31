@@ -31,6 +31,7 @@ const BottomNavBar = () => {
 
 const styles = StyleSheet.create({
   navBar: {
+   
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
   },
   navItem: { alignItems: 'center' },
   navText: { marginTop: hp('0.5%'), fontSize: hp('1.5%'), color: 'white' },
+
 });
 
 export default BottomNavBar;

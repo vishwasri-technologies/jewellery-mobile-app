@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import {
   View,
   Text,
@@ -15,29 +17,43 @@ import {
 import BottomNavbar from "./BottomNavbar";
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.headerContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
+        
+             <TouchableOpacity
+            onPress={() => navigation.goBack()} // Ensure navigation works
             style={styles.backButton}
           >
             <Image
               source={require("../assets/profileImgs/back.png")} // Replace with actual image
               style={styles.backIcon}
             />
+           
           </TouchableOpacity>
           <Text style={styles.title}>Profile</Text>
         </View>
         <View style={styles.profileHeader}>
-          <Image
-            source={require("../assets/profileImgs/profilepicImg.png")} // Replace with actual image URL
-            style={styles.profileImage}
-          />
-          <Text style={styles.profileName}>Adhvitha</Text>
-          <Text style={styles.profileNumber}>9394800354</Text>
-        </View>
+  <Image
+    source={require("../assets/profileImgs/profilepicImg.png")}
+    style={styles.profileImage}
+  />
+  <TouchableOpacity
+    style={styles.editIconContainer}
+    onPress={() => navigation.navigate("EditProfile")}
+  >
+    <Image
+      source={require("../assets/profileImgs/pencil.png")} // Replace with actual pencil image
+      style={styles.editIcon}
+    />
+  </TouchableOpacity>
+  <Text style={styles.profileName}>Adhvitha</Text>
+  <Text style={styles.profileNumber}>9394800354</Text>
+</View>
+
         <View style={styles.list}>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="cart-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -186,6 +202,21 @@ const styles = StyleSheet.create({
     marginRight: wp("2%"),
     marginTop: wp("1%"),
   },
+  editIconContainer: {
+    position: "absolute",
+    top: hp("8%"),
+    right: wp("36%"),
+    backgroundColor: "#fff",
+    borderRadius: wp("4%"),
+    padding: wp("1%"),
+    elevation: 5,
+  },
+  editIcon: {
+    width: wp("6%"),
+    height: wp("6%"),
+    resizeMode: "contain",
+  },
+  
 });
 
 export default ProfileScreen;
