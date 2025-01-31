@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     height: hp('35%'), 
     resizeMode: 'contain',
     marginTop: hp('6%'), 
-    marginLeft:wp('32%'),
+    marginLeft:wp('35%'),
 
   },
   title1: {
