@@ -28,12 +28,12 @@ const EditProfile = () => {
         {/* Profile Image with Edit Icon */}
         <View style={styles.profileContainer}>
           <Image
-            source={require("../assets/profileImgs/profilepicImg.png")}
+            source={require("../assets/profileImgs/profile-icon.png")}
             style={styles.profileImage}
           />
-          <TouchableOpacity style={styles.editIconContainer}>
+          {/* <TouchableOpacity style={styles.editIconContainer}>
             <Image source={require("../assets/profileImgs/camera.png")} style={styles.editIcon} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         {/* Input Fields */}
@@ -110,19 +110,19 @@ const styles = StyleSheet.create({
     marginTop: hp("4%"),
   },
   profileImage: {
-    width: wp("25%"),
-    height: wp("25%"),
+    width: wp("35%"),
+    height: wp("35%"),
     borderRadius: wp("12.5%"),
   },
-  editIconContainer: {
-    position: "absolute",
-    bottom: 0,
-    right: wp("32%"),
-    backgroundColor: "#fff",
-    borderRadius: wp("4%"),
-    padding: wp("1.5%"),
-    elevation: 5,
-  },
+  // editIconContainer: {
+  //   position: "absolute",
+  //   bottom: 0,
+  //   right: wp("32%"),
+  //   backgroundColor: "#fff",
+  //   borderRadius: wp("4%"),
+  //   padding: wp("1.5%"),
+  //   elevation: 5,
+  // },
   editIcon: {
     width: wp("6%"),
     height: wp("6%"),

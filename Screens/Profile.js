@@ -38,7 +38,7 @@ const ProfileScreen = () => {
         </View>
         <View style={styles.profileHeader}>
   <Image
-    source={require("../assets/profileImgs/profilepicImg.png")}
+    source={require("../assets/profileImgs/profile-icon.png")}
     style={styles.profileImage}
   />
   <TouchableOpacity
@@ -152,15 +152,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: wp("6%"),
     fontWeight: "bold",
-    marginLeft: wp("24%")
+    marginLeft: wp("27%")
   },
   profileHeader: {
     alignItems: "center",
-    padding: wp("5%"),
+    padding: wp("3%"),
   },
   profileImage: {
-    width: wp("25%"),
-    height: wp("25%"),
+    width: wp("35%"),
+    height: wp("30%"),
     borderRadius: wp("12.5%"),
   },
   profileName: {
@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
   },
   editIconContainer: {
     position: "absolute",
-    top: hp("8%"),
-    right: wp("36%"),
+    top: hp("6%"),
+    right: wp("34%"),
     backgroundColor: "#fff",
     borderRadius: wp("4%"),
     padding: wp("1%"),

@@ -15,9 +15,12 @@ import Cart from './Screens/Cart';
 import Categories from './Screens/Categories';
 import Profile from "./Screens/Profile";
 import EditProfile from "./Screens/Editprofile";
-// import MenScreen from './Screens/MenScreen';
-// import WomenScreen from './Screens/WomenScreen';
-// import KidsScreen from './Screens/KidsScreen';
+import MenBraceletsScreen from './Screens/MenBraceletsScreen';
+import MenChainsScreen from './Screens/MenChainsScreen';
+import MenEarRingsScreen from './Screens/MenEarRingsScreen';
+
+import MenFingerRingsScreen from './Screens/MenFingerRingsScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -39,9 +42,10 @@ export default function App() {
         <Stack.Screen name="categories" component={Categories} />
         <Stack.Screen name="profile" component={Profile} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
-        {/* <Stack.Screen name="Men" component={MenScreen} />
-        <Stack.Screen name="Women" component={WomenScreen} />
-        <Stack.Screen name="Kids" component={KidsScreen} /> */}
+        <Stack.Screen name="MenBraceletsScreen" component={MenBraceletsScreen} />
+        <Stack.Screen name="MenChainsScreen" component={MenChainsScreen} />
+        <Stack.Screen name="MenEarRingsScreen" component={MenEarRingsScreen} />
+        <Stack.Screen name="MenFingerRingsScreen" component={MenFingerRingsScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>
