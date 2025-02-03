@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Import Icon
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import BottomNavBar from './BottomNavbar';
 
 const braceletProducts = [
   { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
@@ -29,8 +30,13 @@ const MenEarRingsScreen = () => {
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <View style={styles.item}>
-            <TouchableOpacity onPress={() => toggleWishlist(item.id)} style={styles.wishlistContainer}>
-              <FontAwesome name={wishlist[item.id] ? 'heart' : 'heart-o'} size={wp(5)} color="black" />
+           <TouchableOpacity onPress={() => toggleWishlist(item.id)} style={styles.wishlistContainer}>
+              <Icon
+                name="heart" // FontAwesome heart icon
+                size={wp(7)}
+                color={wishlist[item.id] ? 'red' : 'white'} // Red if selected, white if not
+                style={styles.wishlistIcon}
+              />
             </TouchableOpacity>
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
@@ -38,6 +44,7 @@ const MenEarRingsScreen = () => {
           </View>
         )}
       />
+      <BottomNavBar/>
     </View>
   );
 };
@@ -87,8 +94,12 @@ const styles = StyleSheet.create({
   },
   wishlistContainer: {
     position: 'absolute',
-    top: hp(1),
-    right: wp(3),
+    top: hp(2),   // Adjusted to be inside the image area
+    right: wp(4), // Adjusted position
+    zIndex: 10,   // Ensures it appears on top of the image
+  },
+  wishlistIcon: {
+    resizeMode: 'contain',
   },
 });
 

@@ -13,7 +13,7 @@ const braceletProducts = [
   { id: '6', image: require('../assets/categories/Men-bracelets.png'), name: 'Chain Bracelet', price: '\u20B9120' },
 ];
 
-const MenFingerRingsScreen = () => {
+const WomenHipbeltScreen = () => {
   const [wishlist, setWishlist] = useState({});
 
   const toggleWishlist = (id) => {
@@ -22,7 +22,7 @@ const MenFingerRingsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Finger Rings</Text>
+      <Text style={styles.heading}>Women-Hipbelt</Text>
       <FlatList
         data={braceletProducts}
         keyExtractor={(item) => item.id}
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   wishlistIcon: {
     resizeMode: 'contain',
   },
+ 
 });
 
-export default MenFingerRingsScreen;
+export default WomenHipbeltScreen;

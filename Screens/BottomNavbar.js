@@ -13,7 +13,7 @@ const BottomNavBar = () => {
         <Icon name="home-outline" size={hp('3%')} color="white" />
         <Text style={styles.navText}>Home</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('wishlist')}>
+      <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Wishlist')}>
         <Icon name="heart-outline" size={hp('3%')} color="white" />
         <Text style={styles.navText}>Wishlist</Text>
       </TouchableOpacity>

@@ -109,10 +109,8 @@ const EditProfile = () => {
         </TouchableOpacity>
       </ScrollView>
 
-      {/* Bottom Navbar Fixed at Bottom */}
-      <View style={styles.bottomNavbar}>
         <BottomNavbar />
-      </View>
+   
     </View>
   );
 };
@@ -202,11 +200,7 @@ const styles = StyleSheet.create({
     fontSize: wp("5%"),
     fontWeight: "bold",
   },
-  bottomNavbar: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-  },
+ 
 });
 
 export default EditProfile;

@@ -13,7 +13,7 @@ const braceletProducts = [
   { id: '6', image: require('../assets/categories/Men-bracelets.png'), name: 'Chain Bracelet', price: '\u20B9120' },
 ];
 
-const MenFingerRingsScreen = () => {
+const  KidsChainsScreen = () => {
   const [wishlist, setWishlist] = useState({});
 
   const toggleWishlist = (id) => {
@@ -22,7 +22,7 @@ const MenFingerRingsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Finger Rings</Text>
+      <Text style={styles.heading}>kids-chains</Text>
       <FlatList
         data={braceletProducts}
         keyExtractor={(item) => item.id}
@@ -30,7 +30,7 @@ const MenFingerRingsScreen = () => {
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <View style={styles.item}>
-          <TouchableOpacity onPress={() => toggleWishlist(item.id)} style={styles.wishlistContainer}>
+           <TouchableOpacity onPress={() => toggleWishlist(item.id)} style={styles.wishlistContainer}>
               <Icon
                 name="heart" // FontAwesome heart icon
                 size={wp(7)}
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   wishlistIcon: {
     resizeMode: 'contain',
   },
+ 
 });
 
-export default MenFingerRingsScreen;
+export default KidsChainsScreen;

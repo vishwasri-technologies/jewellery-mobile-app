@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import Icon
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
 
@@ -13,7 +14,7 @@ const braceletProducts = [
   { id: '6', image: require('../assets/categories/Men-bracelets.png'), name: 'Chain Bracelet', price: '\u20B9120' },
 ];
 
-const MenFingerRingsScreen = () => {
+const  KidsNecklaceScreen = () => {
   const [wishlist, setWishlist] = useState({});
 
   const toggleWishlist = (id) => {
@@ -22,7 +23,7 @@ const MenFingerRingsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Finger Rings</Text>
+      <Text style={styles.heading}>Kids-Necklace</Text>
       <FlatList
         data={braceletProducts}
         keyExtractor={(item) => item.id}
@@ -103,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MenFingerRingsScreen;
+export default KidsNecklaceScreen;
