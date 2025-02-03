@@ -16,8 +16,6 @@ const categories = [
   { name: 'Men', image: require('../assets/categories/Men.png') },
   { name: 'Women', image: require('../assets/categories/Women.png') },
   { name: 'Kids', image: require('../assets/categories/kids.png') },
- 
-  
 ];
 
 const products = [
