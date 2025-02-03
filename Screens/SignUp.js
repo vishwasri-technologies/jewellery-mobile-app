@@ -1,6 +1,8 @@
+
 // import React, { useState } from 'react';
 // import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Alert } from 'react-native';
 // import Icon from 'react-native-vector-icons/Ionicons'; // Importing Ionicons for the eye icon
+// import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 // import googleIcon from "../assets/google-icon.png";
 // import facebookIcon from "../assets/fb-icon.png";
@@ -80,7 +82,7 @@
 //             >
 //               <Icon
 //                 name={securePassword ? 'eye-off-outline' : 'eye-outline'}
-//                 size={24}
+//                 size={wp(6)}
 //                 color="black"
 //               />
 //             </TouchableOpacity>
@@ -91,22 +93,20 @@
 //             <Text style={styles.buttonText}>Sign up</Text>
 //           </TouchableOpacity>
 
-//          {/* Social Login Icons */}
-// <View style={styles.socialContainer}>
-//   <TouchableOpacity onPress={() => console.log("Google Login Clicked")}>
-//     <Image source={googleIcon} style={styles.icon} />
-//   </TouchableOpacity>
+//           {/* Social Login Icons */}
+//           <View style={styles.socialContainer}>
+//             <TouchableOpacity onPress={() => console.log("Google Login Clicked")}>
+//               <Image source={googleIcon} style={styles.icon} />
+//             </TouchableOpacity>
 
-//   <TouchableOpacity onPress={() => console.log("Facebook Login Clicked")}>
-//     <Image source={facebookIcon} style={styles.icon} />
-//   </TouchableOpacity>
+//             <TouchableOpacity onPress={() => console.log("Facebook Login Clicked")}>
+//               <Image source={facebookIcon} style={styles.icon} />
+//             </TouchableOpacity>
 
-//   <TouchableOpacity onPress={() => console.log("Apple Login Clicked")}>
-//     <Image source={appleIcon} style={styles.icon2} />
-//   </TouchableOpacity>
-// </View>
-
-          
+//             <TouchableOpacity onPress={() => console.log("Apple Login Clicked")}>
+//               <Image source={appleIcon} style={styles.icon2} />
+//             </TouchableOpacity>
+//           </View>
 
 //           {/* Switch to SignIn */}
 //           <Text style={styles.switchText}>
@@ -124,144 +124,9 @@
 //   );
 // };
 
-// const styles = StyleSheet.create({
-//   scrollContainer: {
-//     flexGrow: 1,
-//     justifyContent: 'center',
-//   },
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     paddingHorizontal: 20,
-//   },
-//   logoContainer: {
-//     backgroundColor: "#47154B",
-//     paddingVertical: 20,
-//     paddingHorizontal: 40,
-//     borderRadius: 10,
-//     alignItems: 'center',
-//     marginBottom: 30,
-//     width: '113%',
-//   },
-//   logo: {
-//     fontSize: 32,
-//     fontWeight: 'bold',
-//     color: 'white',
-//     marginLeft: -160,
-//     marginTop: 20,
-//   },
-//   image: {
-//     width: 320,
-//     height: 200,
-//     resizeMode: 'contain',
-//     marginTop: -22,
-//     position: "relative"
-//   },
-//   formContainer: {
-//     width: '100%',
-//     backgroundColor: '#fff',
-//     paddingLeft: 12,
-//     paddingRight: 12,
-//     borderRadius: 10,
-//     marginTop: -100,
-//   },
-//   title: {
-//     fontSize: 24,
-//     color: '#4A154B',
-//     marginVertical: 10,
-//     fontWeight: '600',
-//     textAlign: "center",
-//   },
-//   inputHeading: {
-//     fontSize: 16,
-//     color: '#4A154B',
-//     marginVertical: 5,
-//     fontWeight: '500',
-//   },
-//   input: {
-//     width: '100%',
-//     height: 50,
-//     backgroundColor: '#f5f5f5',
-//     borderRadius: 8,
-//     paddingHorizontal: 15,
-//     marginVertical: 10,
-//     borderColor: '#ccc',
-//     borderWidth: 1,
-//   },
-//   passwordContainer: {
-//     position: 'relative',
-//   },
-//   eyeIconContainer: {
-//     position: 'absolute',
-//     right: 10,
-//     top: 22,
-//   },
-//   button: {
-//     width: '100%',
-//     height: 50,
-//     backgroundColor: '#6A0E77',
-//     borderRadius: 8,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     marginVertical: 20,
-//   },
-//   buttonText: {
-//     color: '#fff',
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//   },
-//   socialContainer: {
-//     flexDirection: 'row',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     marginVertical: 20,
-//   },
-//   icon: {
-//     width: 45,
-//     height: 40,
-//     marginHorizontal: 15,
-//     borderWidth: 1,
-//     borderColor: 'black',
-//     borderRadius: 5,
-   
-//   },
-//   icon2: {
-//     width: 40,
-//     height: 39,
-//     borderWidth: 1,
-//     borderColor: 'black',
-//     borderRadius: 5,
-//     marginHorizontal: 10,
-//   },
-//   switchText: {
-//     fontSize: 16,
-//     color: 'black',
-//     textAlign: "center",
-//     marginBottom: 20,
-//   },
-//   linkText: {
-//     color: '#6A0E77',
-//     fontWeight: 'bold',
-//     textDecorationLine: "underline",
-//   },
-// });
-
-// export default SignUp;
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'; // Importing Ionicons for the eye icon
+import Icon from 'react-native-vector-icons/Ionicons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import googleIcon from "../assets/google-icon.png";
@@ -275,39 +140,69 @@ const SignUp = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [securePassword, setSecurePassword] = useState(true);
 
-  const handleSignUp = () => {
-    // Basic validation
+  const handleSignUp = async () => {
     if (!name || !emailPhone || !password) {
       Alert.alert('Error', 'All fields are required!');
       return;
     }
 
-    const emailPhonePattern = /^[a-zA-Z0-9]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
-    const phonePattern = /^[0-9]{10}$/;
+    const emailPattern = /^[a-zA-Z0-9]+@gmail\.com$/;
+const phonePattern = /^[0-9]{10}$/;
 
-    if (!emailPhonePattern.test(emailPhone) && !phonePattern.test(emailPhone)) {
-      Alert.alert('Error', 'Please enter a valid email or phone number');
-      return;
+if (!emailPattern.test(emailPhone) && !phonePattern.test(emailPhone)) {
+  Alert.alert('Error', 'Please enter a valid email (must include @gmail.com) or phone number');
+  return;
+}
+
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[\W_])(?=.*[0-9]).{6,}$/;
+
+  if (!passwordPattern.test(password)) {
+    Alert.alert(
+      'Error',
+      'Password must be at least 6 characters long and include:\n✅ One uppercase letter\n✅ One number (0-9)\n✅ One special character (!@#$%^&*)'
+    );
+    return;
+  }
+
+    try {
+      const response = await fetch('http://192.168.29.178:5000/SignUp', {  // Change to your server URL in production
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: name,
+          emailOrMobile: emailPhone,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+      console.log("Server Response:", data);
+      
+      if (response.ok) {
+        Alert.alert('Success', data.message);
+        navigation.navigate('SignIn'); // Redirect to SignIn screen after successful signup
+      } else {
+        Alert.alert('Error', data.message || 'Signup failed');
+      }
+    } catch (error) {
+      console.error("SignUp Error:", error);
+      Alert.alert('Error', 'Something went wrong! Please try again later.');
     }
-
-    // Proceed with signup logic
-    Alert.alert('Success', 'Signed up successfully');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        {/* Logo and Image Container */}
         <View style={styles.logoContainer}>
           <Text style={styles.logo}>ViShu's</Text>
           <Image source={signup} style={styles.image} />
         </View>
 
-        {/* Form Container */}
         <View style={styles.formContainer}>
           <Text style={styles.title}>Sign up</Text>
 
-          {/* Full Name Input */}
           <Text style={styles.inputHeading}>Full Name</Text>
           <TextInput
             placeholder="Name"
@@ -316,7 +211,6 @@ const SignUp = ({ navigation }) => {
             onChangeText={setName}
           />
 
-          {/* Email/Mobile Input */}
           <Text style={styles.inputHeading}>Email/Mobile no</Text>
           <TextInput
             placeholder="Enter your email or phone number"
@@ -326,7 +220,6 @@ const SignUp = ({ navigation }) => {
             keyboardType="email-address"
           />
 
-          {/* Password Input */}
           <Text style={styles.inputHeading}>Password</Text>
           <View style={styles.passwordContainer}>
             <TextInput
@@ -348,12 +241,10 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          {/* Sign Up Button */}
           <TouchableOpacity style={styles.button} onPress={handleSignUp}>
             <Text style={styles.buttonText}>Sign up</Text>
           </TouchableOpacity>
 
-          {/* Social Login Icons */}
           <View style={styles.socialContainer}>
             <TouchableOpacity onPress={() => console.log("Google Login Clicked")}>
               <Image source={googleIcon} style={styles.icon} />
@@ -368,7 +259,6 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          {/* Switch to SignIn */}
           <Text style={styles.switchText}>
             Already have an account?{' '}
             <Text

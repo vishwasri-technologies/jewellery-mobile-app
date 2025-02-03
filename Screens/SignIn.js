@@ -1,10 +1,12 @@
+
 // import React, { useState } from 'react';
 // import { 
 //   View, Text, TextInput, TouchableOpacity, StyleSheet, 
 //   Image, ScrollView, Alert 
 // } from 'react-native';
-// import { Ionicons } from '@expo/vector-icons'; // Default Icon Library
+// import { Ionicons } from '@expo/vector-icons';
 // import { useNavigation } from '@react-navigation/native';
+// import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 // import googleIcon from "../assets/google-icon.png";
 // import facebookIcon from "../assets/fb-icon.png";
@@ -71,7 +73,7 @@
 //             >
 //               <Ionicons
 //                 name={securePassword ? "eye-off-outline" : "eye-outline"}
-//                 size={24}
+//                 size={wp(6)}
 //                 color="black"
 //               />
 //             </TouchableOpacity>
@@ -86,19 +88,18 @@
 //           </Text>
 
 //           <View style={styles.socialContainer}>
-//   <TouchableOpacity onPress={() => console.log("Google Login Clicked")}>
-//     <Image source={googleIcon} style={styles.icon} />
-//   </TouchableOpacity>
+//             <TouchableOpacity onPress={() => console.log("Google Login Clicked")}>
+//               <Image source={googleIcon} style={styles.icon} />
+//             </TouchableOpacity>
 
-//   <TouchableOpacity onPress={() => console.log("Facebook Login Clicked")}>
-//     <Image source={facebookIcon} style={styles.icon} />
-//   </TouchableOpacity>
+//             <TouchableOpacity onPress={() => console.log("Facebook Login Clicked")}>
+//               <Image source={facebookIcon} style={styles.icon} />
+//             </TouchableOpacity>
 
-//   <TouchableOpacity onPress={() => console.log("Apple Login Clicked")}>
-//     <Image source={appleIcon} style={styles.icon2} />
-//   </TouchableOpacity>
-// </View>
-
+//             <TouchableOpacity onPress={() => console.log("Apple Login Clicked")}>
+//               <Image source={appleIcon} style={styles.icon2} />
+//             </TouchableOpacity>
+//           </View>
 
 //           <Text style={styles.switchText}>
 //             Don’t have an account?{' '}
@@ -110,153 +111,25 @@
 //   );
 // };
 
-// const styles = StyleSheet.create({
-//   scrollContainer: {
-//     flexGrow: 1,
-//     justifyContent: 'center',
-//   },
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     paddingHorizontal: 20,
-//   },
-//   logoContainer: {
-//     backgroundColor: "#47154B",
-//     paddingVertical: 20,
-//     paddingHorizontal: 40,
-//     borderRadius: 10,
-//     alignItems: 'center',
-//     marginBottom: 30,
-//     width: '113%',
-//   },
-//   logo: {
-//     fontSize: 32,
-//     fontWeight: 'bold',
-//     color: 'white',
-//     marginLeft: -160,
-//     marginTop: 20,
-//   },
-//   image: {
-//     width: 350,
-//     height: 200,
-//     resizeMode: 'contain',
-//     marginTop: -18,
-//   },
-//   formContainer: {
-//     width: '100%',
-//     backgroundColor: '#fff',
-//     padding: 20,
-//     borderRadius: 10,
-//     shadowColor: '#000',
-//     shadowOffset: { width: 0, height: 4 },
-//     shadowOpacity: 0.1,
-//     shadowRadius: 6,
-//     elevation: 7,
-//     marginTop: -70,
-//   },
-//   title: {
-//     fontSize: 24,
-//     color: '#4A154B',
-//     marginVertical: 10,
-//     fontWeight: '600',
-//     textAlign: "center",
-//   },
-//   inputHeading: {
-//     fontSize: 16,
-//     color: '#4A154B',
-//     marginVertical: 5,
-//     fontWeight: '500',
-//   },
-//   input: {
-//     width: '100%',
-//     height: 50,
-//     backgroundColor: '#f5f5f5',
-//     borderRadius: 8,
-//     paddingHorizontal: 15,
-//     marginVertical: 10,
-//     borderColor: '#ccc',
-//     borderWidth: 1,
-//   },
-//   passwordContainer: {
-//     position: 'relative',
-//   },
-//   eyeIconContainer: {
-//     position: 'absolute',
-//     right: 10,
-//     top: 22,
-//   },
-//   button: {
-//     width: '100%',
-//     height: 50,
-//     backgroundColor: '#6A0E77',
-//     borderRadius: 8,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     marginVertical: 20,
-//   },
-//   buttonText: {
-//     color: '#fff',
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//   },
-//   forgotPassword: {
-//     color: '#6A0E77',
-//     alignSelf: 'flex-end',
-//     marginBottom: 10,
-//     fontSize: 14,
-//     textDecorationLine: 'underline',
-//   },
-//   socialContainer: {
-//     flexDirection: 'row',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     marginVertical: 20,
-//   },
-//   icon: {
-//     width: 45,
-//     height: 40,
-//     marginHorizontal: 15,
-//     borderWidth: 1,
-//     borderColor: 'black',
-//     borderRadius: 5,
-//   },
-//   icon2: {
-//     width: 40,
-//     height: 39,
-//     borderWidth: 1,
-//     borderColor: 'black',
-//     borderRadius: 5,
-//     marginHorizontal: 10,
-//   },
-//   switchText: {
-//     fontSize: 16,
-//     color: 'black',
-//     textAlign: "center",
-//   },
-//   linkText: {
-//     color: '#6A0E77',
-//     fontWeight: 'bold',
-//     textDecorationLine: "underline",
-//   },
-// });
-
-// export default SignIn;
 
 
 
-
-
-
-
-
-import React, { useState } from 'react';
-import { 
-  View, Text, TextInput, TouchableOpacity, StyleSheet, 
-  Image, ScrollView, Alert 
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Alert,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import googleIcon from "../assets/google-icon.png";
 import facebookIcon from "../assets/fb-icon.png";
@@ -265,27 +138,50 @@ import signin from "../assets/signin-img.png";
 
 const SignIn = () => {
   const navigation = useNavigation();
-  const [emailPhone, setEmailPhone] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailPhone, setEmailPhone] = useState("");
+  const [password, setPassword] = useState("");
   const [securePassword, setSecurePassword] = useState(true);
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     if (!emailPhone || !password) {
-      Alert.alert('Error', 'All fields are required!');
+      Alert.alert("Error", "All fields are required!");
       return;
     }
 
-    const emailPhonePattern = /^[a-zA-Z0-9]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
+    const emailPhonePattern = /^[a-zA-Z0-9]+@gmail\.com$/;
     const phonePattern = /^[0-9]{10}$/;
-
+    
     if (!emailPhonePattern.test(emailPhone) && !phonePattern.test(emailPhone)) {
-      Alert.alert('Error', 'Please enter a valid email or phone number');
+      Alert.alert('Error', 'Please enter a valid email (must include @gmail.com) or phone number');
       return;
     }
+    
+        const passwordPattern = /^(?=.*[A-Z])(?=.*[\W_])(?=.*[0-9]).{6,}$/;
+    
+      if (!passwordPattern.test(password)) {
+        Alert.alert(
+          'Error',
+          'Password must be at least 6 characters long and include:\n✅ One uppercase letter\n✅ One number (0-9)\n✅ One special character (!@#$%^&*)'
+        );
+        return;
+      }
+      
 
-    Alert.alert('Success', 'Signed in successfully', [
-      { text: 'OK', onPress: () => navigation.navigate('home') }
-    ]);
+    try {
+      const response = await axios.post("http://192.168.29.178:5000/SignIn", {
+        emailOrMobile: emailPhone,
+        password,
+      });
+
+      if (response.data.token) {
+        await AsyncStorage.setItem("userToken", response.data.token);
+        Alert.alert("Success", "Signed in successfully", [
+          { text: "OK", onPress: () => navigation.navigate("home") },
+        ]);
+      }
+    } catch (error) {
+      Alert.alert("Error", "Invalid credentials or server error");
+    }
   };
 
   return (
@@ -333,7 +229,10 @@ const SignIn = () => {
             <Text style={styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
 
-          <Text style={styles.forgotPassword} onPress={() => navigation.navigate('forgot')}>
+          <Text
+            style={styles.forgotPassword}
+            onPress={() => navigation.navigate("forgot")}
+          >
             Forgot Password?
           </Text>
 
@@ -352,14 +251,21 @@ const SignIn = () => {
           </View>
 
           <Text style={styles.switchText}>
-            Don’t have an account?{' '}
-            <Text style={styles.linkText} onPress={() => navigation.navigate('SignUp')}>Sign up</Text>
+            Don’t have an account?{" "}
+            <Text
+              style={styles.linkText}
+              onPress={() => navigation.navigate("SignUp")}
+            >
+              Sign up
+            </Text>
           </Text>
         </View>
       </View>
     </ScrollView>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   scrollContainer: {

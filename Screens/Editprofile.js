@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import * as ImagePicker from "react-native-image-picker";
+import axios from "axios";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -10,9 +12,63 @@ import BottomNavbar from "./BottomNavbar";
 const EditProfile = () => {
   const navigation = useNavigation();
 
-  const [firstName, setFirstName] = useState("Adhvitha");
-  const [lastName, setLastName] = useState("Nallapu");
-  const [mobileNo, setMobileNo] = useState("9394800354");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobileNo, setMobileNo] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
+
+  // Open Gallery Function
+  const pickImage = () => {
+    ImagePicker.launchImageLibrary(
+      { mediaType: "photo", includeBase64: false },
+      (response) => {
+        if (response.didCancel) {
+          console.log("User cancelled image picker");
+        } else if (response.error) {
+          console.log("ImagePicker Error: ", response.error);
+        } else {
+          const imageUri = response.assets[0].uri;
+          setProfilePic(imageUri);
+          uploadImage(imageUri);
+        }
+      }
+    );
+  };
+
+  // Upload Image to Server
+  const uploadImage = async (imageUri) => {
+    const formData = new FormData();
+    formData.append("profilePic", {
+      uri: imageUri,
+      type: "image/jpeg",
+      name: "profile.jpg",
+    });
+
+    try {
+      const response = await axios.post("http://192.168.29.178:5000/Editprofile", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setProfilePic(response.data.imageUrl);
+    } catch (error) {
+      console.error("Upload failed:", error);
+    }
+  };
+
+  // Save Profile Data
+  const saveProfile = async () => {
+    try {
+      const response = await axios.post("http://192.168.29.178:5000/Editprofile", {
+        firstName,
+        lastName,
+        mobileNo,
+        profilePic,
+      });
+      Alert.alert("Success", "Profile saved successfully!");
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Failed to save profile.");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -27,42 +83,28 @@ const EditProfile = () => {
 
         {/* Profile Image with Edit Icon */}
         <View style={styles.profileContainer}>
+
           <Image
             source={require("../assets/profileImgs/profile-icon.png")}
             style={styles.profileImage}
           />
-          {/* <TouchableOpacity style={styles.editIconContainer}>
-            <Image source={require("../assets/profileImgs/camera.png")} style={styles.editIcon} />
-          </TouchableOpacity> */}
+
         </View>
 
         {/* Input Fields */}
         <View style={styles.inputContainer}>
           <Text style={styles.label}>First Name</Text>
-          <TextInput
-            style={styles.input}
-            value={firstName}
-            onChangeText={(text) => setFirstName(text)}
-          />
+          <TextInput style={styles.input} value={firstName} onChangeText={setFirstName} />
 
           <Text style={styles.label}>Last Name</Text>
-          <TextInput
-            style={styles.input}
-            value={lastName}
-            onChangeText={(text) => setLastName(text)}
-          />
+          <TextInput style={styles.input} value={lastName} onChangeText={setLastName} />
 
           <Text style={styles.label}>Email/Mobile no</Text>
-          <TextInput
-            style={styles.input}
-            value={mobileNo}
-            onChangeText={(text) => setMobileNo(text)}
-            keyboardType="name-phone-pad"
-          />
+          <TextInput style={styles.input} value={mobileNo} onChangeText={setMobileNo} keyboardType="name-phone-pad" />
         </View>
 
         {/* Save Button */}
-        <TouchableOpacity style={styles.saveButton}>
+        <TouchableOpacity style={styles.saveButton} onPress={saveProfile}>
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -74,6 +116,8 @@ const EditProfile = () => {
     </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {

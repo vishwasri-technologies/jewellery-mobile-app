@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import {
@@ -8,7 +8,9 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
+import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons"; // Import icons
 import {
   widthPercentageToDP as wp,
@@ -18,6 +20,33 @@ import BottomNavbar from "./BottomNavbar";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+// Fetch profile from backend
+const fetchProfile = async () => {
+  try {
+    const response = await axios.get("http://192.168.29.178:5000/Profile"); // Replace with actual API URL
+    setProfile(response.data[response.data.length - 1]); // Get the most recent profile
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  fetchProfile();
+  const focusListener = navigation.addListener("focus", fetchProfile);
+  return () => focusListener();
+}, [navigation]);
+
+if (loading) {
+  return (
+    <View style={styles.loaderContainer}>
+      <ActivityIndicator size="large" color="#0000ff" />
+    </View>
+  );
+}
 
   return (
     <View style={styles.container}>
@@ -50,8 +79,10 @@ const ProfileScreen = () => {
       style={styles.editIcon}
     />
   </TouchableOpacity>
-  <Text style={styles.profileName}>Adhvitha</Text>
-  <Text style={styles.profileNumber}>9394800354</Text>
+  {/* <Text style={styles.profileName}>Adhvitha</Text>
+  <Text style={styles.profileNumber}>9394800354</Text> */}
+  <Text style={styles.profileName}>{profile?.firstName || "N/A"}</Text>
+  <Text style={styles.profileNumber}>{profile?.mobileNo || "N/A"}</Text>
 </View>
 
         <View style={styles.list}>
