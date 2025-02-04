@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity,Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import Icon
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
+import { useWishlist } from './WishlistContext';
 
-const braceletProducts = [
+
+const womenankletProducts = [
   { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
   { id: '2', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
   { id: '3', image: require('../assets/categories/Men-bracelets.png'), name: 'Platinum Bracelet', price: '\u20B9170' },
@@ -14,30 +16,44 @@ const braceletProducts = [
 ];
 
 const WomenAnkletsScreen = () => {
-  const [wishlist, setWishlist] = useState({});
-
-  const toggleWishlist = (id) => {
-    setWishlist((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+ const { wishlist, toggleWishlist } = useWishlist();
+ 
+   // Function to handle adding/removing items from wishlist
+   const handleWishlistToggle = (item) => {
+     toggleWishlist(item);
+ 
+     // Show alert when an item is added to or removed from the wishlist
+     const isItemInWishlist = wishlist.some((wishlistItem) => wishlistItem.id === item.id);
+     const action = isItemInWishlist ? 'removed from' : 'added to';
+ 
+     Alert.alert(
+       'Wishlist Update',
+       `The item "${item.name}" has been ${action} your wishlist.`,
+       [{ text: 'OK' }],
+       { cancelable: false }
+     );
+   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Women-Anklets</Text>
       <FlatList
-        data={braceletProducts}
+        data={womenankletProducts}
         keyExtractor={(item) => item.id}
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <View style={styles.item}>
-           <TouchableOpacity onPress={() => toggleWishlist(item.id)} style={styles.wishlistContainer}>
-              <Icon
-                name="heart" // FontAwesome heart icon
-                size={wp(7)}
-                color={wishlist[item.id] ? 'red' : 'white'} // Red if selected, white if not
-                style={styles.wishlistIcon}
-              />
-            </TouchableOpacity>
+             {/* Wishlist Toggle */}
+                        <TouchableOpacity onPress={() => handleWishlistToggle(item)} style={styles.wishlistContainer}>
+                          <Icon
+                            name="heart"
+                            size={wp(7)}
+                            color={wishlist.some((wishlistItem) => wishlistItem.id === item.id) ? 'red' : 'gray'}
+                            style={styles.wishlistIcon}
+                          />
+                        </TouchableOpacity>
+          
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
