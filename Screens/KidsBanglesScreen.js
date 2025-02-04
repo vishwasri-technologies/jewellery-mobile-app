@@ -5,7 +5,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import BottomNavBar from './BottomNavbar';
 import { useWishlist } from './WishlistContext';
 
-const braceletProducts = [
+const kidsbangleProducts = [
   { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
   { id: '2', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
   { id: '3', image: require('../assets/categories/Men-bracelets.png'), name: 'Platinum Bracelet', price: '\u20B9170' },
@@ -37,7 +37,7 @@ const  KidsBanglesScreen = () => {
     <View style={styles.container}>
       <Text style={styles.heading}>kids-bangles</Text>
       <FlatList
-        data={braceletProducts}
+        data={kidsbangleProducts}
         keyExtractor={(item) => item.id}
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}
