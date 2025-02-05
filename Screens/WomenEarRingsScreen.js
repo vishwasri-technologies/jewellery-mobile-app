@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity,Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Import Icon
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
-import { useWishlist } from './WishlistContext';
+import HeartIcon from './HeartIcon';
 
 const womenearringsProducts = [
   { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
@@ -15,23 +15,7 @@ const womenearringsProducts = [
 ];
 
 const WomenEarRingsScreen = () => {
- const { wishlist, toggleWishlist } = useWishlist();
- 
-   // Function to handle adding/removing items from wishlist
-   const handleWishlistToggle = (item) => {
-     toggleWishlist(item);
- 
-     // Show alert when an item is added to or removed from the wishlist
-     const isItemInWishlist = wishlist.some((wishlistItem) => wishlistItem.id === item.id);
-     const action = isItemInWishlist ? 'removed from' : 'added to';
- 
-     Alert.alert(
-       'Wishlist Update',
-       `The item "${item.name}" has been ${action} your wishlist.`,
-       [{ text: 'OK' }],
-       { cancelable: false }
-     );
-   };
+
 
   return (
     <View style={styles.container}>
@@ -43,15 +27,8 @@ const WomenEarRingsScreen = () => {
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <View style={styles.item}>
-          {/* Wishlist Toggle */}
-                     <TouchableOpacity onPress={() => handleWishlistToggle(item)} style={styles.wishlistContainer}>
-                       <Icon
-                         name="heart"
-                         size={wp(7)}
-                         color={wishlist.some((wishlistItem) => wishlistItem.id === item.id) ? 'red' : 'gray'}
-                         style={styles.wishlistIcon}
-                       />
-                     </TouchableOpacity>
+            {/* Heart Icon Component */}
+            <HeartIcon item={item} />
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
@@ -106,15 +83,7 @@ const styles = StyleSheet.create({
     color: 'gray',
     textAlign:'left',
   },
-  wishlistContainer: {
-    position: 'absolute',
-    top: hp(2),   // Adjusted to be inside the image area
-    right: wp(4), // Adjusted position
-    zIndex: 10,   // Ensures it appears on top of the image
-  },
-  wishlistIcon: {
-    resizeMode: 'contain',
-  },
+
 });
 
 export default WomenEarRingsScreen;

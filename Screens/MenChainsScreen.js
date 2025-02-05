@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity ,Alert} from 'react-native';
-
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Import Icon
-import { useWishlist } from './WishlistContext';
+import HeartIcon from './HeartIcon';
 
 const chainProducts = [
-  { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+  { id: '100', image: require('../assets/bracelet.png'), name: 'Gold covering Bracelet', price: '\u20B9190' },
   { id: '2', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
   { id: '3', image: require('../assets/categories/Men-bracelets.png'), name: 'Platinum Bracelet', price: '\u20B9170' },
   { id: '4', image: require('../assets/categories/Men-bracelets.png'), name: 'Titanium Bracelet', price: '\u20B9200' },
@@ -16,23 +14,6 @@ const chainProducts = [
 ];
 
 const MenChainsScreen = () => {
-  const { wishlist, toggleWishlist } = useWishlist();
-   // Function to handle adding/removing items from wishlist
-    const handleWishlistToggle = (item) => {
-      toggleWishlist(item);
-  
-      // Show alert when an item is added to or removed from the wishlist
-      const isItemInWishlist = wishlist.some((wishlistItem) => wishlistItem.id === item.id);
-      const action = isItemInWishlist ? 'removed from' : 'added to';
-  
-      Alert.alert(
-        'Wishlist Update',
-        `The item "${item.name}" has been ${action} your wishlist.`,
-        [{ text: 'OK' }],
-        { cancelable: false }
-      );
-    };
-
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Chains</Text>
@@ -43,22 +24,16 @@ const MenChainsScreen = () => {
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <View style={styles.item}>
-           {/* Wishlist Toggle */}
-                       <TouchableOpacity onPress={() => handleWishlistToggle(item)} style={styles.wishlistContainer}>
-                         <Icon
-                           name="heart"
-                           size={wp(7)}
-                           color={wishlist.some((wishlistItem) => wishlistItem.id === item.id) ? 'red' : 'gray'}
-                           style={styles.wishlistIcon}
-                         />
-                       </TouchableOpacity>
+            {/* Heart Icon Component */}
+            <HeartIcon item={item} />
+            
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
           </View>
         )}
       />
-      <BottomNavBar/>
+      <BottomNavBar />
     </View>
   );
 };
@@ -66,54 +41,42 @@ const MenChainsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: wp(0),
-    paddingTop: hp(5),
+    paddingTop: hp(5), // Adjusted padding for better spacing
   },
   heading: {
-    fontSize: wp(6),
+    fontSize: wp(6), // Responsive font size
     fontWeight: 'bold',
-    marginBottom: hp(2),
-    marginLeft: wp(4),
-    color:"#47154B",
-    
+    marginBottom: hp(2), // Responsive margin
+    marginLeft: wp(4), // Responsive margin
+    color: "#47154B",
   },
-  // listContainer: {
-  //   paddingHorizontal: wp(2),
-  // },
+  listContainer: {
+    paddingHorizontal: wp(2), // Added horizontal padding for responsiveness
+  },
   item: {
-    width: wp(46),
+    width: wp(46), // Responsive width for items
     backgroundColor: '#fff',
-    borderRadius: wp(2),
-    padding: wp(3),
-    margin: wp(2),
+    borderRadius: wp(2), // Responsive border radius
+    padding: wp(3), // Responsive padding
+    margin: wp(2), // Responsive margin
     alignItems: 'flex-start',
     elevation: 3,
   },
   image: {
-    width: wp(40),
-    height: wp(50),
-    borderRadius: wp(2),
+    width: wp(40), // Responsive width for images
+    height: wp(50), // Responsive height for images
+    borderRadius: wp(2), // Responsive border radius for images
   },
   name: {
-    fontSize: wp(4),
+    fontSize: wp(4), // Responsive font size
     fontWeight: 'bold',
-    marginVertical: hp(1),
+    marginVertical: hp(1), // Responsive margin
     textAlign: 'left',
-   
   },
   price: {
-    fontSize: wp(3.5),
+    fontSize: wp(3.5), // Responsive font size
     color: 'gray',
-    textAlign:'left',
-  },
-  wishlistContainer: {
-    position: 'absolute',
-    top: hp(2),   // Adjusted to be inside the image area
-    right: wp(4), // Adjusted position
-    zIndex: 10,   // Ensures it appears on top of the image
-  },
-  wishlistIcon: {
-    resizeMode: 'contain',
+    textAlign: 'left',
   },
 });
 

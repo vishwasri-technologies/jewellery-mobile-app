@@ -1,12 +1,16 @@
 
 
 
+
+
+
+
 import React from 'react';
-import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { useWishlist } from './WishlistContext';
+
 import BottomNavBar from './BottomNavbar';
+import HeartIcon from './HeartIcon';
 
 const braceletProducts = [
   { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '₹150' },
@@ -18,24 +22,6 @@ const braceletProducts = [
 ];
 
 const MenBraceletsScreen = () => {
-  const { wishlist, toggleWishlist } = useWishlist();
-
-  // Function to handle adding/removing items from wishlist
-  const handleWishlistToggle = (item) => {
-    toggleWishlist(item);
-
-    // Show alert when an item is added to or removed from the wishlist
-    const isItemInWishlist = wishlist.some((wishlistItem) => wishlistItem.id === item.id);
-    const action = isItemInWishlist ? 'removed from' : 'added to';
-
-    Alert.alert(
-      'Wishlist Update',
-      `The item "${item.name}" has been ${action} your wishlist.`,
-      [{ text: 'OK' }],
-      { cancelable: false }
-    );
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Bracelets</Text>
@@ -46,37 +32,55 @@ const MenBraceletsScreen = () => {
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <View style={styles.item}>
-            {/* Wishlist Toggle */}
-            <TouchableOpacity onPress={() => handleWishlistToggle(item)} style={styles.wishlistContainer}>
-              <Icon
-                name="heart"
-                size={wp(7)}
-                color={wishlist.some((wishlistItem) => wishlistItem.id === item.id) ? 'red' : 'gray'}
-                style={styles.wishlistIcon}
-              />
-            </TouchableOpacity>
+            {/* Heart Icon Component */}
+            <HeartIcon item={item} />
 
-            {/* Product Image and Details */}
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
           </View>
         )}
       />
-      <BottomNavBar/>
+      <BottomNavBar />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: hp(5) },
-  heading: { fontSize: wp(6), fontWeight: 'bold', marginBottom: hp(2), marginLeft: wp(4), color: "#47154B" },
-  item: { width: wp(46), backgroundColor: '#fff', borderRadius: wp(2), padding: wp(3), margin: wp(2), alignItems: 'center', elevation: 3 },
-  image: { width: wp(40), height: wp(50), borderRadius: wp(2) },
-  name: { fontSize: wp(4), fontWeight: 'bold', marginVertical: hp(1), textAlign: 'center' },
-  price: { fontSize: wp(3.5), color: 'gray', textAlign: 'center' },
-  wishlistContainer: { position: 'absolute', top: hp(2), right: wp(4), zIndex: 10 },
-  wishlistIcon: { resizeMode: 'contain' },
+  container: { flex: 1, paddingTop: hp('2%') }, // Responsive padding top
+  heading: { 
+    fontSize: wp('6%'), // Responsive font size
+    fontWeight: 'bold', 
+    marginBottom: hp('2%'), // Responsive margin
+    marginLeft: wp('4%'), 
+    color: "#47154B", 
+    marginTop: hp('4%'),
+  },
+  item: { 
+    width: '46%', 
+    backgroundColor: '#fff', 
+    borderRadius: wp('2%'), // Responsive border radius
+    padding: wp('3%'), // Responsive padding
+    margin: '2%', 
+    alignItems: 'center', 
+    elevation: 3 
+  },
+  image: { 
+    width: wp('45%'), // Responsive image width
+    height: hp('18%'), // Responsive image height
+    borderRadius: wp('2%'), // Responsive border radius
+  },
+  name: { 
+    fontSize: wp('4%'), // Responsive font size
+    fontWeight: 'bold', 
+    marginVertical: hp('1%'), // Responsive margin
+    textAlign: 'center' 
+  },
+  price: { 
+    fontSize: wp('3.5%'), // Responsive font size
+    color: 'gray', 
+    textAlign: 'center' 
+  },
 });
 
 export default MenBraceletsScreen;
