@@ -10,7 +10,7 @@ const kidsbangleProducts = [
   { id: '34', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
   { id: '35', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
 
-];
+]
 
 const  KidsBanglesScreen = () => {
 
