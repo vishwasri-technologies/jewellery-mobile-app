@@ -11,9 +11,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useNavigation } from '@react-navigation/native';
+import HeartIcon from './HeartIcon';
+
 
 const ProductDetailsScreen = ({ route }) => {
   const { product } = route.params; // Access the passed product data
+
+    const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -29,8 +34,14 @@ const ProductDetailsScreen = ({ route }) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.heartButton}>
           <Text style={styles.heartIcon}>♡</Text>
+          {/* <HeartIcon item={item} /> */}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.addToCartButton}>
+        <TouchableOpacity
+          style={styles.addToCartButton}
+          onPress={() =>
+            navigation.navigate("cart")
+          }
+        >
           <Text style={styles.addToCartText}>ADD TO CART</Text>
         </TouchableOpacity>
       </View>
@@ -44,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   scrollContainer: {
-    paddingBottom: hp('100%'), // Prevents overlap with bottom buttons
+    paddingBottom: hp("100%"), // Prevents overlap with bottom buttons
     alignItems: "center",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
   },
@@ -91,7 +102,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heartIcon: {
-    fontSize: wp(6),
+    fontSize: wp(7),
     color: "black",
   },
   addToCartButton: {

@@ -4,6 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import MenScreen from './MenScreen';
 import WomenScreen from './WomenScreen';
 import KidsScreen from './KidsScreen';
+import BottomNavBar from './BottomNavbar';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -56,6 +57,7 @@ const Categories = () => {
           })}
         />
       </TopTab.Navigator>
+      <BottomNavBar />
     </View>
   );
 };
