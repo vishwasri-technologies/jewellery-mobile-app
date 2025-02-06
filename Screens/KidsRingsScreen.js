@@ -6,12 +6,10 @@ import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 
 const kidsringsProducts = [
-  { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-  { id: '2', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
-  { id: '3', image: require('../assets/categories/Men-bracelets.png'), name: 'Platinum Bracelet', price: '\u20B9170' },
-  { id: '4', image: require('../assets/categories/Men-bracelets.png'), name: 'Titanium Bracelet', price: '\u20B9200' },
-  { id: '5', image: require('../assets/categories/Men-bracelets.png'), name: 'Leather Bracelet', price: '\u20B980' },
-  { id: '6', image: require('../assets/categories/Men-bracelets.png'), name: 'Chain Bracelet', price: '\u20B9120' },
+  { id: '29', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+  { id: '31', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+
+
 ];
 
 const  KidsRingsScreen = () => {
@@ -19,7 +17,7 @@ const  KidsRingsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Kids-Rings</Text>
+      <Text style={styles.heading}>KidsRings</Text>
       <FlatList
         data={kidsringsProducts}
         keyExtractor={(item) => item.id}

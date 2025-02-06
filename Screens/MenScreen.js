@@ -4,10 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const menProducts = [
-  { id: '1', image: require('../assets/categories/Men-bracelets.png'), name: 'Bracelets', screen: 'MenBraceletsScreen' },
-  { id: '2', image: require('../assets/categories/Men-Chains.png'), name: 'Chains', screen: 'MenChainsScreen' },
-  { id: '3', image: require('../assets/categories/Men-Earrings.png'), name: 'Ear Rings', screen: 'MenEarRingsScreen' },
-  { id: '4', image: require('../assets/categories/Men-Fingerrings.png'), name: 'Finger Rings', screen: 'MenFingerRingsScreen' },
+  { id: '68', image: require('../assets/categories/Men-bracelets.png'), name: 'Bracelets', screen: 'MenBraceletsScreen' },
+  { id: '69', image: require('../assets/categories/Men-Chains.png'), name: 'Chains', screen: 'MenChainsScreen' },
+  { id: '70', image: require('../assets/categories/Men-Earrings.png'), name: 'Ear Rings', screen: 'MenEarRingsScreen' },
+  { id: '71', image: require('../assets/categories/Men-Fingerrings.png'), name: 'Finger Rings', screen: 'MenFingerRingsScreen' },
 ];
 
 const MenScreen = () => {

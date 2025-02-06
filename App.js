@@ -121,6 +121,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
+
 import { WishlistProvider } from './Screens/WishlistContext'; // Import WishlistProvider
 
 import SplashScreen from './Screens/SplashScreen';
@@ -138,7 +139,7 @@ import EditProfile from './Screens/Editprofile';
 import MenBraceletsScreen from './Screens/MenBraceletsScreen';
 import MenChainsScreen from './Screens/MenChainsScreen';
 import MenEarRingsScreen from './Screens/MenEarRingsScreen';
-import Wishlist from './Screens/Wishlist';
+
 import MenFingerRingsScreen from './Screens/MenFingerRingsScreen';
 import WomenRingsScreen from './Screens/WomenRingsScreen';
 import WomenEarRingsScreen from './Screens/WomenEarRingsScreen';
@@ -168,6 +169,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
+  
     <WishlistProvider> {/* Wrap the app with the WishlistProvider */}
       <NavigationContainer>
         <StatusBar style="light" backgroundColor="#47154B" />
@@ -214,6 +216,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </WishlistProvider>
+  
   );
 }
 
