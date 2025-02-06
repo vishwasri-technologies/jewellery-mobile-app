@@ -6,8 +6,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 const menProducts = [
   { id: '68', image: require('../assets/categories/Men-bracelets.png'), name: 'Bracelets', screen: 'MenBraceletsScreen' },
   { id: '69', image: require('../assets/categories/Men-Chains.png'), name: 'Chains', screen: 'MenChainsScreen' },
-  { id: '70', image: require('../assets/categories/Men-Earrings.png'), name: 'Ear Rings', screen: 'MenEarRingsScreen' },
-  { id: '71', image: require('../assets/categories/Men-Fingerrings.png'), name: 'Finger Rings', screen: 'MenFingerRingsScreen' },
+  { id: '72', image: require('../assets/categories/Men-Earrings.png'), name: 'Ear Rings', screen: 'MenEarRingsScreen' },
+  { id: '73', image: require('../assets/categories/Men-Fingerrings.png'), name: 'Finger Rings', screen: 'MenFingerRingsScreen' },
 ];
 
 const MenScreen = () => {

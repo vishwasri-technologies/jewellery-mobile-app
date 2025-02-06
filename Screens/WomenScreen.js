@@ -4,17 +4,17 @@ import { useNavigation } from '@react-navigation/native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const womenProducts = [
-  { id: '55', image: require('../assets/categories/women-rings.png'), name: 'Rings', screen: 'WomenRingsScreen' },
+  // { id: '55', image: require('../assets/categories/women-rings.png'), name: 'Rings', screen: 'WomenRingsScreen' },
   { id: '66', image: require('../assets/categories/Women/Earrings-main.png'), name: 'Ear Rings', screen: 'WomenEarRingsScreen' },
   { id: '77', image: require('../assets/categories/Women/Bangles-main.png'), name: 'Bangles', screen: 'WomenBanglesScreen' },
   { id: '88', image: require('../assets/categories/Women/Bracelet-main.png'), name: 'Bracelets', screen: 'WomenBraceletsScreen' },
-  { id: '99', image: require('../assets/categories/women-rings.png'), name: 'Black beeds', screen: 'WomenChainsScreen' },
+  { id: '99', image: require('../assets/categories/Women/Blackbeeds-1.png'), name: 'Black beeds', screen: 'WomenChainsScreen' },
   { id: '111', image: require('../assets/categories/Women/Necklace-main.png'), name: 'Necklace', screen: 'WomenNecklaceScreen' },
-  { id: '122', image: require('../assets/categories/women-rings.png'), name: 'Nosepin', screen: 'WomenNosepinScreen' },
-  { id: '133', image: require('../assets/categories/women-rings.png'), name: 'Anklets', screen: 'WomenAnkletsScreen' },
-  { id: '144', image: require('../assets/categories/women-rings.png'), name: 'Hipbelt', screen: 'WomenHipbeltScreen' },
-  { id: '155', image: require('../assets/categories/women-rings.png'), name: 'Armlet', screen: 'WomenArmletScreen' },
-  { id: '166', image: require('../assets/categories/women-rings.png'), name: 'Hair Extensions', screen: 'WomenHairExtensionsScreen' },
+  // { id: '122', image: require('../assets/categories/women-rings.png'), name: 'Nosepin', screen: 'WomenNosepinScreen' },
+  // { id: '133', image: require('../assets/categories/women-rings.png'), name: 'Anklets', screen: 'WomenAnkletsScreen' },
+  // { id: '144', image: require('../assets/categories/women-rings.png'), name: 'Hipbelt', screen: 'WomenHipbeltScreen' },
+  // { id: '155', image: require('../assets/categories/women-rings.png'), name: 'Armlet', screen: 'WomenArmletScreen' },
+  // { id: '166', image: require('../assets/categories/women-rings.png'), name: 'Hair Extensions', screen: 'WomenHairExtensionsScreen' },
 ];
 
 // Add an empty item if the number of products is odd
