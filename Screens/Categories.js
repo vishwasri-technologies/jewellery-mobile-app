@@ -11,7 +11,7 @@ const Categories = () => {
   return (
     <View style={{ flex: 1 }}>
       {/* Heading */}
-      <View style={{ alignItems: 'flex-start', marginTop: 50, paddingLeft: 20 }}>
+      <View style={{ alignItems: 'flex-start', marginTop: 50, paddingLeft: 20,backgroundColor:'white' }}>
         <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#47154B' }}>
           Categories
         </Text>

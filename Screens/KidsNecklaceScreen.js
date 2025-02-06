@@ -4,6 +4,7 @@ import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
+import HeartIcon from './HeartIcon';
 
 
 const kidsnecklaceProducts = [

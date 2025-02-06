@@ -47,7 +47,7 @@ const HeartIcon = ({ item, iconStyle }) => {
 };
 
 const styles = StyleSheet.create({
-  heartContainer: { position: 'absolute', top: 12, right: 12, zIndex: 10 },
+  heartContainer: { position: 'absolute', top: 14, right: 9, zIndex: 10 },
 
   // Popup Styles
   popupContainer: {

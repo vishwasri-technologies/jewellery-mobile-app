@@ -44,47 +44,43 @@ const  KidsChainsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: wp(0),
     paddingTop: hp(5),
+    backgroundColor: '#fff',
   },
   heading: {
     fontSize: wp(6),
     fontWeight: 'bold',
     marginBottom: hp(2),
     marginLeft: wp(4),
-    color:"#47154B",
-    
+    color: "#47154B",
   },
-  // listContainer: {
-  //   paddingHorizontal: wp(2),
-  // },
   item: {
     width: wp(46),
-    backgroundColor: '#fff',
     borderRadius: wp(2),
-    padding: wp(3),
+    padding: wp(0),
     margin: wp(2),
-    alignItems: 'flex-start',
-    elevation: 3,
+    alignItems: 'center',
   },
   image: {
-    width: wp(40),
-    height: wp(50),
-    borderRadius: wp(2),
+    width: wp(47),
+    height: wp(65),  // Increased height
   },
   name: {
     fontSize: wp(4),
-    fontWeight: 'bold',
-    marginVertical: hp(1),
+    fontWeight: '400',  // Reduced thickness
+    marginVertical: hp(0.5),  // Reduced space
     textAlign: 'left',
-   
+    alignSelf: 'flex-start',  // Align to the left
+    marginLeft: wp(2),  // Small left margin for spacing
   },
   price: {
-    fontSize: wp(3.5),
-    color: 'gray',
-    textAlign:'left',
+    fontSize: wp(3.8),  // Slightly increased size
+    fontWeight: 'bold',  // Increased thickness
+    color: 'black',  // Changed to black
+    textAlign: 'left',
+    alignSelf: 'flex-start',
+    marginLeft: wp(2),
   },
-
  
 });
 
