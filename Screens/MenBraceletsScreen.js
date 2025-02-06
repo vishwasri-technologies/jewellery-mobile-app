@@ -1,12 +1,6 @@
-
-
-
-
-
-
-
 import React from 'react';
-import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import BottomNavBar from './BottomNavbar';
@@ -15,10 +9,11 @@ import HeartIcon from './HeartIcon';
 const braceletProducts = [
   { id: '9', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '₹150' },
   { id: '10', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '₹120' },
- 
 ];
 
 const MenBraceletsScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Bracelets</Text>
@@ -28,14 +23,18 @@ const MenBraceletsScreen = () => {
         numColumns={2}
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
-          <View style={styles.item}>
-            {/* Heart Icon Component */}
+          <TouchableOpacity 
+            style={styles.item} 
+            onPress={() => navigation.navigate('ProductDetails', {
+              product: item,
+            })}
+          >
             <HeartIcon item={item} />
 
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
-          </View>
+          </TouchableOpacity>
         )}
       />
       <BottomNavBar />

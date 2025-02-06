@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 
@@ -14,7 +15,7 @@ const kidsnecklaceProducts = [
 ];
 
 const  KidsNecklaceScreen = () => {
-
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -25,13 +26,18 @@ const  KidsNecklaceScreen = () => {
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
-          <View style={styles.item}>
-           {/* Heart Icon Component */}
-           <HeartIcon item={item} />
+          <TouchableOpacity 
+            style={styles.item} 
+            onPress={() => navigation.navigate('ProductDetails', {
+              product: item,
+            })}
+          >
+            <HeartIcon item={item} />
+
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
-          </View>
+          </TouchableOpacity>
         )}
       />
       <BottomNavBar/>

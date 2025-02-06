@@ -164,6 +164,7 @@ import KidsHipbeltScreen from './Screens/KidsHipbeltScreen';
 import KidsArmletScreen from './Screens/KidsArmletScreen';
 import KidsHairExtensionsScreen from './Screens/KidsHairExtensionsScreen';
 import WishlistScreen from './Screens/Wishlist';
+import ProductDetails from './Screens/ProductDetails'
 
 const Stack = createStackNavigator();
 
@@ -213,6 +214,7 @@ export default function App() {
           <Stack.Screen name="KidsHipbeltScreen" component={KidsHipbeltScreen} />
           <Stack.Screen name="KidsArmletScreen" component={KidsArmletScreen} />
           <Stack.Screen name="KidsHairExtensionsScreen" component={KidsHairExtensionsScreen} />
+          <Stack.Screen name="ProductDetails" component={ProductDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </WishlistProvider>
