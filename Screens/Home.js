@@ -25,13 +25,6 @@ const products = [
 
 const allProducts = [
 
-  { id: '45', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Anklet', price: '\u20B9150', category: "kidsanklets" },
-  { id: '46', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Anklet', price: '\u20B9120', category: "kidsanklets" },
-  { id: '49', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Armlet', price: '\u20B9150', category: "kidsarmlets" },
-  { id: '51', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Armlet', price: '\u20B9120', category: "kidsarmlets" },
-  { id: '34', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bangles', price: '\u20B9150', category: "kidsbangles" },
-  { id: '35', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bangles', price: '\u20B9120', category: "kidsbangles" },
-
   { id: '131', image: require('../assets/categories/Women/Ear-1.png'), name: 'Gold Bracelet', price: '\u20B9150', category: "EarRings" },
   { id: '140', image: require('../assets/categories/Women/Ear-2.png'), name: 'Silver Bracelet', price: '\u20B9120', category: "EarRings" },
   { id: '150', image: require('../assets/categories/Women/Ear-3.png'), name: 'Platinum Bracelet', price: '\u20B9170', category: "EarRings" },
@@ -92,7 +85,7 @@ const Home = () => {
         setAddress("Unable to fetch location");
       }
     })();
-  }, []);           //code for location
+  }, []);          //code for location
 
 
   

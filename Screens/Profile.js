@@ -82,7 +82,7 @@ if (loading) {
   {/* <Text style={styles.profileName}>Adhvitha</Text>
   <Text style={styles.profileNumber}>9394800354</Text> */}
   <Text style={styles.profileName}>{profile?.firstName || "N/A"}</Text>
-  <Text style={styles.profileNumber}>{profile?.mobileNo || "N/A"}</Text>
+  <Text style={styles.profileNumber}>{profile?.emailOrmobile || "N/A"}</Text>
 </View>
 
         <View style={styles.list}>

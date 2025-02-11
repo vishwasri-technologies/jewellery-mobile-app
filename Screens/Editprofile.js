@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import * as ImagePicker from "react-native-image-picker";
 import axios from "axios";
 import {
   widthPercentageToDP as wp,
@@ -14,56 +13,43 @@ const EditProfile = () => {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [mobileNo, setMobileNo] = useState("");
-  const [profilePic, setProfilePic] = useState(null);
+  const [emailOrmobile, setEmailOrMobile] = useState("");
+  const [errors, setErrors] = useState({});
 
-  // Open Gallery Function
-  const pickImage = () => {
-    ImagePicker.launchImageLibrary(
-      { mediaType: "photo", includeBase64: false },
-      (response) => {
-        if (response.didCancel) {
-          console.log("User cancelled image picker");
-        } else if (response.error) {
-          console.log("ImagePicker Error: ", response.error);
-        } else {
-          const imageUri = response.assets[0].uri;
-          setProfilePic(imageUri);
-          uploadImage(imageUri);
-        }
-      }
-    );
-  };
+  // 🔹 Validation Function
+  const validateInputs = () => {
+    let newErrors = {};
 
-  // Upload Image to Server
-  const uploadImage = async (imageUri) => {
-    const formData = new FormData();
-    formData.append("profilePic", {
-      uri: imageUri,
-      type: "image/jpeg",
-      name: "profile.jpg",
-    });
+    if (!firstName.trim()) newErrors.firstName = "First Name is required.";
+    if (!lastName.trim()) newErrors.lastName = "Last Name is required.";
 
-    try {
-      const response = await axios.post("http://192.168.29.178:5000/Editprofile", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setProfilePic(response.data.imageUrl);
-    } catch (error) {
-      console.error("Upload failed:", error);
+    // ✅ Validate Email or Mobile Number
+    const mobileRegex = /^[6-9]\d{9}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailOrmobile.trim()) {
+      newErrors.emailOrmobile = "Email or Mobile is required.";
+    } else if (!mobileRegex.test(emailOrmobile) && !emailRegex.test(emailOrmobile)) {
+      newErrors.emailOrmobile = "Enter a valid email or 10-digit mobile number.";
     }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // Save Profile Data
+  // 🔹 Save Profile Data to Backend
   const saveProfile = async () => {
+    if (!validateInputs()) return; // Stop if validation fails
+
     try {
       const response = await axios.post("http://192.168.29.178:5000/Editprofile", {
         firstName,
         lastName,
-        mobileNo,
-        profilePic,
+        emailOrmobile, // ✅ Use correct variable name
       });
+
       Alert.alert("Success", "Profile saved successfully!");
+      navigation.goBack(); // ✅ Navigate back after saving
     } catch (error) {
       console.error(error);
       Alert.alert("Error", "Failed to save profile.");
@@ -73,7 +59,7 @@ const EditProfile = () => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {/* Header with Back Button */}
+        {/* 🔹 Header with Back Button */}
         <View style={styles.headerContainer}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
             <Image source={require("../assets/profileImgs/back.png")} style={styles.backIcon} />
@@ -81,40 +67,36 @@ const EditProfile = () => {
           <Text style={styles.title}>Edit Profile</Text>
         </View>
 
-        {/* Profile Image with Edit Icon */}
+        {/* 🔹 Profile Image */}
         <View style={styles.profileContainer}>
-
-          <Image
-            source={require("../assets/profileImgs/profile-icon.png")}
-            style={styles.profileImage}
-          />
-
+          <Image source={require("../assets/profileImgs/profile-icon.png")} style={styles.profileImage} />
         </View>
 
-        {/* Input Fields */}
+        {/* 🔹 Input Fields with Validation */}
         <View style={styles.inputContainer}>
           <Text style={styles.label}>First Name</Text>
           <TextInput style={styles.input} value={firstName} onChangeText={setFirstName} />
+          {errors.firstName && <Text style={styles.errorText}>{errors.firstName}</Text>}
 
           <Text style={styles.label}>Last Name</Text>
           <TextInput style={styles.input} value={lastName} onChangeText={setLastName} />
+          {errors.lastName && <Text style={styles.errorText}>{errors.lastName}</Text>}
 
-          <Text style={styles.label}>Email/Mobile no</Text>
-          <TextInput style={styles.input} value={mobileNo} onChangeText={setMobileNo} keyboardType="name-phone-pad" />
+          <Text style={styles.label}>Email / Mobile</Text>
+          <TextInput style={styles.input} value={emailOrmobile} onChangeText={setEmailOrMobile} keyboardType="email-address" />
+          {errors.emailOrmobile && <Text style={styles.errorText}>{errors.emailOrmobile}</Text>}
         </View>
 
-        {/* Save Button */}
+        {/* 🔹 Save Button */}
         <TouchableOpacity style={styles.saveButton} onPress={saveProfile}>
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       </ScrollView>
 
-        <BottomNavbar />
-   
+      <BottomNavbar />
     </View>
   );
 };
-
 
 
 const styles = StyleSheet.create({
