@@ -176,7 +176,7 @@ const SignIn = () => {
       if (response.data.token) {
         await AsyncStorage.setItem("userToken", response.data.token);
         Alert.alert("Success", "Signed in successfully", [
-          { text: "OK", onPress: () => navigation.navigate("home") },
+          { text: "OK", onPress: () => navigation.navigate("location") },
         ]);
       }
     } catch (error) {

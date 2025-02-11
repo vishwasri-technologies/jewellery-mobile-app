@@ -92,7 +92,7 @@ if (loading) {
               source={require("../assets/profileImgs/orderhistory.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Order History</Text>
+            <Text style={styles.menuText} onPress={() => navigation.navigate('Onboarding2')}>Order </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="location-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -100,7 +100,7 @@ if (loading) {
               source={require("../assets/profileImgs/savedaddress.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Saved Address</Text>
+            <Text style={styles.menuText}>Address</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="heart-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -113,10 +113,10 @@ if (loading) {
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="call-outline" size={wp("6%")} style={styles.icon} /> */}
             <Image
-              source={require("../assets/profileImgs/contactus.png")} // Replace with actual image URL
+              source={require("../assets/profileImgs/terms.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Contact Us</Text>
+            <Text style={styles.menuText}>Terms and Conditions</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="headset-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -124,18 +124,7 @@ if (loading) {
               source={require("../assets/profileImgs/customercare.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Customer Care</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
-            {/* <Icon
-              name="notifications-outline"
-              size={wp("6%")}
-              style={styles.icon}
-            /> */}
-            <Image
-              source={require("../assets/profileImgs/notification.png")} // Replace with actual image URL
-              style={styles.menuImage}
-            />
+           
             <Text style={styles.menuText}>Notifications</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
@@ -149,6 +138,21 @@ if (loading) {
               style={styles.menuImage}
             />
             <Text style={styles.menuText}>Return and Refund Policy</Text>
+          </TouchableOpacity>
+
+
+
+          <TouchableOpacity style={styles.menuItem}>
+            {/* <Icon
+              name="return-down-back-outline"
+              size={wp("6%")}
+              style={styles.icon}
+            /> */}
+            <Image
+              source={require("../assets/profileImgs/about.png")} // Replace with actual image URL
+              style={styles.menuImage}
+            />
+            <Text style={styles.menuText}>About Us</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
