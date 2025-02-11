@@ -48,6 +48,14 @@ import KidsHairExtensionsScreen from './Screens/KidsHairExtensionsScreen';
 import WishlistScreen from './Screens/Wishlist';
 import ProductDetails from './Screens/ProductDetails'
 import LocationScreen from './Screens/Location';
+import ProfileOrder from './Screens/ProfileOrder';
+import AddressList from './Screens/ProfileAddress';
+import EditAddress from './Screens/EditAddress';
+import AddAddress from './Screens/Addaddress';
+import TermsAndConditions from './Screens/Terms';
+import ReturnRefundPolicy from './Screens/Refund';
+import AboutUs from './Screens/About';
+import NotificationScreen from './Screens/Notify';
 
 
 const Stack = createStackNavigator();
@@ -99,6 +107,16 @@ export default function App() {
           <Stack.Screen name="KidsHairExtensionsScreen" component={KidsHairExtensionsScreen} />
           <Stack.Screen name="ProductDetails" component={ProductDetails} />
           <Stack.Screen name="location" component={LocationScreen} />
+          <Stack.Screen name="profileorder" component={ProfileOrder} />
+          <Stack.Screen name="addresslist" component={AddressList} />
+          <Stack.Screen name="editaddress" component={EditAddress} />
+          <Stack.Screen name="addaddress" component={AddAddress} />
+          <Stack.Screen name="terms" component={TermsAndConditions} />
+          <Stack.Screen name="return" component={ReturnRefundPolicy} />
+          <Stack.Screen name="about" component={AboutUs} />
+          <Stack.Screen name="notify" component={NotificationScreen} />
+
+
         </Stack.Navigator>
       </NavigationContainer>
     </WishlistProvider>

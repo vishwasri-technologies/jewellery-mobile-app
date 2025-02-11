@@ -183,9 +183,14 @@ const filteredOptions = allProducts.filter((product) =>
 
       {/* Search Bar and Bell Icon */}
       <View style={styles.searchSection}>
+
         <TextInput style={styles.searchBar} placeholder="Search" value={searchTerm}
           onChangeText={handleSearchChange} />
         <TouchableOpacity onPress={() => handleSearchSubmit(searchTerm)}>
+
+        <TextInput style={styles.searchBar} placeholder="Search" /></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('notify')}>
+
           <Icon name="bell-outline" size={hp('3%')} color="white" />
         </TouchableOpacity>
       </View>

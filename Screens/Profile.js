@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import axios from "axios";
-import Icon from "react-native-vector-icons/Ionicons"; // Import icons
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -92,7 +92,7 @@ if (loading) {
               source={require("../assets/profileImgs/orderhistory.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} onPress={() => navigation.navigate('Onboarding2')}>Order </Text>
+            <Text style={styles.menuText} onPress={() => navigation.navigate('profileorder')}>Order </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="location-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -100,7 +100,7 @@ if (loading) {
               source={require("../assets/profileImgs/savedaddress.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Address</Text>
+            <Text style={styles.menuText}  onPress={() => navigation.navigate('addresslist')}>Address</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="heart-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -108,7 +108,7 @@ if (loading) {
               source={require("../assets/profileImgs/wishlist.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Wishlist</Text>
+            <Text style={styles.menuText} onPress={() => navigation.navigate('Wishlist')}>Wishlist</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="call-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -116,7 +116,7 @@ if (loading) {
               source={require("../assets/profileImgs/terms.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Terms and Conditions</Text>
+            <Text style={styles.menuText}  onPress={() => navigation.navigate('terms')}>Terms and Conditions</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon name="headset-outline" size={wp("6%")} style={styles.icon} /> */}
@@ -125,7 +125,7 @@ if (loading) {
               style={styles.menuImage}
             />
            
-            <Text style={styles.menuText}>Notifications</Text>
+            <Text style={styles.menuText} onPress={() => navigation.navigate('notify')}>Notifications</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
             {/* <Icon
@@ -137,7 +137,7 @@ if (loading) {
               source={require("../assets/profileImgs/refund.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>Return and Refund Policy</Text>
+            <Text style={styles.menuText} onPress={() => navigation.navigate('return')}>Return and Refund Policy</Text>
           </TouchableOpacity>
 
 
@@ -152,7 +152,7 @@ if (loading) {
               source={require("../assets/profileImgs/about.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}>About Us</Text>
+            <Text style={styles.menuText} onPress={() => navigation.navigate('about')}>About Us</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+   
   },
   headerContainer: {
     flexDirection: "row",
