@@ -5,6 +5,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
+import { useRoute } from '@react-navigation/native';
 
 const womenearringsProducts = [
   { id: '131', image: require('../assets/categories/Women/Ear-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
@@ -30,13 +31,21 @@ const womenearringsProducts = [
 ];
 
 const WomenEarRingsScreen = () => {
+
   const navigation = useNavigation();
+
+  const route = useRoute();
+    const { searchedProduct } = route.params || {}; // Get searched product (if available)
+  
+    // ✅ **If a product was searched, show only that product**
+    const displayedProducts = searchedProduct ? [searchedProduct] : womenearringsProducts;
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>EarRings</Text>
       <FlatList
-        data={womenearringsProducts}
+        data={displayedProducts}
         keyExtractor={(item) => item.id}
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}

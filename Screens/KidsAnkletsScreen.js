@@ -5,24 +5,30 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
+import { useRoute } from '@react-navigation/native';
 
 
 const kidsankletProducts = [
-  { id: '45', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-  { id: '46', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '45', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Anklet', price: '\u20B9150' },
+  { id: '46', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Anklet', price: '\u20B9120' },
   
 ];
 
 const  KidsAnkletsScreen = () => {
 
   const navigation = useNavigation();
+  const route = useRoute();
+  const { searchedProduct } = route.params || {}; // Get searched product (if available)
+
+  // ✅ **If a product was searched, show only that product**
+  const displayedProducts = searchedProduct ? [searchedProduct] : kidsankletProducts;
   
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>kidsanklets</Text>
       <FlatList
-        data={kidsankletProducts}
+        data={displayedProducts}
         keyExtractor={(item) => item.id}
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}
