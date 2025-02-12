@@ -159,6 +159,7 @@ const filteredOptions = allProducts.filter((product) =>
 
         <TextInput style={styles.searchBar} placeholder="Search" value={searchTerm}
           onChangeText={handleSearchChange} />
+
         <TouchableOpacity onPress={() => handleSearchSubmit(searchTerm)} />
 
         {/* <TextInput style={styles.searchBar} placeholder="Search" /></TouchableOpacity> */}

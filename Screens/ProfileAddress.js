@@ -1,20 +1,76 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, FlatList,Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, FlatList,Image, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { useFocusEffect } from "@react-navigation/native";
 
-const AddressList = ({ navigation }) => {
+const AddressList = ({ navigation, route }) => {
 
-  const addresses = [
-    {
-      id: "1",
-      name: "Shambavi",
-      pincode: "518003",
-      details: "Kallur Estate Near Shukulamma Temple, Nagula Chatu, Kalluru, Kurnool",
-      phone: "80093 42392",
-    },
-  ];
+  // const addresses = [
+  //   {
+  //     id: "1",
+  //     name: "Shambavi",
+  //     pincode: "518003",
+  //     details: "Kallur Estate Near Shukulamma Temple, Nagula Chatu, Kalluru, Kurnool",
+  //     phone: "80093 42392",
+  //   },
+  // ];
+
+  const [addresses, setAddresses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchAddresses();
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchAddresses();
+    }, [route?.params?.refresh]) // ✅ Refresh when `refresh` param is passed
+  );
+
+  const fetchAddresses = async () => {
+    try {
+      const response = await fetch("http://192.168.29.178:5000/ProfileAddress"); // Replace with your actual backend URL
+      const data = await response.json();
+      setAddresses(data);
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteAddress = async (id) => {
+    try {
+      const response = await fetch(`http://192.168.29.178:5000/ProfileAddress/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error(`❌ Server error: ${response.status} - ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+  
+      alert("✅ Address deleted successfully!");
+  
+      // ✅ Remove the deleted address from the UI
+      setAddresses((prevAddresses) => prevAddresses.filter((item) => item._id !== id));
+      
+    } catch (error) {
+      console.error("❌ Error deleting address:", error);
+      alert("❌ Failed to delete address. Please try again.");
+    }
+  };
+  
+  
+  
+
 
   return (
     <View style={styles.container}>
@@ -35,18 +91,35 @@ const AddressList = ({ navigation }) => {
         <Text style={styles.addButtonText}>+ Add Address</Text>
       </TouchableOpacity>
 
-      {/* Address List */}
-      <FlatList
-        data={addresses}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.addressCard}>
-            <View style={styles.addressTextContainer}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.details}>{item.pincode}</Text>
-              <Text style={styles.details}>{item.details}</Text>
-              <Text style={styles.phone}>Phone: {item.phone}</Text>
+      {/* Loading Indicator */}
+      {loading ? (
+        <ActivityIndicator size="large" color="#47154B" style={{ marginTop: 20 }} />
+      ) : addresses.length === 0 ? (
+        <Text style={styles.noAddressText}>No addresses found.</Text>
+      ) : (
+        <FlatList
+          data={addresses}
+          keyExtractor={(item) => item._id} // Make sure _id is returned from MongoDB
+          renderItem={({ item }) => (
+            <View style={styles.addressCard}>
+              <View style={styles.addressTextContainer}>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.details}>{item.pincode}</Text>
+                <Text style={styles.details}>
+          {`${item.houseNo}, ${item.locality}, ${item.city}, ${item.state}`}
+        </Text>
+                <Text style={styles.phone}>Phone: {item.phone}</Text>
+              </View>
+              <View style={styles.iconContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate("editaddress", { address: item })}>
+                  <Ionicons name="create-outline" size={24} color="#47154B" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => deleteAddress(item._id)}>
+                  <Ionicons name="trash-outline" size={24} color="red" />
+                </TouchableOpacity>
+              </View>
             </View>
+<<<<<<< HEAD
             <View style={styles.iconContainer}>
   
   <TouchableOpacity>
@@ -66,6 +139,11 @@ const AddressList = ({ navigation }) => {
           </View>
         )}
       />
+=======
+          )}
+        />
+      )}
+>>>>>>> 122d540 (worked on addaddress, editaddress, profileaddress,)
     </View>
   );
 };

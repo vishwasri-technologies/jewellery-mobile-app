@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,Image, Alert } from "react-native";
 import { CheckBox } from "react-native-elements"; // ✅ Use native-elements CheckBox
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,6 +8,86 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 const AddAddress = () => {
   const navigation = useNavigation();
   const [addressType, setAddressType] = useState("");
+
+  // ✅ State variables for input fields
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [locality, setLocality] = useState("");
+  const [houseNo, setHouseNo] = useState("");
+
+  // ✅ Validation Function
+  const validateInputs = () => {
+    if (!name.trim()) {
+      Alert.alert("Validation Error", "Name is required!");
+      return false;
+    }
+    if (!/^\d{10}$/.test(phone)) {
+      Alert.alert("Validation Error", "Phone number must be 10 digits!");
+      return false;
+    }
+    if (!/^\d{6}$/.test(pincode)) {
+      Alert.alert("Validation Error", "Pincode must be 6 digits!");
+      return false;
+    }
+    if (!state.trim()) {
+      Alert.alert("Validation Error", "State is required!");
+      return false;
+    }
+    if (!city.trim()) {
+      Alert.alert("Validation Error", "City is required!");
+      return false;
+    }
+    if (!locality.trim()) {
+      Alert.alert("Validation Error", "Locality/Area is required!");
+      return false;
+    }
+    if (!houseNo.trim()) {
+      Alert.alert("Validation Error", "House/Building No is required!");
+      return false;
+    }
+    if (!addressType) {
+      Alert.alert("Validation Error", "Please select an Address Type!");
+      return false;
+    }
+    return true;
+  };
+  
+  // ✅ Save Address Function
+  const saveAddress = async () => {
+    if (!validateInputs()) return; // ✅ Stop if validation fails
+
+    const addressData = { name, phone, pincode, state, city, locality, houseNo, addressType };
+
+    try {
+      const response = await fetch("http://192.168.29.178:5000/Addaddress", { // ✅ Corrected API URL
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(addressData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        Alert.alert("✅ Address saved successfully!");
+        navigation.goBack();
+
+        // ✅ Trigger refresh after navigation back
+      navigation.navigate("profileaddress", { refresh: true });
+      } else {
+        Alert.alert("❌ Error: " + data.error);
+      }
+    } catch (error) {
+      console.error("❌ Save address error:", error);
+      Alert.alert("❌ Error", "Failed to save address. Please try again.");
+    }
+  };
+
+
+  
+
+  
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
@@ -24,28 +104,28 @@ const AddAddress = () => {
         {/* Personal Details */}
         <Text style={styles.sectionTitle}>Personal Details</Text>
         <Text style={styles.inputLabel}>Name</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} value={name} onChangeText={setName}/>
         <Text style={styles.inputLabel}>Phone No</Text>
-        <TextInput style={styles.input} keyboardType="phone-pad" />
+        <TextInput style={styles.input} value={phone} onChangeText={setPhone} keyboardType="phone-pad" />
 
         {/* Address Details */}
         <Text style={styles.sectionTitle}>Address Details</Text>
         <View style={styles.row}>
           <View style={styles.halfInputContainer}>
             <Text style={styles.inputLabel}>Pincode</Text>
-            <TextInput style={styles.input} keyboardType="numeric" />
+            <TextInput style={styles.input} value={pincode} onChangeText={setPincode} keyboardType="numeric" />
           </View>
           <View style={styles.halfInputContainer}>
             <Text style={styles.inputLabel}>State</Text>
-            <TextInput style={styles.input} />
+            <TextInput style={styles.input} value={state} onChangeText={setState}/>
           </View>
         </View>
         <Text style={styles.inputLabel}>City</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} value={city} onChangeText={setCity} />
         <Text style={styles.inputLabel}>Locality/Area</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} value={locality} onChangeText={setLocality}/>
         <Text style={styles.inputLabel}>Building/House No</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} value={houseNo} onChangeText={setHouseNo}/>
 
         {/* Address Type Selection */}
         <Text style={styles.sectionTitle}>Address Type</Text>
@@ -64,7 +144,7 @@ const AddAddress = () => {
         </View>
 
         {/* Save Button */}
-        <TouchableOpacity style={styles.saveButton}>
+        <TouchableOpacity style={styles.saveButton} onPress={saveAddress}>
           <Text style={styles.saveButtonText}>Save </Text>
         </TouchableOpacity>
       </View>
