@@ -31,21 +31,6 @@ const allProducts = [
   { id: '160', image: require('../assets/categories/Women/Ear-4.png'), name: 'Titanium Bracelet', price: '\u20B9200', category: "EarRings" },
   { id: '170', image: require('../assets/categories/Women/Ear-5.png'), name: 'Leather Bracelet', price: '\u20B980', category: "EarRings" },
   { id: '180', image: require('../assets/categories/Women/Ear-6.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '190', image: require('../assets/categories/Women/Ear-7.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '200', image: require('../assets/categories/Women/Ear-8.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '210', image: require('../assets/categories/Women/Ear-9.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '220', image: require('../assets/categories/Women/Ear-10.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '230', image: require('../assets/categories/Women/Ear-11.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '240', image: require('../assets/categories/Women/Ear-12.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '250', image: require('../assets/categories/Women/Ear-13.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '260', image: require('../assets/categories/Women/Ear-14.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '270', image: require('../assets/categories/Women/Ear-15.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '280', image: require('../assets/categories/Women/Ear-16.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '290', image: require('../assets/categories/Women/Ear-17.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '300', image: require('../assets/categories/Women/Ear-18.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '310', image: require('../assets/categories/Women/Ear-19.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '320', image: require('../assets/categories/Women/Ear-20.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
-  
   
 ];
 
@@ -119,19 +104,7 @@ const handleSearchSubmit = () => {
     );
 
     if (matchedProduct) {
-//       if (matchedProduct.category === "Kids") {
-//         navigation.navigate("KidsAnkletsScreen", { search: searchTerm.trim() });
-//       } else {
-//         Alert.alert("Product Not Found", "No matching category found.");
-//       }
-//   }
-// }
-
-   // ✅ **Mapping categories to corresponding screens**
    const categoryToScreen = {
-    kidsanklets: "KidsAnkletsScreen",
-    kidsarmlets: "KidsArmletScreen",
-    kidsbangles: "KidsBanglesScreen",
     EarRings: "WomenEarRingsScreen"
    
     
