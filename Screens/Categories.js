@@ -46,7 +46,7 @@ const Categories = () => {
             },
           })}
         />
-        <TopTab.Screen
+        {/* <TopTab.Screen
           name="Kids"
           component={KidsScreen}
           listeners={({ navigation }) => ({
@@ -55,7 +55,7 @@ const Categories = () => {
               navigation.navigate('Kids'); // Explicitly navigate
             },
           })}
-        />
+        /> */}
       </TopTab.Navigator>
       <BottomNavBar />
     </View>

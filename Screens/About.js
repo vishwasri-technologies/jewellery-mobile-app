@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   header: { flexDirection: "row", alignItems: "center", marginBottom: 20 },
   backButton: { padding: 10 },
   backIcon: { width: 24, height: 24, resizeMode: "contain" },
-  title: { fontSize: 22, fontWeight: "bold", color: "#6A0572", textAlign: "center", flex: 1 ,marginLeft:"-45"},
+  title: { fontSize: 22, fontWeight: "bold", color: "#6A0572", textAlign: "center", flex: 1 , marginRight: "15%",},
   sectionTitle: { fontSize: 18, fontWeight: "bold", color: "black", marginBottom: 10 },
   paragraph: { fontSize: 16, color: "#333", lineHeight: 22, marginBottom: 15 },
   bold: {

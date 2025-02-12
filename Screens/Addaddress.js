@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", padding: wp("5%"), marginTop: hp("4%") },
   header: { flexDirection: "row", alignItems: "center", marginBottom: hp("2%"), },
   backButton: { position: "absolute", left: 0 },
-  headerTitle: { flex: 1, textAlign: "center", fontSize: wp("6%"), fontWeight: "bold", color: "#47154B",marginLeft:"-45" },
+  headerTitle: { flex: 1, textAlign: "center", fontSize: wp("6%"), fontWeight: "bold", color: "#47154B", marginRight: wp("10%"), },
   sectionTitle: { fontSize: wp("5.0%"), fontWeight: "bold", marginTop: hp("2%"), marginBottom: hp("1.9%") },
   inputLabel: { fontSize: wp("4%"), fontWeight: "500", marginBottom: hp("0.5%") },
   input: {

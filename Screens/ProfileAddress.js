@@ -20,22 +20,12 @@ const AddressList = ({ navigation }) => {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-      <TouchableOpacity
-  onPress={() => {
-    console.log("Back button pressed");
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    } else {
-      alert("No previous screen available!");
-    }
-  }}
-  style={styles.backButton}
->
-  <Image
-    source={require("../assets/profileImgs/back.png")} // Ensure this image exists
-    style={styles.backIcon}
-  />
-</TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+               <Image
+                 source={require("../assets/profileImgs/back.png")} // Replace with actual back icon
+                 style={styles.backIcon}
+               />
+             </TouchableOpacity>
 
         <Text style={styles.headerTitle}>Address</Text>
       </View>
@@ -58,13 +48,21 @@ const AddressList = ({ navigation }) => {
               <Text style={styles.phone}>Phone: {item.phone}</Text>
             </View>
             <View style={styles.iconContainer}>
-              <TouchableOpacity onPress={() => navigation.navigate("editaddress")}>
-                <Ionicons name="create-outline" size={24} color="#47154B" />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Ionicons name="trash-outline" size={24} color="red" />
-              </TouchableOpacity>
-            </View>
+  
+  <TouchableOpacity>
+    <Image 
+      source={require("../assets/icons/delete.png")} // Replace with your actual delete icon image
+      style={styles.icon}
+    />
+  </TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate("editaddress")}>
+    <Image 
+      source={require("../assets/icons/edit.png")} // Replace with your actual edit icon image
+      style={styles.icon}
+    />
+  </TouchableOpacity>
+</View>
+
           </View>
         )}
       />
@@ -75,8 +73,8 @@ const AddressList = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F2F2F2", padding: wp("5%"),marginTop:hp("4%") },
   header: { flexDirection: "row", alignItems: "center", marginBottom: hp("2%"), },
-  backButton: { position: "absolute", left: 0 },
-  headerTitle: { flex: 1, textAlign: "center", fontSize: wp("6%"), fontWeight: "bold", color: "#47154B",marginLeft:"-45" },
+
+  headerTitle: { flex: 1, textAlign: "center", fontSize: wp("6%"), fontWeight: "bold", color: "#47154B" , marginRight: wp("10%"),},
   addButton: { alignSelf: "flex-end", marginBottom: hp("2%") },
   addButtonText: { fontSize: wp("4.5%"), color: "#47154B", fontWeight: "bold" },
   addressCard: {
@@ -92,16 +90,23 @@ const styles = StyleSheet.create({
   name: { fontSize: wp("4.5%"), fontWeight: "bold", marginBottom: hp("0.5%") },
   details: { fontSize: wp("4%"), color: "#555", marginBottom: hp("0.5%") },
   phone: { fontSize: wp("4%"), fontWeight: "bold", marginTop: hp("0.5%") },
-  iconContainer: { flexDirection: "row", gap: wp("4%") },
+  iconContainer: { flexDirection: "row", gap: wp("4%"),marginTop:"-31%" },
+  icon: {
+    width: 20,  // Adjust size as needed
+    height: 30, 
+    resizeMode: "contain",
+   
+  },
+  
   backButton: {
-    // padding: wp("2%"),
-    // marginRight: wp("2%"),
+    padding: 10,
   },
   backIcon: {
-    width: wp("6%"),
-    height: wp("6%"),
+    width: 20,
+    height: 20,
     resizeMode: "contain",
   },
+
   
   
 });

@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     color: "#6A0572",
     textAlign: "center",
     flex: 1, // Ensures the title takes up the remaining space
-    marginLeft:"-45"
+   marginRight: "15%",
   },
   paragraph: {
     fontSize: 16,

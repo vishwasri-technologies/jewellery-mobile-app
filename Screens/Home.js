@@ -11,7 +11,7 @@ const { width: screenWidth } = Dimensions.get('window');
 const categories = [
   { name: 'Men', image: require('../assets/categories/Men.png') },
   { name: 'Women', image: require('../assets/categories/Women.png') },
-  { name: 'Kids', image: require('../assets/categories/kids.png') },
+  { name: 'Explore', image: require('../assets/categories/Explore.png') },
 ];
 
 const products = [
@@ -186,9 +186,9 @@ const filteredOptions = allProducts.filter((product) =>
 
         <TextInput style={styles.searchBar} placeholder="Search" value={searchTerm}
           onChangeText={handleSearchChange} />
-        <TouchableOpacity onPress={() => handleSearchSubmit(searchTerm)}>
+        <TouchableOpacity onPress={() => handleSearchSubmit(searchTerm)} />
 
-        <TextInput style={styles.searchBar} placeholder="Search" /></TouchableOpacity>
+        {/* <TextInput style={styles.searchBar} placeholder="Search" /></TouchableOpacity> */}
         <TouchableOpacity onPress={() => navigation.navigate('notify')}>
 
           <Icon name="bell-outline" size={hp('3%')} color="white" />
@@ -391,6 +391,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: hp("0.3%"),
   },
+ 
   
   
   

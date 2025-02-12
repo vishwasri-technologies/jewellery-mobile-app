@@ -86,48 +86,48 @@ if (loading) {
 </View>
 
         <View style={styles.list}>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('profileorder')}>
             {/* <Icon name="cart-outline" size={wp("6%")} style={styles.icon} /> */}
             <Image
               source={require("../assets/profileImgs/orderhistory.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} onPress={() => navigation.navigate('profileorder')}>Order </Text>
+            <Text style={styles.menuText} >Order </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('addresslist')}>
             {/* <Icon name="location-outline" size={wp("6%")} style={styles.icon} /> */}
             <Image
               source={require("../assets/profileImgs/savedaddress.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}  onPress={() => navigation.navigate('addresslist')}>Address</Text>
+            <Text style={styles.menuText}  >Address</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Wishlist')}>
             {/* <Icon name="heart-outline" size={wp("6%")} style={styles.icon} /> */}
             <Image
               source={require("../assets/profileImgs/wishlist.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} onPress={() => navigation.navigate('Wishlist')}>Wishlist</Text>
+            <Text style={styles.menuText} >Wishlist</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('terms')}>
             {/* <Icon name="call-outline" size={wp("6%")} style={styles.icon} /> */}
             <Image
               source={require("../assets/profileImgs/terms.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}  onPress={() => navigation.navigate('terms')}>Terms and Conditions</Text>
+            <Text style={styles.menuText}  >Terms and Conditions</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('notify')}>
             {/* <Icon name="headset-outline" size={wp("6%")} style={styles.icon} /> */}
             <Image
               source={require("../assets/profileImgs/customercare.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
            
-            <Text style={styles.menuText} onPress={() => navigation.navigate('notify')}>Notifications</Text>
+            <Text style={styles.menuText} >Notifications</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('return')}>
             {/* <Icon
               name="return-down-back-outline"
               size={wp("6%")}
@@ -137,12 +137,12 @@ if (loading) {
               source={require("../assets/profileImgs/refund.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} onPress={() => navigation.navigate('return')}>Return and Refund Policy</Text>
+            <Text style={styles.menuText} >Return and Refund Policy</Text>
           </TouchableOpacity>
 
 
 
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('about')}>
             {/* <Icon
               name="return-down-back-outline"
               size={wp("6%")}
@@ -152,7 +152,7 @@ if (loading) {
               source={require("../assets/profileImgs/about.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} onPress={() => navigation.navigate('about')}>About Us</Text>
+            <Text style={styles.menuText} >About Us</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
