@@ -21,12 +21,18 @@ const chainProducts = [
     image: require("../assets/bracelet.png"),
     name: "Gold covering Bracelet",
     price: "\u20B9190",
+    material: "Gold",
+    care: "Clean with a soft, dry cloth",
+    colour: "Gold Colour"
   },
   {
     id: "8",
     image: require("../assets/categories/Men-bracelets.png"),
     name: "Silver Bracelet",
     price: "\u20B9120",
+    material: "Silver",
+    care: "Clean with a soft, dry cloth",
+    colour: "Silver Colour"
   },
 ];
 
