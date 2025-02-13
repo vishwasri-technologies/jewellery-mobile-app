@@ -110,25 +110,17 @@ const AddressList = ({ navigation, route }) => {
         </Text>
                 <Text style={styles.phone}>Phone: {item.phone}</Text>
               </View>
-              <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate("editaddress", { address: item })}>
-                  <Ionicons name="create-outline" size={24} color="#47154B" />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => deleteAddress(item._id)}>
-                  <Ionicons name="trash-outline" size={24} color="red" />
-                </TouchableOpacity>
-              </View>
-            </View>
-<<<<<<< HEAD
+             
+
             <View style={styles.iconContainer}>
   
-  <TouchableOpacity>
+  <TouchableOpacity onPress={() => deleteAddress(item._id)}>
     <Image 
       source={require("../assets/icons/delete.png")} // Replace with your actual delete icon image
       style={styles.icon}
     />
   </TouchableOpacity>
-  <TouchableOpacity onPress={() => navigation.navigate("editaddress")}>
+  <TouchableOpacity onPress={() => navigation.navigate("editaddress", { address: item })}>
     <Image 
       source={require("../assets/icons/edit.png")} // Replace with your actual edit icon image
       style={styles.icon}
@@ -139,11 +131,10 @@ const AddressList = ({ navigation, route }) => {
           </View>
         )}
       />
-=======
+
           )}
-        />
-      )}
->>>>>>> 122d540 (worked on addaddress, editaddress, profileaddress,)
+     
+
     </View>
   );
 };
