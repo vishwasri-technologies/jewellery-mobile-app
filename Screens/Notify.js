@@ -1,8 +1,33 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
 
 const NotificationScreen = ({ navigation }) => {
-  const userName = "John Doe"; // Replace with dynamic user data
+  // const userName = "John Doe"; // Replace with dynamic user data
+  const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch user's first name from the backend
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch("http://192.168.29.178:5000/Notify"); // Replace with actual API URL
+        const data = await response.json();
+        
+        if (data.firstName) {
+          setUserName(data.firstName);
+        } else {
+          setUserName("User"); // Default name if not found
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        setUserName("User");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -19,9 +44,13 @@ const NotificationScreen = ({ navigation }) => {
 
       {/* Notification Card */}
       <View style={styles.card}>
-        <Text style={styles.message}>
-          "Welcome back, <Text style={styles.boldText}>{userName}</Text>! Discover the latest jewelry collections curated just for you."
-        </Text>
+      {loading ? (
+          <ActivityIndicator size="large" color="#000" />
+        ) : (
+          <Text style={styles.message}>
+            "Welcome back, <Text style={styles.boldText}>{userName}</Text>! Discover the latest jewelry collections curated just for you."
+          </Text>
+        )}
       </View>
     </View>
   );
