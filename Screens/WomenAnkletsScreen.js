@@ -30,6 +30,7 @@ const WomenAnkletsScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
+              allProducts: womenankletProducts
             })}
           >
             <HeartIcon item={item} />

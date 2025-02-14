@@ -54,6 +54,7 @@ const WomenBanglesScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
+              allProducts: womenbangleProducts
             })}
           >
             <HeartIcon item={item} />

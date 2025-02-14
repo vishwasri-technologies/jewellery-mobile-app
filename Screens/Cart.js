@@ -1,10 +1,18 @@
-
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, Alert, ScrollView } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ScrollView,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import necklaceImage from '../assets/categories/Addon-1.png';
-import banglesImage from  '../assets/categories/Addon-1.png';
+import necklaceImage from "../assets/categories/Addon-1.png";
+import banglesImage from "../assets/categories/Addon-1.png";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -12,12 +20,42 @@ const Cart = () => {
   const [deliveryAddress, setDeliveryAddress] = useState("");
 
   const addOns = [
-    { id: "74", name: "Beautiful stunning Stone necklace", price: 780, image: necklaceImage },
-    { id: "75", name: "Beautiful stunning Stone bangles", price: 780, image: banglesImage },
-    { id: "76", name: "Beautiful stunning Stone bangles", price: 780, image: banglesImage },
-    { id: "78", name: "Beautiful stunning Stone bangles", price: 780, image: banglesImage },
-    { id: "79", name: "Beautiful stunning Stone bangles", price: 780, image: banglesImage },
-    { id: "81", name: "Beautiful stunning Stone bangles", price: 780, image: banglesImage },
+    {
+      id: "74",
+      name: "Beautiful stunning Stone necklace",
+      price: 780,
+      image: necklaceImage,
+    },
+    {
+      id: "75",
+      name: "Beautiful stunning Stone bangles",
+      price: 780,
+      image: banglesImage,
+    },
+    {
+      id: "76",
+      name: "Beautiful stunning Stone bangles",
+      price: 780,
+      image: banglesImage,
+    },
+    {
+      id: "78",
+      name: "Beautiful stunning Stone bangles",
+      price: 780,
+      image: banglesImage,
+    },
+    {
+      id: "79",
+      name: "Beautiful stunning Stone bangles",
+      price: 780,
+      image: banglesImage,
+    },
+    {
+      id: "81",
+      name: "Beautiful stunning Stone bangles",
+      price: 780,
+      image: banglesImage,
+    },
   ];
 
   // Fetching the delivery address dynamically
@@ -34,7 +72,7 @@ const Cart = () => {
   // Load cart from AsyncStorage
   const loadCart = async () => {
     try {
-      const cartData = await AsyncStorage.getItem('cart');
+      const cartData = await AsyncStorage.getItem("cart");
       if (cartData) {
         setCart(JSON.parse(cartData));
       }
@@ -46,7 +84,7 @@ const Cart = () => {
   // Save cart to AsyncStorage
   const saveCart = async (newCart) => {
     try {
-      await AsyncStorage.setItem('cart', JSON.stringify(newCart));
+      await AsyncStorage.setItem("cart", JSON.stringify(newCart));
     } catch (error) {
       console.error("Failed to save cart to storage", error);
     }
@@ -111,7 +149,10 @@ const Cart = () => {
             <Image source={item.image} style={styles.image} />
             <Text style={styles.itemName}>{item.name}</Text>
             <Text style={styles.itemPrice}>₹ {item.price}</Text>
-            <TouchableOpacity onPress={() => addToCart(item)} style={styles.addButton}>
+            <TouchableOpacity
+              onPress={() => addToCart(item)}
+              style={styles.addButton}
+            >
               <Text style={styles.addText}>ADD TO CART</Text>
             </TouchableOpacity>
           </View>
@@ -125,7 +166,8 @@ const Cart = () => {
         <Text>Delivery Charge: ₹ {cart.length > 0 ? deliveryCharge : 0}</Text>
         <Text>Delivery Address: {deliveryAddress}</Text>
         <Text style={styles.totalAmount}>
-          Amount Payable: ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
+          Amount Payable: ₹{" "}
+          {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
         </Text>
       </View>
 
@@ -138,7 +180,13 @@ const Cart = () => {
 
 const styles = StyleSheet.create({
   container: { padding: 10, backgroundColor: "#fff", flexGrow: 1 },
-  header: { fontSize: 22, fontWeight: "bold", textAlign: "center", color: "#742b90", marginTop: 30 },
+  header: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#742b90",
+    marginTop: 30,
+  },
   cartItem: { flexDirection: "row", alignItems: "center", marginVertical: 10 },
   image: { width: 180, height: 160, borderRadius: 10 },
   itemDetails: { flex: 1, marginLeft: 10 },
@@ -152,7 +200,12 @@ const styles = StyleSheet.create({
   orderDetails: { marginTop: 20, padding: 10, backgroundColor: "#f9f9f9" },
   orderHeader: { fontSize: 18, fontWeight: "bold", marginBottom: 5 },
   totalAmount: { fontSize: 16, fontWeight: "bold", marginTop: 5 },
-  proceedButton: { backgroundColor: "#742b90", padding: 15, marginTop: 10, alignItems: "center" },
+  proceedButton: {
+    backgroundColor: "#742b90",
+    padding: 15,
+    marginTop: 10,
+    alignItems: "center",
+  },
   proceedText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
   emptyText: { textAlign: "center", marginVertical: 20, fontSize: 16 },
 });

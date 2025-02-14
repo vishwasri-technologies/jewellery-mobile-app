@@ -19,6 +19,7 @@ const chainProducts = [
   {
     id: "7",
     image: require("../assets/bracelet.png"),
+    category: 'Chains',
     name: "Gold covering Bracelet",
     price: "\u20B9190",
     material: "Gold",
@@ -28,6 +29,7 @@ const chainProducts = [
   {
     id: "8",
     image: require("../assets/categories/Men-bracelets.png"),
+    category: 'Chains',
     name: "Silver Bracelet",
     price: "\u20B9120",
     material: "Silver",
@@ -52,6 +54,7 @@ const MenChainsScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
+              allProducts: chainProducts
             })}
           >
             <HeartIcon item={item} />

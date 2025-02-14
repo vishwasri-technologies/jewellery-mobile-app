@@ -31,6 +31,7 @@ const WomenArmletScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
+              allProducts: womenarmletProducts
             })}
           >
             <HeartIcon item={item} />

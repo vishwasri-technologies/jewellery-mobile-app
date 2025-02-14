@@ -29,6 +29,7 @@ const WomenHipbeltScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
+              allProducts: womenhipbeltProducts
             })}
           >
             <HeartIcon item={item} />

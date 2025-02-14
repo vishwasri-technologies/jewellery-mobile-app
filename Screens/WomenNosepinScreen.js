@@ -29,6 +29,7 @@ const WomenNosepinScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
+              allProducts: womennosepinProducts
             })}
           >
             <HeartIcon item={item} />

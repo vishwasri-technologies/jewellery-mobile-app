@@ -30,6 +30,7 @@ const WomenHairExtensionsScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
+              allProducts: womenhairextensionProducts
             })}
           >
             <HeartIcon item={item} />
