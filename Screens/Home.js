@@ -91,16 +91,15 @@ const Home = () => {
 const handleOptionSelect = (selectedProduct) => {
   setSearchTerm(selectedProduct.name);
   setDropdownVisible(false);
-  handleSearchSubmit(selectedProduct.name);
+  handleSearchSubmit(selectedProduct);
 };
 
 // Handle Search Submit
-const handleSearchSubmit = () => {
-  if (searchTerm.trim()) {
+const handleSearchSubmit = (selectedProduct) => {
+  if (selectedProduct && selectedProduct.name.trim()) {
     const matchedProduct = allProducts.find(
       (product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (product.category && product.category.toLowerCase().includes(searchTerm.toLowerCase()))
+        product.name.toLowerCase() === selectedProduct.name.toLowerCase()
     );
 
     if (matchedProduct) {
