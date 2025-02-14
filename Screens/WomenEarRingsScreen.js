@@ -28,6 +28,8 @@ const womenearringsProducts = [
   { id: '300', image: require('../assets/categories/Women/Ear-18.png'), name: 'Chain Bracelet', price: '\u20B9120' },
   { id: '310', image: require('../assets/categories/Women/Ear-19.png'), name: 'Chain Bracelet', price: '\u20B9120' },
   { id: '320', image: require('../assets/categories/Women/Ear-20.png'), name: 'Chain Bracelet', price: '\u20B9120' },
+  { id: '507', image: require('../assets/categories/Women/Ear-21.png'), name: 'Chain Bracelet', price: '\u20B9120' },
+  { id: '508', image: require('../assets/categories/Women/Ear-22.png'), name: 'Chain Bracelet', price: '\u20B9120' },
 ];
 
 const WomenEarRingsScreen = () => {

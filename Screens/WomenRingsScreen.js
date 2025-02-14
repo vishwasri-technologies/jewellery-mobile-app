@@ -8,8 +8,15 @@ import HeartIcon from './HeartIcon';
 
 
 const womenringProducts = [
-  { id: '14', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-  { id: '15', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '14', image: require('../assets/categories/Women/Ring-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+  { id: '15', image: require('../assets/categories/Women/Ring-2.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '500', image: require('../assets/categories/Women/Ring-3.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '501', image: require('../assets/categories/Women/Ring-4.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '502', image: require('../assets/categories/Women/Ring-5.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '503', image: require('../assets/categories/Women/Ring-6.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '504', image: require('../assets/categories/Women/Ring-7.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '505', image: require('../assets/categories/Women/Ring-8.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '506', image: require('../assets/categories/Women/Ring-9.png'), name: 'Silver Bracelet', price: '\u20B9120' },
 
 ];
 

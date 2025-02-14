@@ -8,8 +8,8 @@ import HeartIcon from './HeartIcon';
 
 
 const womenbraceletProducts = [
-  { id: '16', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-  { id: '17', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '16', image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+
 
 ];
 

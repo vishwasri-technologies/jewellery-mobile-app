@@ -56,6 +56,10 @@ import TermsAndConditions from './Screens/Terms';
 import ReturnRefundPolicy from './Screens/Refund';
 import AboutUs from './Screens/About';
 import NotificationScreen from './Screens/Notify';
+// import MenScreen from './Screens/MenScreen';
+// import WomenScreen from './Screens/WomenScreen';
+import All from "./Screens/All";
+
 
 
 const Stack = createStackNavigator();
@@ -115,6 +119,13 @@ export default function App() {
           <Stack.Screen name="return" component={ReturnRefundPolicy} />
           <Stack.Screen name="about" component={AboutUs} />
           <Stack.Screen name="notify" component={NotificationScreen} />
+          {/* <Stack.Screen name="Men" component={MenScreen} />
+          <Stack.Screen name="Women" component={WomenScreen} /> */}
+           <Stack.Screen name="all" component={All} />
+        
+          
+
+       
 
 
         </Stack.Navigator>

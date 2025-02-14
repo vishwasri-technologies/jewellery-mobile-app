@@ -7,8 +7,12 @@ import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 
 const womennosepinProducts = [
-  { id: '18', image: require('../assets/categories/Men-bracelets.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-  { id: '19', image: require('../assets/categories/Men-bracelets.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '18', image: require('../assets/categories/Women/Chain-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+  { id: '19', image: require('../assets/categories/Women/Chain-2.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '509', image: require('../assets/categories/Women/Chain-3.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '510', image: require('../assets/categories/Women/Chain-main.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '511', image: require('../assets/categories/Mens/Men-Chains.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '512', image: require('../assets/categories/Women/Chain-4.png'), name: 'Silver Bracelet', price: '\u20B9120' },
 
 ];
 
@@ -18,7 +22,7 @@ const WomenNosepinScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Nosepins</Text>
+      <Text style={styles.heading}>Chains</Text>
       <FlatList
         data={womennosepinProducts}
         keyExtractor={(item) => item.id}

@@ -7,7 +7,7 @@ import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 
 
-const womensnecklaceProducts = [
+const allProducts = [
   { id: '20', image: require('../assets/categories/Women/Necklace-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
   { id: '21', image: require('../assets/categories/Women/Necklace-2.png'), name: 'Silver Bracelet', price: '\u20B9120' },
   { id: '22', image: require('../assets/categories/Women/Necklace-3.png'), name: 'Platinum Bracelet', price: '\u20B9170' },
@@ -46,15 +46,15 @@ const womensnecklaceProducts = [
   { id: '527', image: require('../assets/categories/Women/Necklace-26.png'), name: 'Chain Bracelet', price: '\u20B9120' },
 ];
 
-const WomenNecklaceScreen = () => {
+const All= () => {
  
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Necklace</Text>
+      <Text style={styles.heading}>Explore</Text>
       <FlatList
-        data={womensnecklaceProducts}
+        data={allProducts}
         keyExtractor={(item) => item.id}
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}
@@ -63,7 +63,6 @@ const WomenNecklaceScreen = () => {
             style={styles.item} 
             onPress={() => navigation.navigate('ProductDetails', {
               product: item,
-              allProducts: womensnecklaceProducts
             })}
           >
             <HeartIcon item={item} />
@@ -122,4 +121,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default WomenNecklaceScreen;
+export default All;

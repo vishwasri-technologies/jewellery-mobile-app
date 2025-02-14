@@ -11,8 +11,10 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import necklaceImage from "../assets/categories/Addon-1.png";
-import banglesImage from "../assets/categories/Addon-1.png";
+
+import necklaceImage from '../assets/categories/Women/Ring-1.png';
+import banglesImage from  '../assets/categories/Women/Ring-1.png';
+
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
