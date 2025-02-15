@@ -1,25 +1,28 @@
 import React from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Import Icon
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 
-
 const womenchainProducts = [
-  { id: '11', image: require('../assets/categories/Women/Blackbeeds-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-  { id: '12', image: require('../assets/categories/Women/Blackbeeds-2.png'), name: 'Silver Bracelet', price: '\u20B9120' },
-  { id: '13', image: require('../assets/categories/Women/Blackbeeds-3.png'), name: 'Platinum Bracelet', price: '\u20B9170' },
+  { id: '18', image: require('../assets/categories/Women/Chain-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+  { id: '19', image: require('../assets/categories/Women/Chain-2.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '509', image: require('../assets/categories/Women/Chain-3.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '510', image: require('../assets/categories/Women/Chain-main.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '511', image: require('../assets/categories/Mens/Men-Chains.png'), name: 'Silver Bracelet', price: '\u20B9120' },
+  { id: '512', image: require('../assets/categories/Women/Chain-4.png'), name: 'Silver Bracelet', price: '\u20B9120' },
 
 ];
 
 const WomenChainsScreen = () => {
+  
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Black beeds</Text>
+      <Text style={styles.heading}>Chains</Text>
       <FlatList
         data={womenchainProducts}
         keyExtractor={(item) => item.id}
@@ -49,47 +52,44 @@ const WomenChainsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: wp(0),
     paddingTop: hp(5),
+    backgroundColor: '#fff',
   },
   heading: {
     fontSize: wp(6),
     fontWeight: 'bold',
     marginBottom: hp(2),
     marginLeft: wp(4),
-    color:"#47154B",
-    
+    color: "#47154B",
   },
-  // listContainer: {
-  //   paddingHorizontal: wp(2),
-  // },
   item: {
     width: wp(46),
-    // backgroundColor: '#fff',
-    // borderRadius: wp(2),
-    padding: wp(3),
+    borderRadius: wp(2),
+    padding: wp(0),
     margin: wp(2),
-    alignItems: 'flex-start',
-    // elevation: 3,
+    alignItems: 'center',
   },
   image: {
-    width: wp(40),
-    height: wp(50),
-    // borderRadius: wp(2),
+    width: wp(47),
+    height: wp(65),  // Increased height
   },
   name: {
     fontSize: wp(4),
-    fontWeight: 'bold',
-    marginVertical: hp(1),
+    fontWeight: '400',  // Reduced thickness
+    marginVertical: hp(0.5),  // Reduced space
     textAlign: 'left',
-   
+    alignSelf: 'flex-start',  // Align to the left
+    marginLeft: wp(2),  // Small left margin for spacing
   },
   price: {
-    fontSize: wp(3.5),
-    color: 'gray',
-    textAlign:'left',
+    fontSize: wp(3.8),  // Slightly increased size
+    fontWeight: 'bold',  // Increased thickness
+    color: 'black',  // Changed to black
+    textAlign: 'left',
+    alignSelf: 'flex-start',
+    marginLeft: wp(2),
   },
- 
+
 });
 
 export default WomenChainsScreen;

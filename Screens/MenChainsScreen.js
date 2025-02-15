@@ -24,23 +24,23 @@ const chainProducts = [
 
     image: require('../assets/categories/Mens/Men-Chains.png'),
 
-    name: "Gold covering Bracelet",
+    name: "Gold Colour Simple Chain With Pendant",
     price: "\u20B9190",
     material: "Gold",
     care: "Clean with a soft, dry cloth",
     colour: "Gold Colour"
   },
 
-  {
-    id: "8",
-    image: require("../assets/categories/Men-bracelets.png"),
-    category: 'Chains',
-    name: "Silver Bracelet",
-    price: "\u20B9120",
-    material: "Silver",
-    care: "Clean with a soft, dry cloth",
-    colour: "Silver Colour"
-  },
+  // {
+  //   id: "8",
+  //   image: require("../assets/categories/Men-bracelets.png"),
+  //   category: 'Chains',
+  //   name: "Silver Bracelet",
+  //   price: "\u20B9120",
+  //   material: "Silver",
+  //   care: "Clean with a soft, dry cloth",
+  //   colour: "Silver Colour"
+  // },
 
 ];
 

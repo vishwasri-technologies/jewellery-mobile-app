@@ -27,9 +27,9 @@ import WomenRingsScreen from './Screens/WomenRingsScreen';
 import WomenEarRingsScreen from './Screens/WomenEarRingsScreen';
 import WomenBanglesScreen from './Screens/WomenBanglesScreen';
 import WomenBraceletsScreen from './Screens/WomenBraceletsScreen';
-import WomenChainsScreen from './Screens/WomenChainsScreen';
+import WomenBlackBeedsScreen from './Screens/WomenBlackBeedsScreen';
 import WomenNecklaceScreen from './Screens/WomenNecklaceScreen';
-import WomenNosepinScreen from './Screens/WomenNosepinScreen';
+import WomenChainsScreen from './Screens/WomenChainsScreen';
 import WomenAnkletsScreen from './Screens/WomenAnkletsScreen';
 import WomenHipbeltScreen from './Screens/WomenHipbeltScreen';
 import WomenArmletScreen from './Screens/WomenArmletScreen';
@@ -91,9 +91,9 @@ export default function App() {
           <Stack.Screen name="WomenEarRingsScreen" component={WomenEarRingsScreen} />
           <Stack.Screen name="WomenBanglesScreen" component={WomenBanglesScreen} />
           <Stack.Screen name="WomenBraceletsScreen" component={WomenBraceletsScreen} />
-          <Stack.Screen name="WomenChainsScreen" component={WomenChainsScreen} />
+          <Stack.Screen name="WomenBlackBeedsScreen" component={WomenBlackBeedsScreen} />
           <Stack.Screen name="WomenNecklaceScreen" component={WomenNecklaceScreen} />
-          <Stack.Screen name="WomenNosepinScreen" component={WomenNosepinScreen} />
+          <Stack.Screen name="WomenChainsScreen" component={WomenChainsScreen} />
           <Stack.Screen name="WomenAnkletsScreen" component={WomenAnkletsScreen} />
           <Stack.Screen name="WomenHipbeltScreen" component={WomenHipbeltScreen} />
           <Stack.Screen name="WomenArmletScreen" component={WomenArmletScreen} />
@@ -122,12 +122,6 @@ export default function App() {
           {/* <Stack.Screen name="Men" component={MenScreen} />
           <Stack.Screen name="Women" component={WomenScreen} /> */}
            <Stack.Screen name="all" component={All} />
-        
-          
-
-       
-
-
         </Stack.Navigator>
       </NavigationContainer>
     </WishlistProvider>

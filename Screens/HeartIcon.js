@@ -27,7 +27,7 @@ const HeartIcon = ({ item, iconStyle }) => {
       {/* Wishlist Heart Icon */}
       <TouchableOpacity onPress={handleToggle} style={[styles.heartContainer, iconStyle]}>
         {/* Change heart color based on wishlist status */}
-        <Icon name="heart" size={20} color={isInWishlist ? 'red' : 'white'} />
+        <Icon name="heart" size={20} color={isInWishlist ? 'red' : 'gray'} />
       </TouchableOpacity>
 
       {/* Popup Notification */}
