@@ -26,12 +26,54 @@ const products = [
 
 const allProducts = [
 
-  { id: '131', image: require('../assets/categories/Women/Ear-1.png'), name: 'Gold Bracelet', price: '\u20B9150', category: "EarRings" },
-  { id: '140', image: require('../assets/categories/Women/Ear-2.png'), name: 'Silver Bracelet', price: '\u20B9120', category: "EarRings" },
-  { id: '150', image: require('../assets/categories/Women/Ear-3.png'), name: 'Platinum Bracelet', price: '\u20B9170', category: "EarRings" },
-  { id: '160', image: require('../assets/categories/Women/Ear-4.png'), name: 'Titanium Bracelet', price: '\u20B9200', category: "EarRings" },
-  { id: '170', image: require('../assets/categories/Women/Ear-5.png'), name: 'Leather Bracelet', price: '\u20B980', category: "EarRings" },
-  { id: '180', image: require('../assets/categories/Women/Ear-6.png'), name: 'Chain Bracelet', price: '\u20B9120', category: "EarRings" },
+  { name: "Golden Grace Chandbalis Earrings", image: require("../assets/categories/Women/Ear-1.png"), category: "EarRings" },
+  { name: "Floral Elegance Ruby Sparkle Earrings", image: require("../assets/categories/Women/Ear-2.png"), category: "EarRings" },
+  { name: "Ethnic Multicolor Mosaic Jhumkas Earrings", image: require("../assets/categories/Women/Ear-3.png"), category: "EarRings" },
+  { name: "Gold and Red Colour Charm Earrings", image: require("../assets/categories/Women/Ear-4.png"), category: "EarRings" },
+  { name: "Silver-Plated Oxidized Jhumkas Earrings", image: require("../assets/categories/Women/Ear-5.png"), category: "EarRings" },
+  { name: "Elegant Gold-Plated Jhumka Earrings with Stones", image: require("../assets/categories/Women/Ear-6.png"), category: "EarRings" },
+  { name: "Gold Plated Lakshmi Pearl Stone Earrings", image: require("../assets/categories/Women/Ear-7.png"), category: "EarRings" },
+  { name: "Royal Elegance Earrings With Pink Stones", image: require("../assets/categories/Women/Ear-8.png"), category: "EarRings" },
+  { name: "Black Shine Elegant Jhumkas Earrings", image: require("../assets/categories/Women/Ear-9.png"), category: "EarRings" },
+  { name: "Regal Peacock Pearl Jhumkas", image: require("../assets/categories/Women/Ear-10.png"), category: "EarRings" },
+  { name: "Emerald Green and Pink Gold Plated Jhumkas", image: require("../assets/categories/Women/Ear-11.png"), category: "EarRings" },
+  { name: "Lakshmi Pearl Temple Earrings", image: require("../assets/categories/Women/Ear-12.png"), category: "EarRings" },
+  { name: "Vintage Glow Chandbalis Earrings", image: require("../assets/categories/Women/Ear-13.png"), category: "EarRings" },
+  { name: "Crystal Dazzling Stiletto Earrings", image: require("../assets/categories/Women/Ear-14.png"), category: "EarRings" },
+  { name: "Oxidized White & Gold Stones Earrings", image: require("../assets/categories/Women/Ear-15.png"), category: "EarRings" },
+  { name: "Curved Heart Shape Stone Earrings", image: require("../assets/categories/Women/Ear-16.png"), category: "EarRings" },
+  { name: "Flower Shaped Stones Stud Earrings", image: require("../assets/categories/Women/Ear-17.png"), category: "EarRings" },
+  { name: "Gold-plated Round Stone Earrings", image: require("../assets/categories/Women/Ear-18.png"), category: "EarRings" },
+  { name: "Simple Elegant Heart Shaped Earrings", image: require("../assets/categories/Women/Ear-19.png"), category: "EarRings" },
+  { name: "Golden Antique Charm Jhumkas", image: require("../assets/categories/Women/Ear-20.png"), category: "EarRings" },
+  { name: "Royal Dewdrop Gold Plated Earrings", image: require("../assets/categories/Women/Ear-21.png"), category: "EarRings" },
+  { name: "Classic Pearl Radiance Stud Earrings", image: require("../assets/categories/Women/Ear-22.png"), category: "EarRings" },
+
+  { name: "Traditional Bangles South Indian Style", image: require("../assets/categories/Women/Bangle-3.png"), category: "Bangles" },
+  { name: "Unique Gold Plated Women Bangles", image: require("../assets/categories/Women/Bangle-2.png"), category: "Bangles" },
+  { name: "Elegant Feather Style Bangles", image: require("../assets/categories/Women/Bangle-6.png"), category: "Bangles" },
+  { name: "Gold-Plated Studded Chuda Bangles", image: require("../assets/categories/Women/Bangle-15.png"), category: "Bangles" },
+  { name: "Beautiful Red Stone Bangles with Pattern Style", image: require("../assets/categories/Women/Bangle-22.png"), category: "Bangles" },
+  { name: "Elegant Bangles with Flower Design", image: require("../assets/categories/Women/Bangle-13.png"), category: "Bangles" },
+  { name: "White and Gold Stones Bangles Set", image: require("../assets/categories/Women/Bangle-20.png"), category: "Bangles" },
+  { name: "Set of 2 Pearls Studded Bangles", image: require("../assets/categories/Women/Bangle-18.png"), category: "Bangles" },
+  { name: "Set Of 4 Gold Stones Chuda Bangles", image: require("../assets/categories/Women/Bangle-16.png"), category: "Bangles" },
+  { name: "Set Of 4 Gold Plated Flower Design Bangles", image: require("../assets/categories/Women/Bangle-12.png"), category: "Bangles" },
+  { name: "Sparkling Royal Green & Gold Bangle Set", image: require("../assets/categories/Women/Bangle-8.png"), category: "Bangles" },
+  { name: "Traditional Festive Wear Bangles Set", image: require("../assets/categories/Women/Bangle-9.png"), category: "Bangles" },
+  { name: "Scarlet Elegance Red Stones Bangles Set", image: require("../assets/categories/Women/Bangle-25.png"), category: "Bangles" },
+
+  { name: "Elegant ring with a twisted, layered structure", image: require("../assets/categories/Women/Ring-1.png"), category: "Rings" },
+  { name: "Simple gold colour graceful ring", image: require("../assets/categories/Women/Ring-2.png"), category: "Rings" },
+  { name: "Elegant charming ring for women", image: require("../assets/categories/Women/Ring-3.png"), category: "Rings" },
+  { name: "Gold plated fingerring", image: require("../assets/categories/Women/Ring-4.png"), category: "Rings" },
+  { name: "Women gold toned flower shaped fingerring", image: require("../assets/categories/Women/Ring-5.png"), category: "Rings" },
+  { name: "Bright and shimmering gold plated rings", image: require("../assets/categories/Women/Ring-6.png"), category: "Rings" },
+  { name: "Stunning graceful round fingerring", image: require("../assets/categories/Women/Ring-7.png"), category: "Rings" },
+  { name: "Shimmering elegant rings", image: require("../assets/categories/Women/Ring-8.png"), category: "Rings" },
+  { name: "Designer elegant gold colour rings", image: require("../assets/categories/Women/Ring-9.png"), category: "Rings" },
+
+  { image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Pastel Colour Stones Bracelet', category: "Bracelets" },
   
 ];
 
@@ -105,7 +147,10 @@ const handleSearchSubmit = (selectedProduct) => {
 
     if (matchedProduct) {
    const categoryToScreen = {
-    EarRings: "WomenEarRingsScreen"
+    EarRings: "WomenEarRingsScreen",
+    Bangles: "WomenBanglesScreen",
+    Rings: "WomenRingsScreen",
+    Bracelets: "WomenBraceletsScreen",
    
     
   };
