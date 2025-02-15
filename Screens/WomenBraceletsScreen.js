@@ -8,7 +8,7 @@ import HeartIcon from './HeartIcon';
 
 
 const womenbraceletProducts = [
-  { id: '16', image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+  { id: '16', image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Pastel Colour Stones Bracelet', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "White Colour" },
 
 
 ];

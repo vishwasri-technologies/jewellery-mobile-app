@@ -94,7 +94,7 @@ const ProductDetailsScreen = ({ route }) => {
           <View style={styles.detailsRow}>
             <View style={styles.detailsColumn}>
               <Text style={styles.detailLabel}>Care:</Text>
-              <Text style={styles.detailValue}>{product.care}</Text>
+              <Text style={styles.detailValue}>{product.Care}</Text>
             </View>
             <View style={styles.detailsColumn}>
               <Text style={styles.detailLabel}>Colour:</Text>

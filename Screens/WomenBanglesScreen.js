@@ -12,27 +12,23 @@ import HeartIcon from './HeartIcon';
 
 const womenbangleProducts = [
 
-  { id: '102', image: require('../assets/categories/Women/Bangle-3.png'), name: 'Gold Bracelet', price: '\u20B9150' }, 
-   { id: '20', image: require('../assets/categories/Women/Bangle-2.png'), name: 'Gold2 Bracelet', price: '\u20B9150' }, 
+  { id: '102', image: require('../assets/categories/Women/Bangle-3.png'), name: 'Traditional Bangles South Indian Style', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" }, 
+   { id: '20', image: require('../assets/categories/Women/Bangle-2.png'), name: 'Unique Gold Plated Women Bangles', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },    
+    { id: '30', image: require('../assets/categories/Women/Bangle-6.png'), name: 'Elegant Feather Style Bangles', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
+    { id: '40', image: require('../assets/categories/Women/Bangle-15.png'), name: 'Gold-Plated Studded Chuda Bangles ', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
+    { id: '50', image: require('../assets/categories/Women/Bangle-22.png'), name: 'Beautiful Red Stone Bangles with Pattern Style ', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
+    { id: '60', image: require('../assets/categories/Women/Bangle-13.png'), name: 'Elegant Bangles with Flower Design ', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
+   { id: '70', image: require('../assets/categories/Women/Bangle-20.png'), name: 'White and Gold Stones Bangles Set', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
 
-    
-    { id: '30', image: require('../assets/categories/Women/Bangle-6.png'), name: 'Gold22 Bracelet', price: '\u20B9150' },
-    { id: '40', image: require('../assets/categories/Women/Bangle-15.png'), name: 'Gold33 Bracelet', price: '\u20B9150' },
-    { id: '50', image: require('../assets/categories/Women/Bangle-22.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-    { id: '60', image: require('../assets/categories/Women/Bangle-13.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-
-
-    { id: '70', image: require('../assets/categories/Women/Bangle-20.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-
-    { id: '80', image: require('../assets/categories/Women/Bangle-18.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-    { id: '90', image: require('../assets/categories/Women/Bangle-16.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+    { id: '80', image: require('../assets/categories/Women/Bangle-18.png'), name: 'Set of 2 Pearls Studded Bangles', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
+    { id: '90', image: require('../assets/categories/Women/Bangle-16.png'), name: 'Set Of 4 Gold Stones Chuda Bangles', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
    
-    { id: '100', image: require('../assets/categories/Women/Bangle-12.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+    { id: '100', image: require('../assets/categories/Women/Bangle-12.png'), name: 'Set Of 4 Gold Plated Flower Design Bangles', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
   
-    { id: '110', image: require('../assets/categories/Women/Bangle-8.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+    { id: '110', image: require('../assets/categories/Women/Bangle-8.png'), name: 'Sparkling Royal Green & Gold Bangle Set', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Green Colour" },
 
-    { id: '120', image: require('../assets/categories/Women/Bangle-9.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-    { id: '130', image: require('../assets/categories/Women/Bangle-25.png'), name: 'Gold Bracelet', price: '\u20B9150' },
+    { id: '120', image: require('../assets/categories/Women/Bangle-9.png'), name: 'Traditional Festive Wear Bangles Set', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Multy Colour" },
+    { id: '130', image: require('../assets/categories/Women/Bangle-25.png'), name: 'Scarlet Elegance Red Stones Bangles Set', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Red Colour" },
 
     
 
