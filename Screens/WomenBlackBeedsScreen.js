@@ -8,9 +8,9 @@ import HeartIcon from './HeartIcon';
 
 
 const womenblackbeedProducts = [
-  { id: '11', image: require('../assets/categories/Women/Blackbeeds-1.png'), name: 'Gold Bracelet', price: '\u20B9150' },
-  { id: '12', image: require('../assets/categories/Women/Blackbeeds-2.png'), name: 'Silver Bracelet', price: '\u20B9120' },
-  { id: '13', image: require('../assets/categories/Women/Blackbeeds-3.png'), name: 'Platinum Bracelet', price: '\u20B9170' },
+  { id: '11', image: require('../assets/categories/Women/Blackbeeds-1.png'), name: 'Divine Grace Lakhmi Mangalsutra', price: '\u20B9300', material: "Alloy", Care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour" },
+  { id: '12', image: require('../assets/categories/Women/Blackbeeds-2.png'), name: 'Royal Temple Elegance Mangalsutra', price: '\u20B9300', material: "Alloy", Care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour" },
+  { id: '13', image: require('../assets/categories/Women/Blackbeeds-3.png'), name: 'Eternal Charm Lakshmi Mangalsutra', price: '\u20B9300', material: "Alloy", Care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour" },
 
 ];
 
