@@ -8,12 +8,12 @@ import HeartIcon from './HeartIcon';
 import { useRoute } from '@react-navigation/native';
 
 const womenchainProducts = [
-  { id: '18', image: require('../assets/categories/Women/Chain-1.png'), name: 'Simple Plain Gold Colour Chains', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '19', image: require('../assets/categories/Women/Chain-2.png'), name: 'Elegant Gold Plated Chain ', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '509', image: require('../assets/categories/Women/Chain-3.png'), name: 'Beautiful Glittering Gold Plated Chains', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '510', image: require('../assets/categories/Women/Chain-main.png'), name: 'Women Pendant Necklace', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '511', image: require('../assets/categories/Mens/Men-Chains.png'), name: 'Gold Colour Simple Chain With Pendant', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '512', image: require('../assets/categories/Women/Chain-4.png'), name: 'Women Chain With Simple Pendant ', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
+  { id: '18', image: require('../assets/categories/Women/Chain-1.png'), name: 'Simple Plain Gold Colour Chains', price: '\u20B9300', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Chains" },
+  { id: '19', image: require('../assets/categories/Women/Chain-2.png'), name: 'Elegant Gold Plated Chain ', price: '\u20B9300', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Chains" },
+  { id: '509', image: require('../assets/categories/Women/Chain-3.png'), name: 'Beautiful Glittering Gold Plated Chains', price: '\u20B9300', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Chains" },
+  { id: '510', image: require('../assets/categories/Women/Chain-main.png'), name: 'Women Pendant Necklace', price: '\u20B9300', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Chains" },
+  { id: '511', image: require('../assets/categories/Mens/Men-Chains.png'), name: 'Gold Colour Simple Chain With Pendant', price: '\u20B9300', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Chains" },
+  { id: '512', image: require('../assets/categories/Women/Chain-4.png'), name: 'Women Chain With Simple Pendant ', price: '\u20B9300', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Chains" },
 
 ];
 

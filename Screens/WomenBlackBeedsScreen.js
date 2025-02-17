@@ -9,9 +9,9 @@ import { useRoute } from '@react-navigation/native';
 
 
 const womenblackbeedProducts = [
-  { id: '11', image: require('../assets/categories/Women/Blackbeeds-1.png'), name: 'Divine Grace Lakhmi Mangalsutra', price: '\u20B9300', material: "Alloy", Care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour" },
-  { id: '12', image: require('../assets/categories/Women/Blackbeeds-2.png'), name: 'Royal Temple Elegance Mangalsutra', price: '\u20B9300', material: "Alloy", Care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour" },
-  { id: '13', image: require('../assets/categories/Women/Blackbeeds-3.png'), name: 'Eternal Charm Lakshmi Mangalsutra', price: '\u20B9300', material: "Alloy", Care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour" },
+  { id: '11', image: require('../assets/categories/Women/Blackbeeds-1.png'), name: 'Divine Grace Lakhmi Mangalsutra', price: '\u20B9300', material: "Alloy", care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour",category:"Black beeds" },
+  { id: '12', image: require('../assets/categories/Women/Blackbeeds-2.png'), name: 'Royal Temple Elegance Mangalsutra', price: '\u20B9300', material: "Alloy", care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour",category:"Black beeds" },
+  { id: '13', image: require('../assets/categories/Women/Blackbeeds-3.png'), name: 'Eternal Charm Lakshmi Mangalsutra', price: '\u20B9300', material: "Alloy", care: "Clean with a soft, dry cloth",colour: "Gold & Black Colour",category:"Black beeds" },
 
 ];
 
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     // elevation: 3,
   },
   image: {
-    width: wp(40),
+    width: wp(42),
     height: wp(50),
     // borderRadius: wp(2),
   },
