@@ -74,6 +74,55 @@ const allProducts = [
   { name: "Designer elegant gold colour rings", image: require("../assets/categories/Women/Ring-9.png"), category: "Rings" },
 
   { image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Pastel Colour Stones Bracelet', category: "Bracelets" },
+
+  { name: "Divine Grace Lakhmi Mangalsutra", image: require("../assets/categories/Women/Blackbeeds-1.png"), category: "Blackbeeds" },
+  { name: "Royal Temple Elegance Mangalsutra", image: require("../assets/categories/Women/Blackbeeds-2.png"), category: "Blackbeeds" },
+  { name: "Eternal Charm Lakshmi Mangalsutra", image: require("../assets/categories/Women/Blackbeeds-3.png"), category: "Blackbeeds" },
+
+  { name: "Royal Temple Gold Plated Haram Set", image: require("../assets/categories/Women/Necklace-1.png"), category: "Necklace" },
+  { name: "Pearl Temple Necklace", image: require("../assets/categories/Women/Necklace-2.png"), category: "Necklace" },
+  { name: "Royal Sapphire Choker Set", image: require("../assets/categories/Women/Necklace-3.png"), category: "Necklace" },
+  { name: "Golden Grace Peacock Necklace", image: require("../assets/categories/Women/Necklace-4.png"), category: "Necklace" },
+  { name: "Grand Lakshmi Pearl Long Haram", image: require("../assets/categories/Women/Necklace-5.png"), category: "Necklace" },
+  { name: "Golden Blossom Heritage Necklace", image: require("../assets/categories/Women/Necklace-6.png"), category: "Necklace" },
+  { name: "Elegant Gold-Plated Pearl Stone Design Necklace", image: require("../assets/categories/Women/Necklace-7.png"), category: "Necklace" },
+  { name: "Gold Plated Ruby Kundan Studded Jewellery Set", image: require("../assets/categories/Women/Necklace-8.png"), category: "Necklace" },
+  { name: "Elite Beautiful Jewellery Set With Pearls", image: require("../assets/categories/Women/Necklace-9.png"), category: "Necklace" },
+  { name: "Royal Princess Unique Jewellery Sets", image: require("../assets/categories/Women/Necklace-10.png"), category: "Necklace" },
+  { name: "Shimmering Elegant Jewellery Women Neckset", image: require("../assets/categories/Women/Necklace-12.png"), category: "Necklace" },
+  { name: "Gold-Plated White Stone-Studded & Beaded Necklace", image: require("../assets/categories/Women/Necklace-13.png"), category: "Necklace" },
+  { name: "Gold-Plated Pearl Stone-Studded Necklace", image: require("../assets/categories/Women/Necklace-14.png"), category: "Necklace" },
+  { name: "Gold Colour Red & Green Stones Necklace", image: require("../assets/categories/Women/Necklace-15.png"), category: "Necklace" },
+  { name: "Gold Plated Stones Necklace With Earrings", image: require("../assets/categories/Women/Necklace-16.png"), category: "Necklace" },
+  { name: "Elegant Oxidized Jewellery Set", image: require("../assets/categories/Women/Necklace-17.png"), category: "Necklace" },
+  { name: "Elegant Gold-Plated Peach Colour Neckset", image: require("../assets/categories/Women/Necklace-18.png"), category: "Necklace" },
+  { name: "Gold Plated Pearl Stones Necklace", image: require("../assets/categories/Women/Necklace-19.png"), category: "Necklace" },
+  { name: "Gold-Plated Studded Temple Jewellery Set", image: require("../assets/categories/Women/Necklace-20.png"), category: "Necklace" },
+  { name: "Gold Plated Green Colour Choker Neckset", image: require("../assets/categories/Women/Necklace-21.png"), category: "Necklace" },
+  { name: "Fancy jewellery set for women and girls", image: require("../assets/categories/Women/Necklace-29.png"), category: "Necklace" },
+  { name: "Gold Flower Shaped With Pink Stone Necklace", image: require("../assets/categories/Women/Necklace-32.png"), category: "Necklace" },
+  { name: "South Indian Bridal Double Necklace Jewellery Set", image: require("../assets/categories/Women/Necklace-36.png"), category: "Necklace" },
+  { name: "Temple Style Green Beads Jewellery Set", image: require("../assets/categories/Women/Necklace-33.png"), category: "Necklace" },
+  { name: "Temple Style Red Beads Jewellery Set", image: require("../assets/categories/Women/Necklace-35.png"), category: "Necklace" },
+  { name: "Princess Unique Jewellery Sets With Earrings", image: require("../assets/categories/Women/Necklace-34.png"), category: "Necklace" },
+  { name: "Simple Necklace And Earring Set For Women", image: require("../assets/categories/Women/Necklace-22.png"), category: "Necklace" },
+  { name: "Ethnic Golden Color Designer Pendant Set", image: require("../assets/categories/Women/Necklace-28.png"), category: "Necklace" },
+  { name: "New Designer Lakshmi Pendant Jewellery Set", image: require("../assets/categories/Women/Necklace-27.png"), category: "Necklace" },
+  { name: "Trendy Gold Plated Jewellery Set", image: require("../assets/categories/Women/Necklace-23.png"), category: "Necklace" },
+  { name: "Necklace And Earring Set For Women", image: require("../assets/categories/Women/Necklace-31.png"), category: "Necklace" },
+  { name: "Gold-Toned & Pearl Stones Jewellery Set", image: require("../assets/categories/Women/Necklace-30.png"), category: "Necklace" },
+  { name: "Gold-Plated Divine Lakshmi Motif Temple Jewellery Set", image: require("../assets/categories/Women/Necklace-24.png"), category: "Necklace" },
+  { name: "Gold Plated Simple Long Necklace For Women", image: require("../assets/categories/Women/Necklace-25.png"), category: "Necklace" },
+  { name: "Gold-Plated Stone-Studded & Beaded Jewellery Set", image: require("../assets/categories/Women/Necklace-26.png"), category: "Necklace" },
+
+  { name: "Simple Plain Gold Colour Chains", image: require("../assets/categories/Women/Chain-1.png"), category: "Chains" },
+  { name: "Elegant Gold Plated Chain", image: require("../assets/categories/Women/Chain-2.png"), category: "Chains" },
+  { name: "Beautiful Glittering Gold Plated Chains", image: require("../assets/categories/Women/Chain-3.png"), category: "Chains" },
+  { name: "Women Pendant Necklace", image: require("../assets/categories/Women/Chain-main.png"), category: "Chains" },
+  { name: "Gold Colour Simple Chain With Pendant", image: require("../assets/categories/Mens/Men-Chains.png"), category: "Chains" },
+  { name: "Women Chain With Simple Pendant", image: require("../assets/categories/Women/Chain-4.png"), category: "Chains" },
+
+  
   
 ];
 
@@ -115,9 +164,6 @@ const Home = () => {
     })();
   }, []);          //code for location
 
-
-  
-
   const handleScroll = (event) => {
     const offsetX = event.nativeEvent.contentOffset.x;
     const pageIndex = Math.round(offsetX / screenWidth); // Calculate current page
@@ -151,7 +197,10 @@ const handleSearchSubmit = (selectedProduct) => {
     Bangles: "WomenBanglesScreen",
     Rings: "WomenRingsScreen",
     Bracelets: "WomenBraceletsScreen",
-   
+    Blackbeeds: "WomenBlackBeedsScreen",
+    Necklace: "WomenNecklaceScreen",
+    Chains: "WomenChainsScreen",
+
     
   };
 
@@ -177,10 +226,6 @@ const filteredOptions = allProducts.filter((product) =>
   product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
   product.category?.toLowerCase().includes(searchTerm.toLowerCase())
 );
-
-
-
-
 
 return (
   <View style={styles.container}>
@@ -403,9 +448,12 @@ const styles = StyleSheet.create({
   },
   
   productName: {
-    fontSize: hp("1.8%"),
+    fontSize: hp("1.8%"), // Slightly reduced for better fit
     fontWeight: "bold",
     color: "#333", // Neutral text color
+    flexShrink: 1, // Prevent text overflow
+    flexWrap: "wrap", // Ensure it wraps if needed
+    maxWidth: wp("50%"), // Adjusted max width to avoid truncation
   },
   
   productPrice: {
@@ -415,11 +463,6 @@ const styles = StyleSheet.create({
     marginTop: hp("0.3%"),
     marginRight:wp('25%'),
   },
- 
-  
-  
-  
-  
+   
 });
-
 export default Home;

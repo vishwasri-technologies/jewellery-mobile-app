@@ -5,6 +5,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
+import { useRoute } from '@react-navigation/native';
 
 
 const womenblackbeedProducts = [
@@ -17,11 +18,17 @@ const womenblackbeedProducts = [
 const WomenBlackBeedsScreen = () => {
   const navigation = useNavigation();
 
+  const route = useRoute();
+        const { searchedProduct } = route.params || {}; // Get searched product (if available)
+      
+        // ✅ **If a product was searched, show only that product**
+        const displayedProducts = searchedProduct ? [searchedProduct] : womenblackbeedProducts;
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Black beeds</Text>
       <FlatList
-        data={womenblackbeedProducts}
+        data={displayedProducts}
         keyExtractor={(item) => item.id}
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}

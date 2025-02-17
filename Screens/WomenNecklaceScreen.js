@@ -5,6 +5,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
+import { useRoute } from '@react-navigation/native';
 
 
 const womensnecklaceProducts = [
@@ -18,7 +19,6 @@ const womensnecklaceProducts = [
   { id: '27', image: require('../assets/categories/Women/Necklace-8.png'), name: 'Gold Plated Ruby Kundan Studded Jewellery Set', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
   { id: '28', image: require('../assets/categories/Women/Necklace-9.png'), name: 'Elite Beautiful Jewellery Set With Pearls', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
   { id: '29', image: require('../assets/categories/Women/Necklace-10.png'), name: 'Royal Princess Unique Jewellery Sets', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  // { id: '30', image: require('../assets/categories/Women/Necklace-11.png'), name: 'Chain Bracelet', price: '\u20B9120' },
   { id: '30', image: require('../assets/categories/Women/Necklace-12.png'), name: 'Shimmering Elegant Jewellery Women Neckset ', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
   { id: '31', image: require('../assets/categories/Women/Necklace-13.png'), name: 'Gold-Plated White Stone-Studded & Beaded Necklace', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
   { id: '32', image: require('../assets/categories/Women/Necklace-14.png'), name: 'Gold-Plated Plear Stone-Studded Necklace', price: '\u20B9300', material: "Copper", Care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
@@ -47,14 +47,19 @@ const womensnecklaceProducts = [
 ];
 
 const WomenNecklaceScreen = () => {
- 
-  const navigation = useNavigation();
+ const navigation = useNavigation();
+
+ const route = useRoute();
+       const { searchedProduct } = route.params || {}; // Get searched product (if available)
+     
+       // ✅ **If a product was searched, show only that product**
+       const displayedProducts = searchedProduct ? [searchedProduct] : womensnecklaceProducts;
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Necklace</Text>
       <FlatList
-        data={womensnecklaceProducts}
+        data={displayedProducts}
         keyExtractor={(item) => item.id}
         numColumns={2} // Display items in a two-column grid
         contentContainerStyle={styles.listContainer}
