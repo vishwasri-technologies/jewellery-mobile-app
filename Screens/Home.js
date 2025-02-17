@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from 'react';
-import { View, Text, Image, TextInput, ScrollView, StyleSheet, TouchableOpacity, Dimensions,ActivityIndicator, Alert } from 'react-native';
+import { View, Text, Image, TextInput, ScrollView, StyleSheet, TouchableOpacity, Dimensions,ActivityIndicator, Alert, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -126,14 +126,25 @@ const allProducts = [
   
 ];
 
+const categoryToScreen = {
+  EarRings: "WomenEarRingsScreen",
+  Bangles: "WomenBanglesScreen",
+  Rings: "WomenRingsScreen",
+  Bracelets: "WomenBraceletsScreen",
+  Blackbeeds: "WomenBlackBeedsScreen",
+  Necklace: "WomenNecklaceScreen",
+  Chains: "WomenChainsScreen",
+};
+
 const Home = () => {
   const navigation = useNavigation();
   const [currentPage, setCurrentPage] = useState(0); // State to track current page
   const [searchTerm, setSearchTerm] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState("Fetching location...");
+  
 
   useEffect(() => { //code for location
     (async () => {
@@ -170,62 +181,32 @@ const Home = () => {
     setCurrentPage(pageIndex);
   };
 
- // Handle Search Input
- const handleSearchChange = (query) => {
-  setSearchTerm(query);
-  setDropdownVisible(true);
-};
+//  // Handle Search Input
+//  const handleSearchChange = (query) => {
+//   setSearchTerm(query);
+//   setDropdownVisible(true);
+// };
 
-// Select an Option from Dropdown
+// 🔹 **Filter Products Based on Search Query**
+const filteredOptions = allProducts.filter((product) =>
+  product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  product.category.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+// 🔹 **Handle Product Selection**
 const handleOptionSelect = (selectedProduct) => {
-  setSearchTerm(selectedProduct.name);
+  setSearchTerm("");
   setDropdownVisible(false);
-  handleSearchSubmit(selectedProduct);
-};
-
-// Handle Search Submit
-const handleSearchSubmit = (selectedProduct) => {
-  if (selectedProduct && selectedProduct.name.trim()) {
-    const matchedProduct = allProducts.find(
-      (product) =>
-        product.name.toLowerCase() === selectedProduct.name.toLowerCase()
-    );
-
-    if (matchedProduct) {
-   const categoryToScreen = {
-    EarRings: "WomenEarRingsScreen",
-    Bangles: "WomenBanglesScreen",
-    Rings: "WomenRingsScreen",
-    Bracelets: "WomenBraceletsScreen",
-    Blackbeeds: "WomenBlackBeedsScreen",
-    Necklace: "WomenNecklaceScreen",
-    Chains: "WomenChainsScreen",
-
-    
-  };
-
-  //  **Check if category exists in the mapping**
-  const screenName = categoryToScreen[matchedProduct.category];
+  
+  const screenName = categoryToScreen[selectedProduct.category];
 
   if (screenName) {
-    // 🔹 **Navigate to the correct screen dynamically**
-    navigation.navigate(screenName, { searchedProduct: matchedProduct });
+    navigation.navigate(screenName, { searchedProduct: selectedProduct });
   } else {
-    //  **Show an alert if no matching category found**
     Alert.alert("Product Not Found", "No matching category found.");
   }
-} else {
-  Alert.alert("Product Not Found", "No matching product found.");
-}
-}
-  setDropdownVisible(false);
 };
 
-// Filtered Search Options
-const filteredOptions = allProducts.filter((product) =>
-  product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  product.category?.toLowerCase().includes(searchTerm.toLowerCase())
-);
 
 return (
   <View style={styles.container}>
@@ -249,7 +230,12 @@ return (
         style={styles.searchBar} 
         placeholder="Search" 
         value={searchTerm}
-        onChangeText={handleSearchChange} 
+          onChangeText={(text) => {
+            setSearchTerm(text);
+            setDropdownVisible(true);
+          }}
+          keyboardType="default"
+          autoCapitalize="none"
       />
       <TouchableOpacity onPress={() => handleSearchSubmit(searchTerm)} />
       <TouchableOpacity onPress={() => navigation.navigate('notify')}>
@@ -258,7 +244,7 @@ return (
     </View>
 
     {/* ✅ Dropdown List for Search Results */}
-    {dropdownVisible && searchTerm && (
+    {dropdownVisible && searchTerm.length > 0 &&  (
       <ScrollView style={styles.searchResults}>
         {filteredOptions.map((product, index) => (
           <TouchableOpacity key={index} onPress={() => handleOptionSelect(product)} style={styles.searchItem}>

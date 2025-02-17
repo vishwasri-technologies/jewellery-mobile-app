@@ -40,7 +40,9 @@ const WomenEarRingsScreen = () => {
     const { searchedProduct } = route.params || {}; // Get searched product (if available)
   
     // ✅ **If a product was searched, show only that product**
-    const displayedProducts = searchedProduct ? [searchedProduct] : womenearringsProducts;
+    const displayedProducts = searchedProduct
+    ? womenearringsProducts.filter(product => product.name.toLowerCase().includes(searchedProduct.name.toLowerCase()))
+    : womenearringsProducts;
 
 
   return (

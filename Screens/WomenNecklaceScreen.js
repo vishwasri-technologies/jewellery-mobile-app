@@ -53,7 +53,9 @@ const WomenNecklaceScreen = () => {
        const { searchedProduct } = route.params || {}; // Get searched product (if available)
      
        // ✅ **If a product was searched, show only that product**
-       const displayedProducts = searchedProduct ? [searchedProduct] : womensnecklaceProducts;
+      const displayedProducts = searchedProduct
+      ? womensnecklaceProducts.filter(product => product.name.toLowerCase().includes(searchedProduct.name.toLowerCase()))
+      : womensnecklaceProducts;
 
   return (
     <View style={styles.container}>
