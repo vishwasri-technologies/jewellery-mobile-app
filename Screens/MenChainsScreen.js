@@ -18,12 +18,8 @@ import HeartIcon from "./HeartIcon";
 const chainProducts = [
   {
     id: "7",
-
-    image: require("../assets/bracelet.png"),
     category: 'Chains',
-
     image: require('../assets/categories/Mens/Men-Chains.png'),
-
     name: "Gold Colour Simple Chain With Pendant",
     price: "\u20B9190",
     material: "Gold",
