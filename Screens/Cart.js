@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
   itemDetails: { flex: 1, marginLeft: 10 },
   itemName: { fontSize: 16 },
   itemPrice: { fontSize: 14, color: "#555", marginTop: -11 },
-  image1: { width: 190, height: 190, borderRadius: 0 },
+  image1: { width: 230, height: 190, borderRadius: 0 },
   itemName1: { fontSize: 14, fontWeight: "bold" },
   itemPrice1: { fontSize: 14, color: "#555" },
   removeText: { color: "black", fontSize: 16, marginLeft: 0, marginTop: "5" },
