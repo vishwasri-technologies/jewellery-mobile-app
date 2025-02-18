@@ -143,7 +143,7 @@ const ProductDetailsScreen = ({ route }) => {
             </Text>
           </View>
           <TouchableOpacity style={styles.changeButton}>
-            <Text style={styles.changeButtonText}>CHANGE</Text>
+            <Text onPress={() => navigation.navigate("editaddress")} style={styles.changeButtonText}>CHANGE</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -235,24 +235,24 @@ const styles = StyleSheet.create({
     objectFit: "contain",
   },
   image: {
-    width: wp(90),
+    width: wp(91),
     height: hp(50),
     borderTopLeftRadius: wp(5),
     borderTopRightRadius: wp(5),
   },
   category: {
-    fontSize: wp(4.4),
+    fontSize: wp(4.3),
     fontWeight: "bold",
     marginTop: hp(2),
-    paddingHorizontal: hp(1),
+    paddingHorizontal: hp(0.5),
   },
   name: {
-    fontSize: wp(4.2),
+    fontSize: wp(4),
     marginTop: hp(0.2),
     paddingHorizontal: hp(0.5),
   },
   price: {
-    fontSize: wp(4.3),
+    fontSize: wp(4),
     fontWeight: "bold",
     color: "black",
     marginTop: hp(0.2),
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: hp(0.5),
   },
   sectionTitle: {
-    fontSize: wp(4.5),
+    fontSize: wp(3.7),
     fontWeight: "bold",
     marginBottom: hp(1),
   },
@@ -279,11 +279,11 @@ const styles = StyleSheet.create({
     width: "48%",
   },
   detailLabel: {
-    fontSize: wp(3.5),
+    fontSize: wp(3.7),
     color: "black",
     marginTop: hp(0.8),
     width: "100%",
-    fontWeight: "bold",
+    fontWeight: "500",
   },
   detailValue: {
     fontSize: wp(3.5),
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     marginRight: wp(2),
   },
   deliveryAddress: {
-    fontSize: wp(4),
+    fontSize: wp(3.7),
     fontWeight: "bold",
   },
   addressName: {
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
   },
   changeButtonText: {
     color: "#FF3F6C",
-    fontSize: wp(3.5),
+    fontSize: wp(3.4),
     fontWeight: "bold",
   },
   deliveryDetailRow: {
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     marginRight: wp(3),
   },
   deliveryText: {
-    fontSize: wp(3.8),
+    fontSize: wp(3.6),
     color: "#333",
     flex: 1,
   },
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
   listContainer: {
     paddingHorizontal: hp(2),
     paddingTop: hp(7),
-    paddingBottom: hp(10),
+    paddingBottom: hp(9),
   },
   item: {
     width: wp(35),
@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
     height: wp(57),
   },
   name1: {
-    fontSize: wp(4),
+    fontSize: wp(3.5),
     fontWeight: "400",
     marginTop: hp(1),
     textAlign: "center",
