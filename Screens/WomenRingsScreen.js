@@ -8,15 +8,16 @@ import HeartIcon from './HeartIcon';
 import { useRoute } from '@react-navigation/native';
 
 const womenringProducts = [
-  { id: '14', image: require('../assets/categories/Women/Ring-1.png'), name: 'Elegant ring with a twisted, layered structure', price: '\u20B980', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '15', image: require('../assets/categories/Women/Ring-2.png'), name: 'Simple gold colour graceful ring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '500', image: require('../assets/categories/Women/Ring-3.png'), name: 'Elegant charming ring for women', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '501', image: require('../assets/categories/Women/Ring-4.png'), name: 'Gold plated fingerring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '502', image: require('../assets/categories/Women/Ring-5.png'), name: 'Women gold toned flower shaped fingerring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '503', image: require('../assets/categories/Women/Ring-6.png'), name: 'Bright and shimmering gold plated rings', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '504', image: require('../assets/categories/Women/Ring-7.png'), name: 'Stunning graceful round fingerring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '505', image: require('../assets/categories/Women/Ring-8.png'), name: 'Shimmering elegant rings', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
-  { id: '506', image: require('../assets/categories/Women/Ring-9.png'), name: 'Designer elegant gold colour rings', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour" },
+
+  { id: '14', image: require('../assets/categories/Women/Ring-1.png'), name: 'Elegant ring with a twisted, layered structure', price: '\u20B980', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '15', image: require('../assets/categories/Women/Ring-2.png'), name: 'Simple gold colour graceful ring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '500', image: require('../assets/categories/Women/Ring-3.png'), name: 'Elegant charming ring for women', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '501', image: require('../assets/categories/Women/Ring-4.png'), name: 'Gold plated fingerring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '502', image: require('../assets/categories/Women/Ring-5.png'), name: 'Women gold toned flower shaped fingerring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '503', image: require('../assets/categories/Women/Ring-6.png'), name: 'Bright and shimmering gold plated rings', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '504', image: require('../assets/categories/Women/Ring-7.png'), name: 'Stunning graceful round fingerring', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '505', image: require('../assets/categories/Women/Ring-8.png'), name: 'Shimmering elegant rings', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
+  { id: '506', image: require('../assets/categories/Women/Ring-9.png'), name: 'Designer elegant gold colour rings', price: '\u20B9300', material: "Copper",care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
 ];
 
 const  WomenRingsScreen = () => {
