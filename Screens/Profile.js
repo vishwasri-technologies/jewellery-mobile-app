@@ -22,38 +22,37 @@ const ProfileScreen = () => {
   const navigation = useNavigation();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-// Fetch profile from backend
-const fetchProfile = async () => {
-  try {
-    const response = await axios.get("http://192.168.29.178:5000/Profile"); // Replace with actual API URL
-    setProfile(response.data[response.data.length - 1]); // Get the most recent profile
-  } catch (error) {
-    console.error("Error fetching profile:", error);
-  } finally {
-    setLoading(false);
+  // Fetch profile from backend
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get("http://192.168.29.178:5000/Profile"); // Replace with actual API URL
+      setProfile(response.data[response.data.length - 1]); // Get the most recent profile
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile();
+    const focusListener = navigation.addListener("focus", fetchProfile);
+    return () => focusListener();
+  }, [navigation]);
+
+  if (loading) {
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
-};
-
-useEffect(() => {
-  fetchProfile();
-  const focusListener = navigation.addListener("focus", fetchProfile);
-  return () => focusListener();
-}, [navigation]);
-
-if (loading) {
-  return (
-    <View style={styles.loaderContainer}>
-      <ActivityIndicator size="large" color="#0000ff" />
-    </View>
-  );
-}
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.headerContainer}>
-        
-             <TouchableOpacity
+          <TouchableOpacity
             onPress={() => navigation.goBack()} // Ensure navigation works
             style={styles.backButton}
           >
@@ -61,98 +60,107 @@ if (loading) {
               source={require("../assets/profileImgs/back.png")} // Replace with actual image
               style={styles.backIcon}
             />
-           
           </TouchableOpacity>
           <Text style={styles.title}>Profile</Text>
         </View>
         <View style={styles.profileHeader}>
-  <Image
-    source={require("../assets/profileImgs/profile-icon.png")}
-    style={styles.profileImage}
-  />
-  <TouchableOpacity
-    style={styles.editIconContainer}
-    onPress={() => navigation.navigate("EditProfile")}
-  >
-    <Image
-      source={require("../assets/profileImgs/pencil.png")} // Replace with actual pencil image
-      style={styles.editIcon}
-    />
-  </TouchableOpacity>
-  {/* <Text style={styles.profileName}>Adhvitha</Text>
-  <Text style={styles.profileNumber}>9394800354</Text> */}
-  <Text style={styles.profileName}>{profile?.firstName || "N/A"}</Text>
-  <Text style={styles.profileNumber}>{profile?.emailOrmobile || "N/A"}</Text>
-</View>
+          <Image
+            source={require("../assets/profileImgs/profile-icon.png")}
+            style={styles.profileImage}
+          />
+          <TouchableOpacity
+            style={styles.editIconContainer}
+            onPress={() => navigation.navigate("EditProfile")}
+          >
+            <Image
+              source={require("../assets/profileImgs/pencil.png")} // Replace with actual pencil image
+              style={styles.editIcon}
+            />
+          </TouchableOpacity>
+          <Text style={styles.profileName}>{profile?.firstName || "N/A"}</Text>
+          <Text style={styles.profileNumber}>
+            {profile?.emailOrmobile || "N/A"}
+          </Text>
+        </View>
 
         <View style={styles.list}>
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('profileorder')}>
-            {/* <Icon name="cart-outline" size={wp("6%")} style={styles.icon} /> */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("profileorder")}
+          >
             <Image
               source={require("../assets/profileImgs/orderhistory.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} >Order </Text>
+            <Text style={styles.menuText}>Order </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('addresslist')}>
-            {/* <Icon name="location-outline" size={wp("6%")} style={styles.icon} /> */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("addresslist")}
+          >
             <Image
               source={require("../assets/profileImgs/savedaddress.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}  >Address</Text>
+            <Text style={styles.menuText}>Address</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Wishlist')}>
-            {/* <Icon name="heart-outline" size={wp("6%")} style={styles.icon} /> */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("Wishlist")}
+          >
             <Image
               source={require("../assets/profileImgs/wishlist.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} >Wishlist</Text>
+            <Text style={styles.menuText}>Wishlist</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('terms')}>
-            {/* <Icon name="call-outline" size={wp("6%")} style={styles.icon} /> */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("terms")}
+          >
             <Image
               source={require("../assets/profileImgs/terms.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText}  >Terms and Conditions</Text>
+            <Text style={styles.menuText}>Terms and Conditions</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('notify')}>
-            {/* <Icon name="headset-outline" size={wp("6%")} style={styles.icon} /> */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("notify")}
+          >
             <Image
               source={require("../assets/profileImgs/customercare.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-           
-            <Text style={styles.menuText} >Notifications</Text>
+
+            <Text style={styles.menuText}>Notifications</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('return')}>
-            {/* <Icon
-              name="return-down-back-outline"
-              size={wp("6%")}
-              style={styles.icon}
-            /> */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("return")}
+          >
             <Image
               source={require("../assets/profileImgs/refund.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} >Return and Refund Policy</Text>
+            <Text style={styles.menuText}>Return and Refund Policy</Text>
           </TouchableOpacity>
 
-
-
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('about')}>
-            {/* <Icon
-              name="return-down-back-outline"
-              size={wp("6%")}
-              style={styles.icon}
-            /> */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("about")}
+          >
             <Image
               source={require("../assets/profileImgs/about.png")} // Replace with actual image URL
               style={styles.menuImage}
             />
-            <Text style={styles.menuText} >About Us</Text>
+            <Text style={styles.menuText}>About Us</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.logoutButton}
+            onPress={() => navigation.navigate("SignIn")}
+          >
+            <Text style={styles.logoutText}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -165,14 +173,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-   
   },
   headerContainer: {
     flexDirection: "row",
-    // alignItems: "center",
     padding: wp("3%"),
     marginTop: hp("4%"),
-    // justifyContent: 'center'
   },
   backButton: {
     padding: wp("2%"),
@@ -188,7 +193,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: wp("6%"),
     fontWeight: "bold",
-    marginLeft: wp("27%")
+    marginLeft: wp("27%"),
+    marginTop: hp("0.7"),
   },
   profileHeader: {
     alignItems: "center",
@@ -211,15 +217,17 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     flexDirection: "row",
-    alignItems: "left",
-    padding: wp("3%"),
+    alignItems: "center",
     borderRadius: wp("2%"),
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+    elevation: 4,
+    backgroundColor: "#fff",
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
-    marginLeft: wp("5%"),
-    marginRight: wp("5%"),
-    marginBottom: wp("3%"),
+    marginHorizontal: wp("5%"),
+    marginBottom: wp("4%"),
+    paddingLeft: wp("3.2%"),
+    paddingVertical: hp("1.5%"),
+    // zIndex: 1,
   },
   menuText: {
     fontSize: wp("4.5%"),
@@ -227,7 +235,6 @@ const styles = StyleSheet.create({
     color: "#641E69",
   },
   icon: {
-    // marginRight: wp('1%'),
     color: "#641E69",
   },
   menuImage: {
@@ -252,7 +259,21 @@ const styles = StyleSheet.create({
     height: wp("6%"),
     resizeMode: "contain",
   },
-  
+  logoutButton: {
+    padding: wp("2.6%"),
+    borderRadius: wp("2%"),
+    borderWidth: 1.5,
+    borderColor: "#641E69",
+    marginHorizontal: wp("22%"),
+    marginTop: wp("4%"),
+    marginBottom: wp("8%"),
+  },
+  logoutText: {
+    fontSize: wp("4.5%"),
+    textAlign: "center",
+    color: "#641E69",
+    fontWeight: "500",
+  }
 });
 
 export default ProfileScreen;

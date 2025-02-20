@@ -129,7 +129,7 @@ const ProductDetailsScreen = ({ route }) => {
       </View>
 
       {/* Delivery Address */}
-      <View style={styles.section}>
+      {/* <View style={styles.section}>
         <Text style={styles.sectionTitle}>Delivery Address</Text>
         <View style={styles.deliveryContainer}>
           <View style={styles.addressContainer}>
@@ -146,7 +146,7 @@ const ProductDetailsScreen = ({ route }) => {
             <Text onPress={() => navigation.navigate("editaddress")} style={styles.changeButtonText}>CHANGE</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
 
       {/* Delivery & Return Details */}
       <View style={styles.section}>
@@ -399,9 +399,8 @@ const styles = StyleSheet.create({
   item: {
     width: wp(35),
     marginBottom: hp(3),
-    alignItems: "center",
-    marginLeft: wp(4.5),
-    marginRight: wp(8),
+    marginLeft: wp(1),
+    marginRight: wp(11),
   },
   image1: {
     width: wp(43),
@@ -411,14 +410,12 @@ const styles = StyleSheet.create({
     fontSize: wp(3.5),
     fontWeight: "400",
     marginTop: hp(1),
-    textAlign: "center",
   },
   price1: {
     fontSize: wp(3.8),
     fontWeight: "bold",
     color: "black",
     marginTop: hp(0.5),
-    textAlign: "center",
   },
   // heartContainer: { top: 14, right: 12 },
   // // heartIcon1: {

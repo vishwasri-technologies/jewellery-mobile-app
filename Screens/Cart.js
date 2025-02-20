@@ -16,12 +16,10 @@
 // import HeartIcon from './HeartIcon';
 // import { Picker } from '@react-native-picker/picker';
 
-
 // import necklaceImage from '../assets/categories/Women/Ring-1.png';
 // import banglesImage from  '../assets/categories/Women/Bangle-3.png';
 // import banglesImage1 from  '../assets/categories/Women/Bangle-2.png';
 // import earring1 from  '../assets/categories/Women/Ear-20.png';
-
 
 // const Cart = () => {
 //   const [cart, setCart] = useState([]);
@@ -32,7 +30,7 @@
 //     {
 //       id: 74,
 //       name: "Elegant Ring with a twisted,\nlayered structure",
-      
+
 //       price: 780,
 //       image: necklaceImage,
 //     },
@@ -54,7 +52,7 @@
 //       price: 780,
 //       image: earring1,
 //     },
-    
+
 //   ];
 
 //   // Fetching the delivery address dynamically
@@ -120,13 +118,9 @@
 //     );
 //   };
 
-  
-
-
 //   const getTotalPrice = () => {
 //     return cart.reduce((total, item) => total + (parseFloat(item.price) || 0) * item.qty, 0);
 //   };
-  
 
 //   return (
 //     <ScrollView contentContainerStyle={styles.container}>
@@ -170,7 +164,7 @@
 //       <View>
 
 // <Text style={styles.addOnHeader}>Add On</Text>
-    
+
 //       <FlatList
 //         data={addOns}
 //         horizontal
@@ -181,7 +175,7 @@
 //             <Text style={styles.itemName1}>{item.name}</Text>
 //             <Text style={styles.itemPrice1}>₹{item.price}</Text>
 //             <HeartIcon item={item} />
-//             <TouchableOpacity 
+//             <TouchableOpacity
 //   style={{
 //     marginTop: 5,
 //     borderWidth: 1,
@@ -191,8 +185,8 @@
 //     borderRadius: 5,
 //     alignSelf:'flex-start',
 //     marginBottom: 10,
-   
-//   }} 
+
+//   }}
 //   onPress={() => addToCart(item)} // Move onPress outside the style object
 // >
 //   <Text style={{ color: 'black', fontSize: 14 ,}}>ADD TO CART</Text>
@@ -258,29 +252,16 @@
 //   quantityLabel: { fontSize: 14, fontWeight: "bold", marginLeft:"0%",marginTop:3,flexBasis:"row" },
 //   quantityPicker: {marginTop:"-34",marginLeft:13},
 
-
-  
 // });
 
 // export default Cart;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from "react";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
 import {
@@ -294,15 +275,13 @@ import {
   ScrollView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import HeartIcon from './HeartIcon';
-import { Picker } from '@react-native-picker/picker';
+import HeartIcon from "./HeartIcon";
+import { Picker } from "@react-native-picker/picker";
 
-
-import necklaceImage from '../assets/categories/Women/Ring-1.png';
-import banglesImage from  '../assets/categories/Women/Bangle-3.png';
-import banglesImage1 from  '../assets/categories/Women/Bangle-2.png';
-import earring1 from  '../assets/categories/Women/Ear-20.png';
-
+import necklaceImage from "../assets/categories/Women/Ring-1.png";
+import banglesImage from "../assets/categories/Women/Bangle-3.png";
+import banglesImage1 from "../assets/categories/Women/Bangle-2.png";
+import earring1 from "../assets/categories/Women/Ear-20.png";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -314,26 +293,26 @@ const Cart = () => {
     {
       id: 74,
       name: "Elegant Ring with a twisted,\nlayered structure",
-      
-      price: '\u20B980',
+
+      price: "\u20B980",
       image: necklaceImage,
     },
     {
       id: "75",
       name: "Traditional Bangles south Indian \nstyle",
-      price: '\u20B9399',
+      price: "\u20B9399",
       image: banglesImage,
     },
     {
       id: "76",
       name: "Unique Gold plated women \nBangles",
-      price: '\u20B9499',
+      price: "\u20B9499",
       image: banglesImage1,
     },
     {
       id: "78",
       name: "Golden Antique Charm \nJhumkas",
-      price: '\u20B9499',
+      price: "\u20B9499",
       image: earring1,
     },
   ];
@@ -413,21 +392,20 @@ const Cart = () => {
       return total + (numericPrice || 0) * item.qty;
     }, 0);
   };
-  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.header}>Cart</Text>
       <View style={styles.container}>
-      <View style={styles.addressBox}>
-        <Text style={styles.text}>
-          Enter your delivery address to continue with your order.
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("addaddress")}>
-          <Text style={styles.addAddressText}>Add Address</Text>
-        </TouchableOpacity>
+        <View style={styles.addressBox}>
+          <Text style={styles.text}>
+            Enter your delivery address to continue with your order.
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("addaddress")}>
+            <Text style={styles.addAddressText}>Add Address</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
 
       {cart.length > 0 ? (
         cart.map((item) => (
@@ -438,19 +416,32 @@ const Cart = () => {
               <Text style={styles.quantityLabel}>Qty:</Text>
               <Picker
                 selectedValue={item.qty}
-                onValueChange={(value) => updateQuantity(item.id, parseInt(value))}
+                onValueChange={(value) =>
+                  updateQuantity(item.id, parseInt(value))
+                }
                 style={styles.quantityPicker}
               >
                 {[...Array(1000).keys()].map((num) => (
-                  <Picker.Item key={num + 1} label={`${num + 1}`} value={num + 1} />
+                  <Picker.Item
+                    key={num + 1}
+                    label={`${num + 1}`}
+                    value={num + 1}
+                  />
                 ))}
               </Picker>
               <Text style={styles.itemPrice}>{item.price}</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Icon name="truck" size={12} color="black" style={{ marginRight: 5 }} />
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Icon
+                  name="truck"
+                  size={12}
+                  color="black"
+                  style={{ marginRight: 5 }}
+                />
                 <Text style={styles.deliveryText}>Delivery within 3 hours</Text>
               </View>
-              <Text style={styles.nonReturnableText}>Non-returnable Product</Text>
+              <Text style={styles.nonReturnableText}>
+                Non-returnable Product
+              </Text>
               <TouchableOpacity onPress={() => removeFromCart(item.id)}>
                 <Text style={styles.removeText}>X Remove</Text>
               </TouchableOpacity>
@@ -478,74 +469,87 @@ const Cart = () => {
                 style={{
                   marginTop: 5,
                   borderWidth: 1,
-                  borderColor: 'black',
+                  borderColor: "black",
                   paddingVertical: 6,
                   paddingHorizontal: 30,
                   borderRadius: 5,
-                  alignSelf: 'flex-start',
+                  alignSelf: "flex-start",
                   marginBottom: 10,
                 }}
                 onPress={() => addToCart(item)} // Move onPress outside the style object
               >
-                <Text style={{ color: 'black', fontSize: 14 }}>ADD TO CART</Text>
+                <Text style={{ color: "black", fontSize: 14 }}>
+                  ADD TO CART
+                </Text>
               </TouchableOpacity>
             </View>
           )}
         />
       </View>
       <View style={styles.orderDetails}>
-  <Text style={styles.orderHeader}>Order Details</Text>
+        <Text style={styles.orderHeader}>Order Details</Text>
 
-  <View style={styles.orderRow}>
-    <Text style={styles.orderKey}>Total Items:</Text>
-    <Text style={styles.orderValue}>{cart.length}</Text>
-  </View>
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Total Items:</Text>
+          <Text style={styles.orderValue}>{cart.length}</Text>
+        </View>
 
-  <View style={styles.orderRow}>
-    <Text style={styles.orderKey}>Items Price:</Text>
-    <Text style={styles.orderValue}>₹ {getTotalPrice()}</Text>
-  </View>
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Items Price:</Text>
+          <Text style={styles.orderValue}>₹ {getTotalPrice()}</Text>
+        </View>
 
-  <View style={styles.orderRow}>
-    <Text style={styles.orderKey}>Delivery Charge:</Text>
-    <Text style={styles.orderValue}>
-      ₹ {cart.length > 0 ? deliveryCharge : 0}
-    </Text>
-  </View>
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Delivery Charge:</Text>
+          <Text style={styles.orderValue}>
+            ₹ {cart.length > 0 ? deliveryCharge : 0}
+          </Text>
+        </View>
 
-  <View style={styles.orderRow}>
-    <Text style={styles.orderKey}>Sub Total:</Text>
-    <Text style={styles.orderValue}>
-      ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
-    </Text>
-  </View>
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Sub Total:</Text>
+          <Text style={styles.orderValue}>
+            ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
+          </Text>
+        </View>
 
-  <View style={styles.orderRow}>
-    <Text style={[styles.orderKey, styles.totalAmount]}>
-      Amount Payable:
-    </Text>
-    <Text style={[styles.orderValue, styles.totalAmount]}>
-      ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
-    </Text>
-  </View>
-</View>
+        <View style={styles.orderRow}>
+          <Text style={[styles.orderKey, styles.totalAmount]}>
+            Amount Payable:
+          </Text>
+          <Text style={[styles.orderValue, styles.totalAmount]}>
+            ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
+          </Text>
+        </View>
+      </View>
 
-{/* Row Container for Total Amount & Button */}
-<View style={styles.paymentContainer}>
-  <Text style={styles.totalPayableText}>
-     ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
-  </Text>
-  <TouchableOpacity style={styles.proceedButton}>
-    <Text style={styles.proceedText}>Proceed To Pay</Text>
-  </TouchableOpacity>
-</View>
-
+      {/* Row Container for Total Amount & Button */}
+      <View style={styles.paymentContainer}>
+        <Text style={styles.totalPayableText}>
+          ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
+        </Text>
+        <TouchableOpacity
+          style={styles.proceedButton}
+          onPress={() =>
+            navigation.navigate("paymentMethod", {
+              price: getTotalPrice() + deliveryCharge,
+            })
+          }
+        >
+          <Text style={styles.proceedText}>Proceed To Pay</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 10, backgroundColor: "#fff", flexGrow: 1, paddingRight: 8 },
+  container: {
+    padding: 10,
+    backgroundColor: "#fff",
+    flexGrow: 1,
+    paddingRight: 8,
+  },
   header: {
     fontSize: 22,
     fontWeight: "bold",
@@ -586,7 +590,7 @@ const styles = StyleSheet.create({
   orderValue: {
     fontSize: 16,
     textAlign: "right",
-    marginRight:25,
+    marginRight: 25,
   },
   totalAmount: {
     fontSize: 16,
@@ -598,31 +602,35 @@ const styles = StyleSheet.create({
     backgroundColor: "#742b90",
     padding: 15,
     // marginBottom: 25,
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: "center",
-  borderRadius: 5,
-  width: 150, 
-  alignSelf: "flex-end",
-  marginTop: -25, 
- 
+    borderRadius: 5,
+    width: 150,
+    alignSelf: "flex-end",
+    marginTop: -25,
   },
   proceedText: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
-  
   },
   emptyText: { textAlign: "center", marginVertical: 20, fontSize: 16 },
-  quantityLabel: { fontSize: 14, fontWeight: "bold", marginLeft: "0%", marginTop: 3, flexBasis: "row" },
+  quantityLabel: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginLeft: "0%",
+    marginTop: 3,
+    flexBasis: "row",
+  },
   quantityPicker: { marginTop: "-34", marginLeft: 13 },
- 
+
   addressBox: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
     padding: 15,
-    backgroundColor: "#F8D7DA", 
+    backgroundColor: "#F8D7DA",
     borderRadius: 10,
   },
   text: {
@@ -638,15 +646,9 @@ const styles = StyleSheet.create({
   totalPayableText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#000",marginLeft:10,
-  
-   
+    color: "#000",
+    marginLeft: 10,
   },
 });
 
 export default Cart;
-
-
-
-
-

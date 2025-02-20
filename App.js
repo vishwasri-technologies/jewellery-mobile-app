@@ -59,7 +59,8 @@ import NotificationScreen from './Screens/Notify';
 // import MenScreen from './Screens/MenScreen';
 // import WomenScreen from './Screens/WomenScreen';
 import All from "./Screens/All";
-
+import PaymentMethod from "./Screens/PaymentMethod";
+import OrderConfirmation from './Screens/OrderConfirmation';
 
 
 const Stack = createStackNavigator();
@@ -122,9 +123,10 @@ export default function App() {
           {/* <Stack.Screen name="Men" component={MenScreen} />
           <Stack.Screen name="Women" component={WomenScreen} /> */}
            <Stack.Screen name="all" component={All} />
+           <Stack.Screen name="paymentMethod" component={PaymentMethod} />
+           <Stack.Screen name="orderconfirmation" component={OrderConfirmation} />
         </Stack.Navigator>
       </NavigationContainer>
     </WishlistProvider>
   );
 }
-
