@@ -11,33 +11,27 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
+
 import BottomNavBar from "./BottomNavbar";
 import HeartIcon from "./HeartIcon";
+import { Ionicons } from "@expo/vector-icons"; 
 
 const chainProducts = [
   {
     id: "7",
+<<<<<<< HEAD
     category: 'Chains',
     image: require('../assets/categories/Mens/Men-Chains.png'),
+=======
+    image: require("../assets/categories/Mens/Men-Chains.png"),
+>>>>>>> 96c0f37 (order tracking screens and modifications)
     name: "Gold Colour Simple Chain With Pendant",
     price: "\u20B9190",
     material: "Gold",
     care: "Clean with a soft, dry cloth",
-    colour: "Gold Colour"
+    colour: "Gold Colour",
   },
-
-  // {
-  //   id: "8",
-  //   image: require("../assets/categories/Men-bracelets.png"),
-  //   category: 'Chains',
-  //   name: "Silver Bracelet",
-  //   price: "\u20B9120",
-  //   material: "Silver",
-  //   care: "Clean with a soft, dry cloth",
-  //   colour: "Silver Colour"
-  // },
-
 ];
 
 const MenChainsScreen = () => {
@@ -45,22 +39,30 @@ const MenChainsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Chains</Text>
+      {/* Header with Back Button */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={wp(6)} color="#47154B" />
+        </TouchableOpacity>
+        <Text style={styles.heading}>Chains</Text>
+      </View>
+
       <FlatList
         data={chainProducts}
         keyExtractor={(item) => item.id}
-        numColumns={2} // Display items in a two-column grid
+        numColumns={2}
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
-          <TouchableOpacity 
-            style={styles.item} 
-            onPress={() => navigation.navigate('ProductDetails', {
-              product: item,
-              allProducts: chainProducts
-            })}
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() =>
+              navigation.navigate("ProductDetails", {
+                product: item,
+                allProducts: chainProducts,
+              })
+            }
           >
             <HeartIcon item={item} />
-
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
@@ -78,12 +80,21 @@ const styles = StyleSheet.create({
     paddingTop: hp(5),
     backgroundColor: "#fff",
   },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: wp(4),
+    marginBottom: hp(2),
+  },
+  backButton: {
+    padding: wp(4),
+   paddingLeft:wp(0),
+  },
   heading: {
     fontSize: wp(6),
     fontWeight: "bold",
-    marginBottom: hp(2),
-    marginLeft: wp(4),
     color: "#47154B",
+    marginLeft: wp(2),
   },
   item: {
     width: wp(46),
@@ -94,20 +105,20 @@ const styles = StyleSheet.create({
   },
   image: {
     width: wp(47),
-    height: wp(65), // Increased height
+    height: wp(65),
   },
   name: {
     fontSize: wp(4),
-    fontWeight: "400", // Reduced thickness
-    marginVertical: hp(0.5), // Reduced space
+    fontWeight: "400",
+    marginVertical: hp(0.5),
     textAlign: "left",
-    alignSelf: "flex-start", // Align to the left
-    marginLeft: wp(2), // Small left margin for spacing
+    alignSelf: "flex-start",
+    marginLeft: wp(2),
   },
   price: {
-    fontSize: wp(3.8), // Slightly increased size
-    fontWeight: "bold", // Increased thickness
-    color: "black", // Changed to black
+    fontSize: wp(3.8),
+    fontWeight: "bold",
+    color: "black",
     textAlign: "left",
     alignSelf: "flex-start",
     marginLeft: wp(2),

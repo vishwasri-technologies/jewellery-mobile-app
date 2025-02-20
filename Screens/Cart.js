@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useState, useEffect } from "react";
 // import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 // import Icon from 'react-native-vector-icons/FontAwesome';
@@ -256,6 +257,8 @@
 
 // export default Cart;
 
+=======
+>>>>>>> 96c0f37 (order tracking screens and modifications)
 import React, { useState, useEffect } from "react";
 import {
   widthPercentageToDP as wp,
@@ -263,6 +266,7 @@ import {
 } from "react-native-responsive-screen";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+
 
 import {
   View,
@@ -291,7 +295,7 @@ const Cart = () => {
 
   const addOns = [
     {
-      id: 74,
+      id: "74",
       name: "Elegant Ring with a twisted,\nlayered structure",
 
       price: "\u20B980",
@@ -357,12 +361,31 @@ const Cart = () => {
       console.error("Failed to save cart to storage", error);
     }
   };
-
-  const addToCart = (item) => {
-    const newCart = [...cart, { ...item, qty: 1 }];
-    setCart(newCart);
-    saveCart(newCart);
+  const addToCart = async (item) => {
+    try {
+      const cartData = await AsyncStorage.getItem("cart");
+      let cart = cartData ? JSON.parse(cartData) : [];
+  
+      // Check if the item already exists in the cart
+      const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+  
+      if (existingItemIndex !== -1) {
+        // If item exists, increase its quantity
+        cart[existingItemIndex].qty += 1;
+      } else {
+        // If not, add the new item with quantity 1
+        cart.push({ ...item, qty: 1 });
+      }
+  
+      // Save updated cart back to AsyncStorage
+      await AsyncStorage.setItem("cart", JSON.stringify(cart));
+      setCart(cart); // Update state
+  
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
   };
+  
 
   const removeFromCart = (id) => {
     Alert.alert(
@@ -382,9 +405,7 @@ const Cart = () => {
     );
   };
 
-  // const getTotalPrice = () => {
-  //   return cart.reduce((total, item) => total + (parseFloat(item.price) || 0) * item.qty, 0);
-  // };
+ 
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => {
@@ -393,8 +414,9 @@ const Cart = () => {
     }, 0);
   };
 
-  return (
+return (
     <ScrollView contentContainerStyle={styles.container}>
+     
       <Text style={styles.header}>Cart</Text>
       <View style={styles.container}>
         <View style={styles.addressBox}>
@@ -513,6 +535,7 @@ const Cart = () => {
           </Text>
         </View>
 
+<<<<<<< HEAD
         <View style={styles.orderRow}>
           <Text style={[styles.orderKey, styles.totalAmount]}>
             Amount Payable:
@@ -522,6 +545,27 @@ const Cart = () => {
           </Text>
         </View>
       </View>
+=======
+  <View style={styles.orderRow}>
+    <Text style={[styles.orderKey, styles.totalAmount]}>
+      Amount Payable:
+    </Text>
+    <Text style={[styles.orderValue, styles.totalAmount]}>
+      ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
+    </Text>
+  </View>
+</View>
+
+{/* Row Container for Total Amount & Button */}
+<View style={styles.paymentContainer}>
+  <Text style={styles.totalPayableText}>
+     ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
+  </Text>
+  <TouchableOpacity style={styles.proceedButton}  onPress={() => navigation.navigate('tracking')  }>
+    <Text style={styles.proceedText}>Proceed To Pay</Text>
+  </TouchableOpacity>
+</View>
+>>>>>>> 96c0f37 (order tracking screens and modifications)
 
       {/* Row Container for Total Amount & Button */}
       <View style={styles.paymentContainer}>
@@ -551,11 +595,13 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   header: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
     color: "#742b90",
     marginTop: 30,
+    marginBottom:hp(2),
+   
   },
   cartItem: { flexDirection: "row", alignItems: "center", marginVertical: 10 },
   image: { width: 120, height: 160, borderRadius: 0 },

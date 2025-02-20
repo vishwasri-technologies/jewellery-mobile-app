@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   backIcon: {
     width: wp("6%"),
     height: hp("6%"),
-    tintColor: "#47154B", // Ensures the color change
+    tintColor: "#47154B", 
     resizeMode: "contain",
   },
   headerTitle: {

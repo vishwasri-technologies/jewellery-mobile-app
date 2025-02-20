@@ -11,10 +11,7 @@ const womenProducts = [
   { id: '99', image: require('../assets/categories/Women/Blackbeeds-3.png'), name: 'Black beeds', screen: 'WomenBlackBeedsScreen' },
   { id: '111', image: require('../assets/categories/Women/Necklace-main.png'), name: 'Necklace', screen: 'WomenNecklaceScreen' },
   { id: '122', image: require('../assets/categories/Women/Chain-main.png'), name: 'Chains', screen: 'WomenChainsScreen' },
-  // { id: '133', image: require('../assets/categories/women-rings.png'), name: 'Anklets', screen: 'WomenAnkletsScreen' },
-  // { id: '144', image: require('../assets/categories/women-rings.png'), name: 'Hipbelt', screen: 'WomenHipbeltScreen' },
-  // { id: '155', image: require('../assets/categories/women-rings.png'), name: 'Armlet', screen: 'WomenArmletScreen' },
-  // { id: '166', image: require('../assets/categories/women-rings.png'), name: 'Hair Extensions', screen: 'WomenHairExtensionsScreen' },
+  
 ];
 
 // Add an empty item if the number of products is odd

@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 import { useRoute } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 const womenbangleProducts = [
 
@@ -45,7 +46,12 @@ const WomenBanglesScreen = () => {
  
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Ionicons name="arrow-back" size={24} color="#47154B" />
+              </TouchableOpacity>
       <Text style={styles.heading}>Bangles</Text>
+      </View>
       <FlatList
         data={displayedProducts}
         keyExtractor={(item) => item.id}
@@ -78,11 +84,17 @@ const styles = StyleSheet.create({
     paddingTop: hp(5),
     backgroundColor: '#fff',
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: wp(5),
+    marginBottom: hp(2),
+  },
   heading: {
     fontSize: wp(6),
     fontWeight: 'bold',
-    marginBottom: hp(2),
-    marginLeft: wp(4),
+   
+    marginLeft: wp(5),
     color: "#47154B",
   },
   item: {

@@ -32,7 +32,7 @@ export default function OnboardingScreen3({ navigation }) {
       </Text>
 
       {/* Next Button */}
-      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('home')}>
         <Text style={styles.nextText3}>→</Text>
       </TouchableOpacity>
 
@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    width: wp(100),
-    height: hp(50),
-    marginTop: hp(4),
+    width: wp(90),
+    height: hp(53),
+    marginTop: hp(3.5),
   },
   bottomCone: {
     position: 'absolute',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     height: hp(47),
     resizeMode: 'contain',
     alignSelf: 'flex-end',
-    marginTop: hp(0),
+    marginTop: hp(-16.6),
     marginRight: wp(20),
   },
   title3: {
@@ -99,16 +99,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    // marginBottom: hp(0),
-    marginRight: wp(-60),
+    marginBottom: hp('-10%'), 
+    marginLeft:wp("57%"),
   },
   dot: {
-    width: wp(2.5),
-    height: wp(2.5),
-    borderRadius: wp(1.25),
+    width: wp('2.5%'),
+    height: wp('2.5%'),
+    borderRadius: wp('1.25%'),
     backgroundColor: '#D3C5D6',
-    marginHorizontal: wp(1.25),
-    bottom:hp(6),
+    marginHorizontal: wp('1.5%'),
+    bottom:hp(-4),
    
   },
   activeDot: {
@@ -116,16 +116,18 @@ const styles = StyleSheet.create({
   },
   nextButton3: {
     backgroundColor: '#4E1B50',
-    borderRadius: wp(50),
-    padding: hp(1.5),
-    paddingHorizontal: wp(6),
-    marginTop: hp(2),
-    marginRight: wp(-60),
-    marginBottom: hp(9),
+    borderRadius: 30,
+    paddingVertical: hp('1%'), 
+    paddingHorizontal: wp('4%'), 
+    marginBottom: hp('2%'), 
+    marginLeft:wp("57%"),
+    bottom:hp(-4),
+  
   },
   nextText3: {
     color: 'white',
-    fontSize: wp(7),
+    fontSize: wp('7%'),
+    bottom:hp("0.3")
   },
 });
 

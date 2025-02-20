@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,Image, Alert } from "react-native";
 import { CheckBox } from "react-native-elements"; // ✅ Use native-elements CheckBox
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import { Checkbox } from 'react-native-paper';
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { useRoute } from "@react-navigation/native";
 
@@ -130,16 +131,15 @@ const EditAddress = () => {
         <Text style={styles.sectionTitle}>Address Type</Text>
         <View style={styles.checkboxRow}>
           {["Home", "Office", "Other"].map((type) => (
-            <CheckBox
-              key={type}
-              title={type}
-              checked={addressType === type}
-              onPress={() => setAddressType(type)}
-              checkedColor="#47154B"
-              containerStyle={styles.checkboxContainer}
-              textStyle={styles.checkboxLabel}
-            />
-          ))}
+            <View key={type} style={styles.checkboxContainer}>
+                       <Checkbox
+                         status={addressType === type ? 'checked' : 'unchecked'}
+                         onPress={() => setAddressType(type)} // Set the selected type
+                         color="#47154B"
+                       />
+                       <Text style={styles.checkboxLabel}>{type}</Text>
+                     </View>
+                   ))}
         </View>
 
         {/* Save Button */}
@@ -168,9 +168,24 @@ const styles = StyleSheet.create({
   },
   row: { flexDirection: "row", justifyContent: "space-between" },
   halfInputContainer: { width: "48%" },
-  checkboxRow: { marginTop: hp("2%"),flexDirection:"row" },
-  checkboxContainer: { backgroundColor: "transparent", borderWidth: 0, padding: 0, marginBottom: hp("1%") },
-  checkboxLabel: { fontSize: wp("4%"), fontWeight: "normal", color: "#000" },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    paddingBottom:wp(5),
+  },
+  checkboxRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 20,
+    marginBottom: 10,
+  },
+  checkboxLabel: {
+    marginLeft: 5,
+  },
   saveButton: { backgroundColor: "#47154B", padding: hp("1.5%"), borderRadius: 8, marginTop: hp("3%") },
   saveButtonText: { textAlign: "center", color: "#fff", fontSize: wp("4.5%"), fontWeight: "bold" },
   backButton: {

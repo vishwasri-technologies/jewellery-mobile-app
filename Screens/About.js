@@ -26,11 +26,11 @@ const AboutUs = ({ navigation }) => {
 
         <Text style={styles.sectionTitle}>Why Choose Us?</Text>
         <Text style={styles.paragraph}>
-  <Text style={styles.bold}>Authenticity Guaranteed</Text> – Every piece is certified for purity and quality.{"\n"}
-  <Text style={styles.bold}>Exclusive Designs</Text> – Handpicked and handcrafted collections for every occasion.{"\n"}
-  <Text style={styles.bold}>Secure Shopping</Text> – A seamless, safe, and convenient shopping experience.{"\n"}
-  <Text style={styles.bold}>Fast & Reliable Delivery</Text> – We ensure timely delivery with secure packaging.{"\n"}
-  <Text style={styles.bold}>Customer Satisfaction</Text> – Your Happiness is our priority, with hassle-free returns and dedicated support.
+  <Text style={styles.bold}>Authenticity Guaranteed</Text><Text> – Every piece is certified for purity and quality.{"\n"}</Text>
+  <Text style={styles.bold}>Exclusive Designs</Text><Text> – Handpicked and handcrafted collections for every occasion.{"\n"}</Text>
+  <Text style={styles.bold}>Secure Shopping</Text><Text> – A seamless, safe, and convenient shopping experience.{"\n"}</Text>
+  <Text style={styles.bold}>Fast & Reliable Delivery</Text><Text> – We ensure timely delivery with secure packaging.{"\n"}</Text>
+  <Text style={styles.bold}>Customer Satisfaction</Text><Text> – Your Happiness is our priority, with hassle-free returns and dedicated support.</Text>
 </Text>
 
 

@@ -10,8 +10,8 @@ import * as Location from 'expo-location';
 const { width: screenWidth } = Dimensions.get('window'); 
 
 const categories = [
-  { name: 'Men', image: require('../assets/categories/Men.png'),screen: 'categories' },
-  { name: 'Women', image: require('../assets/categories/Women.png'),screen: 'categories' },
+  { name: 'Men', image: require('../assets/categories/Men.png'),screen: 'categories',tab:'Men' },
+  { name: 'Women', image: require('../assets/categories/Women.png'), screen: 'categories', tab: 'Women' },
   { name: 'Explore', image: require('../assets/categories/Explore.png'),screen:'all' },
 ];
 
@@ -261,20 +261,25 @@ return (
     <ScrollView>
       {/* ✅ Updated Categories Section with Navigation */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Picked for You</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {categories.map((category, index) => (
-            <TouchableOpacity 
-              key={index} 
-              style={styles.category} 
-              onPress={() => navigation.navigate(category.screen)}
-            >
-              <Image source={category.image} style={styles.categoryImage} />
-              <Text style={styles.categoryText}>{category.name}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+  <Text style={styles.sectionTitle}>Picked for You</Text>
+  <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+    {categories.map((category, index) => (
+      <TouchableOpacity
+        key={index}
+        style={styles.category}
+        onPress={() =>
+          navigation.navigate(category.screen, {
+            selectedTab: category.tab || 'Men', // Default to 'Men' if no tab exists
+          })
+        }
+      >
+        <Image source={category.image} style={styles.categoryImage} />
+        <Text style={styles.categoryText}>{category.name}</Text>
+      </TouchableOpacity>
+    ))}
+  </ScrollView>
+</View>
+
 
       {/* Banner Section with Pagination */}
       <View style={styles.banner}>

@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Import Icon
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
 import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 import { useRoute } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 
 const womenblackbeedProducts = [
@@ -27,7 +28,12 @@ const WomenBlackBeedsScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={24} color="#47154B" />
+        </TouchableOpacity>
       <Text style={styles.heading}>Black beeds</Text>
+      </View>
       <FlatList
         data={displayedProducts}
         keyExtractor={(item) => item.id}
@@ -57,33 +63,33 @@ const WomenBlackBeedsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: wp(0),
-    paddingTop: hp(5),
+   paddingTop: hp(5),
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: wp(5),
+    marginBottom: hp(2),
   },
   heading: {
     fontSize: wp(6),
     fontWeight: 'bold',
-    marginBottom: hp(2),
-    marginLeft: wp(4),
+   marginLeft: wp(5),
     color:"#47154B",
     
   },
-  // listContainer: {
-  //   paddingHorizontal: wp(2),
-  // },
+ 
   item: {
     width: wp(46),
-    // backgroundColor: '#fff',
-    // borderRadius: wp(2),
-    padding: wp(3),
+   padding: wp(3),
     margin: wp(2),
     alignItems: 'flex-start',
-    // elevation: 3,
+   
   },
   image: {
     width: wp(42),
     height: wp(50),
-    // borderRadius: wp(2),
+    
   },
   name: {
     fontSize: wp(4),

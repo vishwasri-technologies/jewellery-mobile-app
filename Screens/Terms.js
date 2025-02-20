@@ -20,7 +20,7 @@ const TermsAndConditions = ({ navigation }) => {
         </View>
 
         <Text style={styles.paragraph}>
-          Welcome to EternalJewels! By using our app, you agree to abide by
+          Welcome to Vishu'sJewels! By using our app, you agree to abide by
           these Terms & Conditions. We encourage you to read them carefully
           before making any purchases. Our platform allows users to browse and
           purchase jewelry, and all transactions are subject to product

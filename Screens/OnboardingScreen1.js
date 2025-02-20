@@ -1,4 +1,5 @@
 import React  from 'react';
+import { StatusBar } from "expo-status-bar";
 import { 
   View, 
   Text, 
@@ -13,7 +14,9 @@ export default function OnboardingScreen1({ navigation }) {
  
 
   return (
+    
     <View style={styles.container1}>
+       <StatusBar style="light" backgroundColor="#47154B" />
       {/* Background image */}
       <ImageBackground 
         source={require('../assets/bg-1.png')} 
@@ -26,12 +29,14 @@ export default function OnboardingScreen1({ navigation }) {
         <Image source={require('../assets/woman.png')} style={styles.image1} />
 
         {/* Title */}
+       
         <Text style={styles.title1}>Jewellery for Every Budget</Text>
 
         {/* Description */}
         <Text style={styles.description1}>
           Discover affordable pieces without compromising on quality. Sparkle your way within your price range.
         </Text>
+        
 
         {/* Next Button */}
         <TouchableOpacity style={styles.nextButton1} onPress={() => navigation.navigate('Onboarding2')}>
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: hp('50%'), 
     marginTop: hp('3%'), 
-    marginLeft:wp('9%'),
+    marginLeft:wp('10%'),
   },
   bottomCone: {
     position: 'absolute',
@@ -80,22 +85,25 @@ const styles = StyleSheet.create({
     width: wp('57%'), 
     height: hp('35%'), 
     resizeMode: 'contain',
-    marginTop: hp('6%'), 
+    marginTop: hp('-10%'), 
     marginLeft:wp('35%'),
 
   },
+  
   title1: {
     fontSize: wp('5%'), 
     fontWeight: 'bold',
     color: '#4E1B50',
     textAlign: 'center',
-    marginVertical: hp('2%'), 
+    marginVertical: hp('2%'),
+    marginRight:wp("8%") 
   },
   description1: {
     fontSize: wp('4%'), 
     color: '#4E1B50',
     textAlign: 'center',
     lineHeight: hp('3%'), 
+    marginRight:wp("8%"),
     width: '80%',
     
   },
@@ -103,7 +111,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: hp('2%'), 
+    marginBottom: hp('-18.2%'), 
     marginLeft:wp("52%"),
   },
   dot: {
@@ -121,9 +129,9 @@ const styles = StyleSheet.create({
   },
   nextButton1: {
     backgroundColor: '#4E1B50',
-    borderRadius: 50,
-    paddingVertical: hp('1.5%'), 
-    paddingHorizontal: wp('6%'), 
+    borderRadius: 40,
+    paddingVertical: hp('1.1%'), 
+    paddingHorizontal: wp('4%'), 
     marginBottom: hp('2%'), 
     marginLeft:wp("52%"),
     bottom:hp(-4),
@@ -132,6 +140,7 @@ const styles = StyleSheet.create({
   nextText1: {
     color: 'white',
     fontSize: wp('7%'),
+    bottom:hp("0.3"),
   },
 });
 
@@ -140,132 +149,3 @@ const styles = StyleSheet.create({
 
 
 
-
-
-
-// import React from 'react';
-// import {
-//   View,
-//   Text,
-//   StyleSheet,
-//   Image,
-//   TouchableOpacity,
-//   ImageBackground,
-// } from 'react-native';
-// import {
-//   widthPercentageToDP as wp,
-//   heightPercentageToDP as hp,
-// } from 'react-native-responsive-screen';
-
-// export default function OnboardingScreen1({ navigation }) {
-//   return (
-//     <View style={styles.container}>
-//       {/* Background image */}
-//       <ImageBackground
-//         source={require('../assets/bg-1.png')}
-//         style={styles.backgroundImage}
-//       >
-//         <View style={styles.innerContainer}>
-//           {/* Image Container */}
-//           <View style={styles.imageContainer}>
-//             <Image source={require('../assets/woman.png')} style={styles.image} />
-//           </View>
-
-//           {/* Title */}
-//           <Text style={styles.title}>Jewellery for Every Budget</Text>
-
-//           {/* Description */}
-//           <Text style={styles.description}>
-//             Discover affordable pieces without compromising on quality. Sparkle your way within your price range.
-//           </Text>
-
-//           {/* Next Button */}
-//           <TouchableOpacity
-//             style={styles.nextButton}
-//             onPress={() => navigation.navigate('Onboarding2')}
-//           >
-//             <Text style={styles.nextText}>→</Text>
-//           </TouchableOpacity>
-
-//           {/* Dots for slides */}
-//           <View style={styles.dotsContainer}>
-//             <View style={[styles.dot, styles.activeDot]} />
-//             <View style={styles.dot} />
-//             <View style={styles.dot} />
-//           </View>
-//         </View>
-//       </ImageBackground>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-//   backgroundImage: {
-//     flex: 1,
-//     width: '100%',
-//     height: '100%',
-//     resizeMode: 'cover',
-//     position: 'absolute',
-//   },
-//   innerContainer: {
-//     flex: 1,
-//     justifyContent: 'flex-end',
-//     alignItems: 'center',
-//     paddingBottom: hp('5%'),
-//   },
-//   imageContainer: {
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     width: '100%',
-//     height: hp('40%'), 
-//   },
-//   image: {
-//     width: wp('50%'),
-//     height: '100%',
-//     resizeMode: 'contain',
-//   },
-//   title: {
-//     fontSize: wp('5%'),
-//     fontWeight: 'bold',
-//     color: '#4E1B50',
-//     textAlign: 'center',
-//     marginTop: hp('2%'),
-//   },
-//   description: {
-//     fontSize: wp('4%'),
-//     color: '#4E1B50',
-//     textAlign: 'center',
-//     lineHeight: hp('3%'),
-//     marginHorizontal: wp('10%'),
-//     marginTop: hp('1%'),
-//   },
-//   dotsContainer: {
-//     flexDirection: 'row',
-//     justifyContent: 'center',
-//     marginTop: hp('2%'),
-//   },
-//   dot: {
-//     width: wp('2%'),
-//     height: wp('2%'),
-//     borderRadius: wp('1%'),
-//     backgroundColor: '#D3C5D6',
-//     marginHorizontal: wp('1%'),
-//   },
-//   activeDot: {
-//     backgroundColor: '#4E1B50',
-//   },
-//   nextButton: {
-//     backgroundColor: '#4E1B50',
-//     borderRadius: 25,
-//     paddingVertical: hp('1%'),
-//     paddingHorizontal: wp('5%'),
-//     marginTop: hp('2%'),
-//   },
-//   nextText: {
-//     color: 'white',
-//     fontSize: wp('5%'),
-//   },
-// });

@@ -15,17 +15,17 @@ const ReturnRefundPolicy = ({ navigation }) => {
 
         {/* Content */}
         <Text style={styles.paragraph}>
-        At EternaJewels, we strive to provide you with the finest quality jewelry and a seamless shopping experience. However, if you are not completely satisfied with your purchase, you may be eligible for a return or refund based on our policy. Returns must be requested within [X] days of delivery, and the item must be in its original, unused condition with all tags, certificates, and packaging intact. Certain products, such as customized jewelry, personalized pieces, and earrings, are non-returnable due to hygiene and customization reasons.
+        At Vishu's Jewels, we strive to provide you with the finest quality jewelry and a seamless shopping experience. However, if you are not completely satisfied with your purchase, you may be eligible for a return or refund based on our policy. Returns must be requested within [2-3] days of delivery, and the item must be in its original, unused condition with all tags, certificates, and packaging intact. Certain products, such as customized jewelry, personalized pieces, and earrings, are non-returnable due to hygiene and customization reasons.
         </Text>
 
        
 
         <Text style={styles.paragraph}>
-        To initiate a return, please contact our customer support team with your order details and reason for return. Once approved, you will receive instructions on how to return the item. Refunds, if applicable, will be processed after a thorough inspection of the returned product and will be credited to the original payment method within [X] business days. Please note that shipping charges and COD fees (if any) are non-refundable. In case of damaged, defective, or incorrect items received, we will arrange a free replacement or full refund.
+        To initiate a return, please contact our customer support team with your order details and reason for return. Once approved, you will receive instructions on how to return the item. Refunds, if applicable, will be processed after a thorough inspection of the returned product and will be credited to the original payment method within [2-3] business days. Please note that shipping charges and COD fees (if any) are non-refundable. In case of damaged, defective, or incorrect items received, we will arrange a free replacement or full refund.
         </Text>
 
         <Text style={styles.paragraph}>
-        EternaJewels reserves the right to decline a return if the product is found to be used, damaged, or missing essential components. We encourage customers to review product descriptions and specifications before placing an order. For any return or refund-related queries, feel free to contact our support team at [support@eternajewels.com]. Thank you for shopping with EternaJewels!
+        Vishu's Jewels reserves the right to decline a return if the product is found to be used, damaged, or missing essential components. We encourage customers to review product descriptions and specifications before placing an order. For any return or refund-related queries, feel free to contact our support team at [support@eternajewels.com]. Thank you for shopping with EternaJewels!
         </Text>
 
        
