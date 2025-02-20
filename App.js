@@ -125,7 +125,6 @@ export default function App() {
            <Stack.Screen name="orderconfirmation" component={OrderConfirmation} />
 
 
-          <Stack.Screen name="all" component={All} />
           <Stack.Screen name="tracking" component={OrderTracking} />
           <Stack.Screen name="existingorder" component={ExistingOrder} />
 

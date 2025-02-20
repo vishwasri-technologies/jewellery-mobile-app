@@ -20,12 +20,10 @@ import { Ionicons } from "@expo/vector-icons";
 const chainProducts = [
   {
     id: "7",
-<<<<<<< HEAD
+
     category: 'Chains',
     image: require('../assets/categories/Mens/Men-Chains.png'),
-=======
-    image: require("../assets/categories/Mens/Men-Chains.png"),
->>>>>>> 96c0f37 (order tracking screens and modifications)
+
     name: "Gold Colour Simple Chain With Pendant",
     price: "\u20B9190",
     material: "Gold",
