@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
 
-import { WishlistProvider } from "./Screens/WishlistContext"; 
+import { WishlistProvider } from "./Screens/WishlistContext";
 
 import SplashScreen from "./Screens/SplashScreen";
 import OnboardingScreen1 from "./Screens/OnboardingScreen1";
@@ -20,8 +20,6 @@ import EditProfile from "./Screens/Editprofile";
 
 import MenChainsScreen from "./Screens/MenChainsScreen";
 
-
-import MenFingerRingsScreen from "./Screens/MenFingerRingsScreen";
 import WomenRingsScreen from "./Screens/WomenRingsScreen";
 import WomenEarRingsScreen from "./Screens/WomenEarRingsScreen";
 import WomenBanglesScreen from "./Screens/WomenBanglesScreen";
@@ -45,19 +43,16 @@ import NotificationScreen from "./Screens/Notify";
 import All from "./Screens/All";
 
 import PaymentMethod from "./Screens/PaymentMethod";
-import OrderConfirmation from './Screens/OrderConfirmation';
-
+import OrderConfirmation from "./Screens/OrderConfirmation";
 
 import OrderTracking from "./Screens/Tracking";
 import ExistingOrder from "./Screens/ExistingOrder";
-
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <WishlistProvider>
-     
       <NavigationContainer>
         <StatusBar style="light" backgroundColor="#47154B" />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -74,13 +69,9 @@ export default function App() {
           <Stack.Screen name="categories" component={Categories} />
           <Stack.Screen name="profile" component={Profile} />
           <Stack.Screen name="EditProfile" component={EditProfile} />
-         
+
           <Stack.Screen name="MenChainsScreen" component={MenChainsScreen} />
-         
-          <Stack.Screen
-            name="MenFingerRingsScreen"
-            component={MenFingerRingsScreen}
-          />
+
           <Stack.Screen name="WomenRingsScreen" component={WomenRingsScreen} />
           <Stack.Screen
             name="WomenEarRingsScreen"
@@ -118,21 +109,17 @@ export default function App() {
           <Stack.Screen name="about" component={AboutUs} />
           <Stack.Screen name="notify" component={NotificationScreen} />
 
-          {/* <Stack.Screen name="Men" component={MenScreen} />
-          <Stack.Screen name="Women" component={WomenScreen} /> */}
-           <Stack.Screen name="all" component={All} />
-           <Stack.Screen name="paymentMethod" component={PaymentMethod} />
-           <Stack.Screen name="orderconfirmation" component={OrderConfirmation} />
-
+          <Stack.Screen name="all" component={All} />
+          <Stack.Screen name="paymentMethod" component={PaymentMethod} />
+          <Stack.Screen
+            name="orderconfirmation"
+            component={OrderConfirmation}
+          />
 
           <Stack.Screen name="tracking" component={OrderTracking} />
           <Stack.Screen name="existingorder" component={ExistingOrder} />
-
         </Stack.Navigator>
       </NavigationContainer>
     </WishlistProvider>
   );
-
 }
-
-

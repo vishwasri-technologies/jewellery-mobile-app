@@ -36,7 +36,7 @@ const WomenBanglesScreen = () => {
   const navigation = useNavigation();
 
   const route = useRoute();
-      const { searchedProduct } = route.params || {}; // Get searched product (if available)
+      const { searchedProduct } = route.params || {}; 
     
       // ✅ **If a product was searched, show only that product**
       const displayedProducts = searchedProduct
