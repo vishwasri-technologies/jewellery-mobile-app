@@ -257,8 +257,8 @@
 
 // export default Cart;
 
-=======
->>>>>>> 96c0f37 (order tracking screens and modifications)
+
+
 import React, { useState, useEffect } from "react";
 import {
   widthPercentageToDP as wp,
