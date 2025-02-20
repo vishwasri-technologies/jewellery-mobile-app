@@ -290,8 +290,8 @@ return (
           onScroll={handleScroll}
           scrollEventThrottle={16}
         >
-          <Image source={require('../assets/hs-2.png')} style={styles.bannerImage} />
           <Image source={require('../assets/hs-1.png')} style={styles.bannerImage} />
+          <Image source={require('../assets/hs-2.png')} style={styles.bannerImage} />
           <Image source={require('../assets/hs-3.png')} style={styles.bannerImage} />
           <Image source={require('../assets/hs-4.png')} style={styles.bannerImage} />
         </ScrollView>
