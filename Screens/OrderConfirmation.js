@@ -17,7 +17,7 @@ const OrderConfirmation = () => {
       <Text style={styles.message}>Your order has been successfully confirmed</Text>
       <Text style={styles.delivery}>Expected delivery in 2 days.</Text>
       <View style={styles.buttons}>
-        <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={() => navigation.navigate("tracking")}>
           <Text style={styles.buttonText}>Track Order</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("home")} style={styles.button} activeOpacity={0.7}>
