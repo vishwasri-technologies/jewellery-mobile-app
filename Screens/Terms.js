@@ -20,7 +20,7 @@ const TermsAndConditions = ({ navigation }) => {
         </View>
 
         <Text style={styles.paragraph}>
-          Welcome to Vishu'sJewels! By using our app, you agree to abide by
+          Welcome to VishuJewellery! By using our app, you agree to abide by
           these Terms & Conditions. We encourage you to read them carefully
           before making any purchases. Our platform allows users to browse and
           purchase jewelry, and all transactions are subject to product
@@ -52,7 +52,7 @@ const TermsAndConditions = ({ navigation }) => {
         </Text>
         <Text style={styles.paragraph}>
           All content, including images, text, and branding, is the intellectual
-          property of EternalJewels and is protected by copyright laws.
+          property of VishuJewellery and is protected by copyright laws.
           Unauthorized use, reproduction, or distribution is strictly
           prohibited. We value your privacy and handle personal data per our
           Privacy Policy, ensuring secure transactions and data protection. By
@@ -62,11 +62,11 @@ const TermsAndConditions = ({ navigation }) => {
           purchased product.
         </Text>
         <Text style={styles.paragraph}>
-          These Terms & Conditions are governed by the laws of [Your
-          Country/Region], and any disputes shall be resolved through
+          These Terms & Conditions are governed by the laws of 
+          India, and any disputes shall be resolved through
           arbitration or legal proceedings in the applicable jurisdiction. If
           you have any questions or concerns, feel free to contact
-          [support@eternaljewels.com]. Thank you for choosing EternalJewels – happy shopping!
+          [support@eternaljewels.com]. Thank you for choosing VishuJewellery – happy shopping!
         </Text>
       </ScrollView>
     </View>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     color: "#333",
     lineHeight: 22,
     marginBottom: 15,
+    width:"102%",
   },
 });
 

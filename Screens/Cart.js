@@ -9,6 +9,7 @@ import {
 } from "react-native-responsive-screen";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from '@expo/vector-icons';
 
 
 import {
@@ -159,8 +160,13 @@ const Cart = () => {
 
 return (
     <ScrollView contentContainerStyle={styles.container}>
+       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={24} color="#47154B" />
+        </TouchableOpacity>
      
-      <Text style={styles.header}>Cart</Text>
+      <Text style={styles.heading}>Cart</Text>
+      </View>
       <View style={styles.container}>
         <View style={styles.addressBox}>
           <Text style={styles.text}>
@@ -320,14 +326,32 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingRight: 8,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "#742b90",
-    marginTop: 30,
-    marginBottom:hp(2),
+  // header: {
+  //   fontSize: 24,
+  //   fontWeight: "bold",
+  //   textAlign: "center",
+  //   color: "#742b90",
+  //   marginTop: 30,
+  //   marginBottom:hp(2),
    
+  // },
+
+
+  header: {
+    flexDirection: 'row',  // Aligns items horizontally
+    alignItems: 'center',  // Vertically centers items
+    paddingHorizontal: wp(5),  // Ensure responsive horizontal padding
+    paddingTop: hp(6),  // Ensure responsive vertical padding
+    paddingBottom:hp(3),
+  
+  },
+  heading: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#47154B',
+    marginLeft:wp(30),
+    
   },
   cartItem: { flexDirection: "row", alignItems: "center", marginVertical: 10 },
   image: { width: 120, height: 160, borderRadius: 0 },

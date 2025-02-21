@@ -1,10 +1,11 @@
 import React, { useState, useEffect  } from 'react';
-import { View, Text, Image, TextInput, ScrollView, StyleSheet, TouchableOpacity, Dimensions,ActivityIndicator, Alert, Button } from 'react-native';
+import { View, Text, Image, TextInput, ScrollView, StyleSheet, TouchableOpacity, Dimensions,FlatList, Alert,  } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
 import * as Location from 'expo-location';
+
 
 
 const { width: screenWidth } = Dimensions.get('window'); 
@@ -16,13 +17,16 @@ const categories = [
 ];
 
 const products = [
-  { id: 1, name: 'Simple Butterfly Pearl Earrings', price: '₹250', image: require('../assets/pr-1.png') },
-  { id: 2, name: 'Elegant Gold Hoop Earrings', price: '₹300', image: require('../assets/pr-2.png') },
-  { id: 3, name: 'Heart-shaped Diamond ring', price: '₹500', image: require('../assets/pr-3.png') },
-  { id: 4, image: require('../assets/pr-4.png') },
-  { id: 5, image: require('../assets/pr-5.png') },
-  { id: 6, image: require('../assets/pr-6.png') },
+  { id: "801", name: 'Pastel Colour Stones Bracelet', price: '₹299', image: require('../assets/pr-5.png'),material: "Copper", care: "Clean with a soft, dry cloth",colour: "White Colour",category:"Bracelets" },
+
+  { id: "802", name: 'Golden Antique Charm Jhumkas', price: '₹499', image: require('../assets/categories/Women/Ear-20.png'),material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Ear Rings" },
+
+  { id: "803", name: 'Gold Plated Green Colour Choker Neckset', price: '₹399', image: require('../assets/categories/Women/Necklace-21.png'), material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold & Green Colour",category:"Necklace" },
+  { id: "4", image: require('../assets/pr-4.png') },
+  { id: "5", image: require('../assets/categories/Women/Ring-main.png') },
+  { id: "6", image: require('../assets/pr-6.png') },
 ];
+ 
 
 const allProducts = [
 
@@ -206,6 +210,8 @@ const handleOptionSelect = (selectedProduct) => {
     Alert.alert("Product Not Found", "No matching category found.");
   }
 };
+console.log("Products:", products.map(p => p.id));
+
 
 
 return (
@@ -223,6 +229,7 @@ return (
         <Icon name="account-circle-outline" size={hp('4%')} color="white" />
       </TouchableOpacity>
     </View>
+   
 
     {/* Search Bar and Bell Icon */}
     <View style={styles.searchSection}>
@@ -242,6 +249,7 @@ return (
         <Icon name="bell-outline" size={hp('3%')} color="white" />
       </TouchableOpacity>
     </View>
+   
 
     {/* ✅ Dropdown List for Search Results */}
     {dropdownVisible && searchTerm.length > 0 &&  (
@@ -313,15 +321,53 @@ return (
         <Text style={styles.sectionTitle}>Our Bestseller</Text>
 
         {/* Horizontal Scroll for IDs 1, 2, 3 */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-          {products.slice(0, 3).map((product, index) => (
-            <View key={index} style={styles.horizontalProduct}>
-              <Image source={product.image} style={styles.productImage} />
-              <Text style={styles.productName}>{product.name}</Text>
-              <Text style={styles.productPrice}>{product.price}</Text>
-            </View>
-          ))}
-        </ScrollView>
+
+       
+{/* <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+  {products.slice(0, 3).map((product, index) => (
+    <View key={index} style={styles.horizontalProduct}>
+      <TouchableOpacity onPress={() =>
+        navigation.navigate("ProductDetails", {
+          product: product, 
+          allProducts: allProducts,
+          
+        })
+      }>
+        <Image source={product.image} style={styles.productImage} />
+      </TouchableOpacity>
+      {product.name && <Text style={styles.productName}>{product.name}</Text>}
+      {product.price && <Text style={styles.productPrice}>{product.price}</Text>}
+    </View>
+  ))}
+</ScrollView> */}
+
+
+<ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+  {products.slice(0, 3).map((product, index) => {
+    // Ensure unique key even if id is missing or duplicated
+    const uniqueKey = product.id ? `${product.id}-${index}` : `product-${index}`;
+
+    return (
+      <View key={uniqueKey} style={styles.horizontalProduct}>
+        <TouchableOpacity onPress={() =>
+          navigation.navigate("ProductDetails", {
+            product: product,
+            allProducts: allProducts,
+          })
+        }>
+          <Image source={product.image} style={styles.productImage} />
+        </TouchableOpacity>
+        {product.name && <Text style={styles.productName}>{product.name}</Text>}
+        {product.price && <Text style={styles.productPrice}>{product.price}</Text>}
+
+      </View>
+    );
+  })}
+</ScrollView>
+
+
+
+
 
         {/* Centered Product ID 4 */}
         <View style={styles.centeredProduct}>
@@ -406,19 +452,19 @@ const styles = StyleSheet.create({
 
   searchResults: {
     position: "absolute",
-    top: hp("18.5%"), // Position right below the search bar
-    left: wp("5%"), // Align it with the search bar
-    width: wp("80%"), // Match the search bar width
+    top: hp("18.5%"),
+    left: wp("5%"), 
+    width: wp("80%"), 
     backgroundColor: "white",
-    borderRadius: wp("2%"), // Rounded edges for better UI
-    maxHeight: hp("30%"), // Limit dropdown height
-    overflow: "hidden", // Prevent content from overflowing
-    zIndex: 10, // Ensure it appears above other elements
+    borderRadius: wp("2%"), 
+    maxHeight: hp("30%"), 
+    overflow: "hidden", 
+    zIndex: 10, 
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 5, // For Android shadow effect
+    elevation: 5, 
   },
   
   searchItem: {
@@ -427,32 +473,33 @@ const styles = StyleSheet.create({
     paddingVertical: hp("1%"),
     paddingHorizontal: wp("3%"),
     borderBottomWidth: 1,
-    borderBottomColor: "#F0F0F0", // Subtle separator
-    backgroundColor: "white", // Consistent background
+    borderBottomColor: "#F0F0F0", 
+    backgroundColor: "white", 
   },
   
   searchImage: {
     width: wp("10%"),
     height: hp("5%"),
-    borderRadius: wp("1%"), // Rounded corners for the image
+    borderRadius: wp("1%"),
     marginRight: wp("3%"),
   },
   
   productName: {
-    fontSize: hp("1.8%"), // Slightly reduced for better fit
+    fontSize: hp("1.8%"), 
     fontWeight: "bold",
-    color: "#333", // Neutral text color
-    flexShrink: 1, // Prevent text overflow
-    flexWrap: "wrap", // Ensure it wraps if needed
-    maxWidth: wp("50%"), // Adjusted max width to avoid truncation
+    color: "#333", 
+    flexShrink: 1, 
+    flexWrap: "wrap", 
+    maxWidth: wp("50%"), 
   },
   
   productPrice: {
     fontSize: hp("1.6%"),
-    color: "red",
+    color: "black",
     fontWeight: "bold",
     marginTop: hp("0.3%"),
-    marginRight:wp('25%'),
+    marginRight:wp('28%'),
+   
   },
    
 });

@@ -151,12 +151,12 @@ const OrderTracking = () => {
               .reduce((total, item) => total + item.price * item.qty, 0)
               .toFixed(2)}`
           )}
-          {renderOrderDetail("Delivery Charge", "₹150")}
+          {renderOrderDetail("Delivery Charge", "₹0")}
           {renderOrderDetail(
             "Sub Total",
             `₹${(
               cart.reduce((total, item) => total + item.price * item.qty, 0) +
-              150
+              0
             ).toFixed(2)}`
           )}
 
@@ -164,7 +164,7 @@ const OrderTracking = () => {
             "Amount Paid",
             `₹${(
               cart.reduce((total, item) => total + item.price * item.qty, 0) +
-              150
+              0
             ).toFixed(2)}`
           )}
         </View>

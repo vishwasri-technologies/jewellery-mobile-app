@@ -80,56 +80,8 @@ const WomenEarRingsScreen = () => {
   );
 };
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     // paddingHorizontal: wp(0),
-//     paddingTop: hp(5),
-//     backgroundColor: '#fff',
-//   },
-//   heading: {
-//     fontSize: wp(6),
-//     fontWeight: 'bold',
-//     marginBottom: hp(2),
-//     marginLeft: wp(4),
-//     color:"#47154B",
-    
-//   },
-//   // listContainer: {
-//   //   paddingHorizontal: wp(2),
-//   // },
-//   item: {
-//     width: wp(46),
-  
-//     // backgroundColor: '#fff',
-//     borderRadius: wp(2),
-//     padding: wp(0),
-//     margin: wp(2),
-//     alignItems: 'center',
-//     // elevation: 3,
-//   },
-//   image: {
-//     width: wp(47),
-//     height: wp(56),
-//     // borderRadius: wp(2),
-//   },
-//   name: {
-//     fontSize: wp(4),
-//     fontWeight: 'bold',
-//     marginVertical: hp(1),
-//     textAlign: 'left',
-//     alignItems:'flex-start',
-   
-//   },
-//   price: {
-//     fontSize: wp(3.5),
-//     color: 'gray',
-//     textAlign:'left',
-//   },
 
-// });
 
-// export default WomenEarRingsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -74,7 +74,7 @@ const WomenNecklaceScreen = () => {
       <FlatList
         data={displayedProducts}
         keyExtractor={(item) => item.id}
-        numColumns={2} // Display items in a two-column grid
+        numColumns={2} 
         contentContainerStyle={styles.listContainer}
         renderItem={({ item }) => (
           <TouchableOpacity 

@@ -16,7 +16,7 @@ const AboutUs = ({ navigation }) => {
         {/* Content */}
         <Text style={styles.sectionTitle}>Our Story</Text>
         <Text style={styles.paragraph}>
-        At EternaJewels, we believe that jewelry is more than just an accessory—it’s a reflection of elegance, emotions, and timeless beauty. Our journey began with a vision to bring exquisite, high-quality jewelry to those who appreciate craftsmanship and style. From everyday elegance to special occasions, we offer a curated collection that complements every moment of your life.
+        At VishuJewellery, we believe that jewelry is more than just an accessory—it’s a reflection of elegance, emotions, and timeless beauty. Our journey began with a vision to bring exquisite, high-quality jewelry to those who appreciate craftsmanship and style. From everyday elegance to special occasions, we offer a curated collection that complements every moment of your life.
         </Text>
 
         <Text style={styles.sectionTitle}>Our Collection</Text>
@@ -36,8 +36,8 @@ const AboutUs = ({ navigation }) => {
 
         <Text style={styles.sectionTitle}>Our Commitment</Text>
         <Text style={styles.paragraph}>
-        At EternaJewels, we are committed to delivering not just jewelry but a lifetime of cherished memories. Whether you’re shopping for yourself or looking for the perfect gift, we’re here to make every purchase special.
-Discover elegance. Celebrate moments. Shop with EternaJewels!
+        At VishuJewellery, we are committed to delivering not just jewelry but a lifetime of cherished memories. Whether you’re shopping for yourself or looking for the perfect gift, we’re here to make every purchase special.
+Discover elegance. Celebrate moments. Shop with VishuJewellery!
         </Text>
       </ScrollView>
     </View>
