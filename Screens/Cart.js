@@ -240,12 +240,11 @@ return (
       <View style={styles.container}>
         <View style={styles.addressBox}>
           <Text style={styles.text}>
-          Delivery to: Shambavi, 518003{"\n"}
-          Kallur Estate Near Shukulamma Temple, Nagula Chatu, Kalluru, Kurnool
+            Enter your delivery address to continue with your order.
           </Text>
-          {/* <TouchableOpacity onPress={() => navigation.navigate("addaddress")}>
-            <Text style={styles.addAddressText}>Edit Address</Text>
-          </TouchableOpacity> */}
+          <TouchableOpacity onPress={() => navigation.navigate("addaddress")}>
+            <Text style={styles.addAddressText}>Add Address</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
