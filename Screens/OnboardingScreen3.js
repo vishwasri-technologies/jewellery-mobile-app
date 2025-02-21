@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
   },
   image3: {
     width: wp(80),
-    height: hp(47),
+    height: hp(47.3),
     resizeMode: 'contain',
     alignSelf: 'flex-end',
-    marginTop: hp(-16.6),
+    marginTop: hp(-16.0),
     marginRight: wp(20),
   },
   title3: {

@@ -24,8 +24,8 @@ const chainProducts = [
     category: 'Chains',
     image: require('../assets/categories/Mens/Men-Chains.png'),
 
-    name: "Gold Colour Simple Chain With Pendant",
-    price: "\u20B9190",
+    name: "Gold Colour Simple Chain With Pendant\n(1 gram gold)",
+    price: "\u20B9499",
     material: "Gold",
     care: "Clean with a soft, dry cloth",
     colour: "Gold Colour",

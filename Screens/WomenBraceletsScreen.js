@@ -10,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 const womenbraceletProducts = [
-  { id: '16', image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Pastel Colour Stones Bracelet', price: '\u20B9300', material: "Copper", care: "Clean with a soft, dry cloth",colour: "White Colour",category:"Bracelets" },
+  { id: '16', image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Pastel Colour Stones Bracelet', price: '\u20B9299', material: "Copper", care: "Clean with a soft, dry cloth",colour: "White Colour",category:"Bracelets" },
 
 
 ];
