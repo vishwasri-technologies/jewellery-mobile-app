@@ -106,6 +106,39 @@ const totalAmount = subTotal ;
     },
   ];
 
+  const proceedToPay = async () => {
+    if (cart.length === 0) {
+      Alert.alert("Cart is empty", "Please add items to your cart before proceeding.");
+      return;
+    }
+  
+    try {
+      const response = await fetch("http://192.168.29.178:5000/Cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          products: cart,
+          amount: getTotalPrice() + deliveryCharge,
+          method: "Online",
+        }),
+      });
+  
+      const data = await response.json();
+      if (data.orderId) {
+        // Navigate to Payment Page with order details
+        navigation.navigate("paymentMethod", {
+          price: getTotalPrice() + deliveryCharge,
+          orderId: data.orderId,
+        });
+      } else {
+        Alert.alert("Error", "Failed to create order. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error proceeding to pay:", error);
+      Alert.alert("Error", "Something went wrong. Please try again later.");
+    }
+  };
+  
 
   // Fetching the delivery address dynamically
   useEffect(() => {
@@ -322,7 +355,6 @@ return (
     <Text style={styles.orderKey}>Delivery Charge:</Text>
     <Text style={styles.orderValue}>₹ {deliveryCharge}</Text>
   </View>
-
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>SGST (2.5%):</Text>
     <Text style={styles.orderValue}>₹ {sgst.toFixed(2)}</Text>
