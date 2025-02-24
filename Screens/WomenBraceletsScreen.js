@@ -9,7 +9,7 @@ import { useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const womenbraceletProducts = [
+export const womenbraceletProducts = [
   { id: '16', image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Pastel Colour Stones Bracelet', price: '\u20B9299', material: "Copper", care: "Clean with a soft, dry cloth",colour: "White Colour",category:"Bracelets" },
 
 

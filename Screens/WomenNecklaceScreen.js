@@ -9,7 +9,7 @@ import { useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const womensnecklaceProducts = [
+export const womensnecklaceProducts = [
 
 
   { id: '20', image: require('../assets/categories/Women/Necklace-1.png'), name: 'Royal Temple Gold Plated Haram Set', price: '\u20B91499', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Necklace" },

@@ -20,7 +20,7 @@ import { useWishlist } from "./WishlistContext";
 
 const ProductDetailsScreen = ({ route }) => {
   const { product, allProducts } = route.params;
-  const navigation = useNavigation();
+ const navigation = useNavigation();
   const { wishlist, toggleWishlist } = useWishlist();
   const [isInWishlist, setIsInWishlist] = useState(false);
 

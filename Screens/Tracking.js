@@ -119,11 +119,11 @@ const OrderTracking = () => {
 
         {/* Buttons */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.cancelButton}>
+          <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.navigate("CancelOrder")}> 
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
           <View style={styles.divider} /> 
-          <TouchableOpacity style={styles.helpButton}>
+          <TouchableOpacity style={styles.helpButton} onPress={() => navigation.navigate("ContactUs")}> 
             <Text style={styles.buttonText}>Need Help?</Text>
           </TouchableOpacity>
         </View>

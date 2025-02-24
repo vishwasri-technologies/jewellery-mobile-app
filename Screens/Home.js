@@ -1,12 +1,21 @@
 import React, { useState, useEffect  } from 'react';
 import { View, Text, Image, TextInput, ScrollView, StyleSheet, TouchableOpacity, Dimensions,FlatList, Alert,  } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import BottomNavBar from './BottomNavbar';
 import * as Location from 'expo-location';
+import {womenbraceletProducts} from "./WomenBraceletsScreen";
+import {womenearringsProducts} from "./WomenEarRingsScreen";
+import {womensnecklaceProducts} from "./WomenNecklaceScreen";
 
-
+import { useRoute, useNavigation } from "@react-navigation/native";
+const allProductsList = [
+  ...(womenbraceletProducts || []),
+  ...(womenearringsProducts || []),
+  ...(womensnecklaceProducts || [])
+];
+ 
 
 const { width: screenWidth } = Dimensions.get('window'); 
 
@@ -17,14 +26,14 @@ const categories = [
 ];
 
 const products = [
-  { id: "801", name: 'Pastel Colour Stones Bracelet', price: '₹299', image: require('../assets/pr-5.png'),material: "Copper", care: "Clean with a soft, dry cloth",colour: "White Colour",category:"Bracelets" },
+  { id: '1', name: 'Pastel Colour Stones Bracelet', price: '₹299', image: require('../assets/pr-5.png'),material: "Copper", care: "Clean with a soft, dry cloth",colour: "White Colour",category:"Bracelets" },
 
-  { id: "802", name: 'Golden Antique Charm Jhumkas', price: '₹499', image: require('../assets/categories/Women/Ear-20.png'),material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Ear Rings" },
+  { id: '2', name: 'Golden Antique Charm Jhumkas', price: '₹499', image: require('../assets/categories/Women/Ear-20.png'),material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Ear Rings" },
 
-  { id: "803", name: 'Gold Plated Green Colour Choker Neckset', price: '₹399', image: require('../assets/categories/Women/Necklace-21.png'), material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold & Green Colour",category:"Necklace" },
-  { id: "4", image: require('../assets/pr-4.png') },
-  { id: "5", image: require('../assets/categories/Women/Ring-main.png') },
-  { id: "6", image: require('../assets/pr-6.png') },
+  { id: '3', name: 'Gold Plated Green Colour Choker Neckset', price: '₹399', image: require('../assets/categories/Women/Necklace-21.png'), material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold & Green Colour",category:"Necklace" },
+  { id: '4', image: require('../assets/pr-4.png'),category:"Necklace" },
+  { id: '5', image: require('../assets/categories/Women/Ring-main.png'),category:"Rings" },
+  { id: '6', image: require('../assets/pr-6.png'),category:"Necklace" },
 ];
  
 
@@ -142,6 +151,7 @@ const categoryToScreen = {
 
 const Home = () => {
   const navigation = useNavigation();
+  
   const [currentPage, setCurrentPage] = useState(0); // State to track current page
   const [searchTerm, setSearchTerm] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -210,7 +220,10 @@ const handleOptionSelect = (selectedProduct) => {
     Alert.alert("Product Not Found", "No matching category found.");
   }
 };
-console.log("Products:", products.map(p => p.id));
+
+
+
+
 
 
 
@@ -320,56 +333,34 @@ return (
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Our Bestseller</Text>
 
-        {/* Horizontal Scroll for IDs 1, 2, 3 */}
-
-       
-{/* <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-  {products.slice(0, 3).map((product, index) => (
-    <View key={index} style={styles.horizontalProduct}>
-      <TouchableOpacity onPress={() =>
-        navigation.navigate("ProductDetails", {
-          product: product, 
-          allProducts: allProducts,
-          
-        })
-      }>
+        {/* Horizontal Scroll for IDs 1, 2, 3 */} 
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
+  {products.slice(0, 3).map((product) => (
+    <View key={product.id} style={styles.horizontalProduct}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.push("ProductDetails", {
+            product: product,
+            allProducts: allProductsList,
+          })
+        }
+      >
         <Image source={product.image} style={styles.productImage} />
       </TouchableOpacity>
       {product.name && <Text style={styles.productName}>{product.name}</Text>}
       {product.price && <Text style={styles.productPrice}>{product.price}</Text>}
     </View>
   ))}
-</ScrollView> */}
-
-
-<ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-  {products.slice(0, 3).map((product, index) => {
-    // Ensure unique key even if id is missing or duplicated
-    const uniqueKey = product.id ? `${product.id}-${index}` : `product-${index}`;
-
-    return (
-      <View key={uniqueKey} style={styles.horizontalProduct}>
-        <TouchableOpacity onPress={() =>
-          navigation.navigate("ProductDetails", {
-            product: product,
-            allProducts: allProducts,
-          })
-        }>
-          <Image source={product.image} style={styles.productImage} />
-        </TouchableOpacity>
-        {product.name && <Text style={styles.productName}>{product.name}</Text>}
-        {product.price && <Text style={styles.productPrice}>{product.price}</Text>}
-
-      </View>
-    );
-  })}
-</ScrollView>
+</ScrollView>  
 
 
 
 
 
-        {/* Centered Product ID 4 */}
+
+
+
+{/* Centered Product ID 4 */}
         <View style={styles.centeredProduct}>
           <Image source={products[3].image} style={styles.productImage4} />
         </View>

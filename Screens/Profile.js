@@ -119,7 +119,7 @@ const ProfileScreen = () => {
             onPress={() => navigation.navigate("terms")}
           >
             <Image
-              source={require("../assets/profileImgs/terms.png")} // Replace with actual image URL
+              source={require("../assets/profileImgs/terms.png")} 
               style={styles.menuImage}
             />
             <Text style={styles.menuText}>Terms and Conditions</Text>
@@ -129,7 +129,7 @@ const ProfileScreen = () => {
             onPress={() => navigation.navigate("notify")}
           >
             <Image
-              source={require("../assets/profileImgs/customercare.png")} // Replace with actual image URL
+              source={require("../assets/profileImgs/customercare.png")} 
               style={styles.menuImage}
             />
 
@@ -140,7 +140,7 @@ const ProfileScreen = () => {
             onPress={() => navigation.navigate("return")}
           >
             <Image
-              source={require("../assets/profileImgs/refund.png")} // Replace with actual image URL
+              source={require("../assets/profileImgs/refund.png")} 
               style={styles.menuImage}
             />
             <Text style={styles.menuText}>Return and Refund Policy</Text>
@@ -151,10 +151,50 @@ const ProfileScreen = () => {
             onPress={() => navigation.navigate("about")}
           >
             <Image
-              source={require("../assets/profileImgs/about.png")} // Replace with actual image URL
+              source={require("../assets/profileImgs/about.png")} 
               style={styles.menuImage}
             />
             <Text style={styles.menuText}>About Us</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("ContactUs")}
+          >
+            <Image
+              source={require("../assets/profileImgs/contact.png")} 
+              style={styles.menuImage}
+            />
+            <Text style={styles.menuText}>Contact Us</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("PrivacyPolicy")}
+          >
+            <Image
+              source={require("../assets/profileImgs/privacy.png")}
+              style={styles.menuImage}
+            />
+            <Text style={styles.menuText}>Privacy Policy</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("ShippingPolicy")}
+          >
+            <Image
+              source={require("../assets/profileImgs/shipping.png")} 
+              style={styles.menuImage}
+            />
+            <Text style={styles.menuText}>Shipping Policy</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("CancellationPolicy")}
+          >
+            <Image
+              source={require("../assets/profileImgs/cancellation.png")} 
+              style={styles.menuImage}
+            />
+            <Text style={styles.menuText}>Cancellation Policy</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.logoutButton}

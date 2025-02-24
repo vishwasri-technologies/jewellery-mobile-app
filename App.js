@@ -47,6 +47,11 @@ import OrderConfirmation from "./Screens/OrderConfirmation";
 
 import OrderTracking from "./Screens/Tracking";
 import ExistingOrder from "./Screens/ExistingOrder";
+import PrivacyPolicy from "./Screens/Privacypolicy";
+import ShippingPolicy from "./Screens/ShippingPolicy";
+import ContactUs from "./Screens/Contactus";
+import CancellationPolicy from "./Screens/Cancellation";
+import CancelOrder from "./Screens/CancelOrder";
 
 const Stack = createStackNavigator();
 
@@ -118,6 +123,11 @@ export default function App() {
 
           <Stack.Screen name="tracking" component={OrderTracking} />
           <Stack.Screen name="existingorder" component={ExistingOrder} />
+          <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+          <Stack.Screen name="ShippingPolicy" component={ShippingPolicy} />
+          <Stack.Screen name="ContactUs" component={ContactUs} />
+          <Stack.Screen name="CancellationPolicy" component={CancellationPolicy} />
+          <Stack.Screen name="CancelOrder" component={CancelOrder} />
         </Stack.Navigator>
       </NavigationContainer>
     </WishlistProvider>

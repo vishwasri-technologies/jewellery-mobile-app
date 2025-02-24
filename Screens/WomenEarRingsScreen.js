@@ -8,7 +8,7 @@ import HeartIcon from './HeartIcon';
 import { useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-const womenearringsProducts = [
+ export const womenearringsProducts = [
   { id: '131', image: require('../assets/categories/Women/Ear-1.png'), name: 'Golden Grace Chandbalis Earrings', price: '\u20B9399', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold & White Colour",category:"Ear Rings" },
   { id: '140', image: require('../assets/categories/Women/Ear-2.png'), name: 'Floral Elegance Ruby Sparkle Earrings', price: '\u20B9299', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Multi colour",category:"Ear Rings" },
   { id: '150', image: require('../assets/categories/Women/Ear-3.png'), name: 'Ethnic Multicolor Mosaic Jhumkas Earrings', price: '\u20B9299', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Multi colour",category:"Ear Rings" },
