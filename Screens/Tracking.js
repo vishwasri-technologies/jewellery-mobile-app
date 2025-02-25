@@ -100,19 +100,10 @@ const OrderTracking = () => {
             "You placed your order and received a confirmation.",
             true
           )}
+          
           {renderStatus(
-            "Order Packed",
-            "Your order is securely packed and ready for dispatch.",
-            true
-          )}
-          {renderStatus(
-            "Out for Delivery",
-            "Your order is on the way with our delivery partner.",
-            false
-          )}
-          {renderStatus(
-            "Arriving Soon",
-            "Your order is on the way. Delivered in 2 days.",
+            "Delivered",
+            // "Your order is on the way. Delivered in 2 days.",
             false
           )}
         </View>

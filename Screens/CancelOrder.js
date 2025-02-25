@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,Alert } from "react-native";
 import RadioGroup from "react-native-radio-buttons-group";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,9 +18,21 @@ const CancelOrder = () => {
     { id: "4", label: "The estimated delivery time is too long", value: "The estimated delivery time is too long" },
     { id: "5", label: "Other", value: "Other" },
   ];
+  const handleCancelOrder = () => {
+    if (!selectedId) {
+      Alert.alert('Validation Error', 'Please select a reason for cancellation.');
+      return;
+    }
+
+    if (!reason.trim()) {
+      Alert.alert('Validation Error', 'Please provide a reason for cancellation.');
+      return;
+    }
+
+    Alert.alert('Order Cancelled', 'Your order has been cancelled successfully.');
+  };
 
   return (
-    
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
@@ -35,15 +47,14 @@ const CancelOrder = () => {
 
       {/* Radio Buttons */}
       <View style={styles.radioContainer}>
-      <RadioGroup
-  radioButtons={radioButtons}
-  onPress={setSelectedId}
-  selectedId={selectedId}
-  containerStyle={styles.radioGroup}
-  layout="column"
-  size={16} 
-/>
-
+        <RadioGroup
+          radioButtons={radioButtons}
+          onPress={setSelectedId}
+          selectedId={selectedId}
+          containerStyle={styles.radioGroup}
+          layout="column"
+          size={16}
+        />
       </View>
 
       {/* Reason Input */}
@@ -58,7 +69,7 @@ const CancelOrder = () => {
       />
 
       {/* Submit Button */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleCancelOrder}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
 

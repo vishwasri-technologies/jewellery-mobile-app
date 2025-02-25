@@ -8,7 +8,7 @@ import HeartIcon from './HeartIcon';
 import { useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-const womenbangleProducts = [
+ export const womenbangleProducts = [
 
   { id: '102', image: require('../assets/categories/Women/Bangle-3.png'), name: 'Traditional Bangles South Indian Style', price: '\u20B9399', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Bangles" }, 
    { id: '20', image: require('../assets/categories/Women/Bangle-2.png'), name: 'Unique Gold Plated Women Bangles', price: '\u20B9499', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Bangles" },    

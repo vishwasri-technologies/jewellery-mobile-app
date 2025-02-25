@@ -6,7 +6,7 @@ import BottomNavBar from './BottomNavbar';
 import HeartIcon from './HeartIcon';
 import { Ionicons } from '@expo/vector-icons';
 
-const womenringProducts = [
+export const womenringProducts = [
 
 
   { id: '14', image: require('../assets/categories/Women/Ring-1.png'), name: 'Elegant ring with a twisted, layered structure', price: '\u20B980', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },

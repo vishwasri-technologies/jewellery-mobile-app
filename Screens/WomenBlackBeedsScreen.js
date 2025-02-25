@@ -32,7 +32,7 @@ const WomenBlackBeedsScreen = () => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color="#47154B" />
         </TouchableOpacity>
-      <Text style={styles.heading}>Black beeds</Text>
+      <Text style={styles.heading}>Black Beads</Text>
       </View>
       <FlatList
         data={displayedProducts}
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: wp(4),
-    fontWeight: 'bold',
     marginVertical: hp(1),
     textAlign: 'left',
    

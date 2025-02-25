@@ -30,6 +30,16 @@ import necklaceImage from "../assets/categories/Women/Ring-1.png";
 import banglesImage from "../assets/categories/Women/Bangle-3.png";
 import banglesImage1 from "../assets/categories/Women/Bangle-2.png";
 import earring1 from "../assets/categories/Women/Ear-20.png";
+import  {womenringProducts } from "./WomenRingsScreen";
+import {womenbangleProducts  } from "./WomenBanglesScreen";
+import {womenearringsProducts} from "./WomenEarRingsScreen";
+const allProductsList = [
+  ...( womenringProducts || []),
+  ...(womenbangleProducts  || []),
+  ...(womenearringsProducts || [])
+];
+
+
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -44,26 +54,43 @@ const Cart = () => {
 
       price: "\u20B980",
       image: necklaceImage,
+       material: "Copper", 
+       care: "Clean with a soft, dry cloth",
+       colour: "Gold Colour",
+       category:"Rings"
     },
     {
       id: "75",
       name: "Traditional Bangles south Indian \nstyle",
       price: "\u20B9399",
       image: banglesImage,
+      material: "Copper", 
+      care: "Clean with a soft, dry cloth",
+      colour: "Gold Colour",
+      category:"Bangles"
     },
     {
       id: "76",
       name: "Unique Gold plated women \nBangles",
       price: "\u20B9499",
       image: banglesImage1,
+      material: "Copper", 
+      care: "Clean with a soft, dry cloth",
+      colour: "Gold Colour",
+      category:"Bangles"
     },
     {
       id: "78",
       name: "Golden Antique Charm \nJhumkas",
       price: "\u20B9499",
       image: earring1,
+      material: "Copper",
+       care: "Clean with a soft, dry cloth",
+       colour: "Gold Colour",
+       category:"Ear Rings"
     },
   ];
+
 
   // Fetching the delivery address dynamically
   useEffect(() => {
@@ -224,40 +251,49 @@ return (
         <Text style={styles.emptyText}>Your cart is empty</Text>
       )}
 
-      <View>
-        <Text style={styles.addOnHeader}>Add On</Text>
-
-        <FlatList
-          data={addOns}
-          horizontal
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.addOnItem}>
-              <Image source={item.image} style={styles.image1} />
-              <Text style={styles.itemName1}>{item.name}</Text>
-              <Text style={styles.itemPrice1}>{item.price}</Text>
-              <HeartIcon item={item} />
-              <TouchableOpacity
-                style={{
-                  marginTop: 5,
-                  borderWidth: 1,
-                  borderColor: "black",
-                  paddingVertical: 6,
-                  paddingHorizontal: 30,
-                  borderRadius: 5,
-                  alignSelf: "flex-start",
-                  marginBottom: 10,
-                }}
-                onPress={() => addToCart(item)} // Move onPress outside the style object
-              >
-                <Text style={{ color: "black", fontSize: 14 }}>
-                  ADD TO CART
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
+<View>
+  <Text style={styles.addOnHeader}>Add On</Text>
+  
+  <FlatList
+    data={addOns}
+    horizontal
+    keyExtractor={(item) => item.id}
+    renderItem={({ item }) => (
+      <View style={styles.addOnItem}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.push("ProductDetails", {
+              product: item,
+              allProducts: allProductsList,
+            })
+          }
+        >
+          <Image source={item.image} style={styles.image1} />
+        </TouchableOpacity>
+        <Text style={styles.itemName1}>{item.name}</Text>
+        <Text style={styles.itemPrice1}>{item.price}</Text>
+        <HeartIcon item={item} />
+        <TouchableOpacity
+          style={{
+            marginTop: 5,
+            borderWidth: 1,
+            borderColor: "black",
+            paddingVertical: 6,
+            paddingHorizontal: 30,
+            borderRadius: 5,
+            alignSelf: "flex-start",
+            marginBottom: 10,
+          }}
+          onPress={() => addToCart(item)}
+        >
+          <Text style={{ color: "black", fontSize: 14 }}>
+            ADD TO CART
+          </Text>
+        </TouchableOpacity>
       </View>
+    )}
+  />
+</View>
       <View style={styles.orderDetails}>
         <Text style={styles.orderHeader}>Order Details</Text>
 

@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -58,7 +51,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     width: wp(90),
-    height: hp(53),
+    height: hp(54),
     marginTop: hp(3.5),
   },
   bottomCone: {
@@ -73,10 +66,10 @@ const styles = StyleSheet.create({
   },
   image3: {
     width: wp(80),
-    height: hp(47.3),
+    height: hp(54),
     resizeMode: 'contain',
     alignSelf: 'flex-end',
-    marginTop: hp(-16.0),
+    marginTop: hp(-20.0),
     marginRight: wp(20),
   },
   title3: {
@@ -130,4 +123,10 @@ const styles = StyleSheet.create({
     bottom:hp("0.3")
   },
 });
+
+
+
+
+
+
 

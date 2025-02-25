@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
   },
   locationWrapper: { flexDirection: 'row', alignItems: 'center' },
   locationIcon: { marginRight: wp('2%') },
-  locationText: { fontSize: hp('1.8%'), fontWeight: 'bold', color: 'white' },
+  locationText: { fontSize: hp('1.6%'), fontWeight: 'bold', color: 'white' },
   addressText: { fontSize: hp('1.6%'), color: 'white' },
   searchSection: {
     backgroundColor: '#47154B',
