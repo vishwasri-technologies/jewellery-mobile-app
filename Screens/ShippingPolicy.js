@@ -22,9 +22,8 @@ const ShippingPolicy = ({ navigation }) => {
        
 
         <Text style={styles.paragraph}>
-        
-We offer standard shipping to select locations, and any applicable shipping charges will be displayed at checkout before completing the purchase. All jewellery items are securely packaged to prevent damage during transit. While we strive to deliver orders on time, delays may occasionally occur due to factors beyond our control, such as weather conditions or courier issues.
-Customers are responsible for providing the correct shipping address at checkout, as we do not take responsibility for lost or misdelivered orders due to incorrect address details. If you have any concerns or need assistance regarding your shipment, please contact our support team through the app. By placing an order on the Vishu Jewellery App, you agree to this Shipping Policy.
+        We offer standard shipping to select locations, and any applicable shipping charges will be displayed at checkout before completing the purchase. All jewellery items are securely packaged to prevent damage during transit. While we strive to deliver orders on time, delays may occasionally occur due to factors beyond our control, such as weather conditions or courier issues.
+        Customers are responsible for providing the correct shipping address at checkout, as we do not take responsibility for lost or misdelivered orders due to incorrect address details. If you have any concerns or need assistance regarding your shipment, please contact our support team through the app. By placing an order on the Vishu Jewellery App, you agree to this Shipping Policy.
         </Text>
 
 
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
   backButton: { padding: 10 },
   backIcon: { width: 24, height: 24, resizeMode: "contain" },
   title: { fontSize: 22, fontWeight: "bold", color: "#6A0572", textAlign: "center", flex: 1, marginRight: "15%", },
-  paragraph: { fontSize: 16, color: "#333", lineHeight: 22, marginBottom: 15 },
+  paragraph: { fontSize: 16, color: "#333", lineHeight: 24, marginBottom: 15 },
 });
 
 

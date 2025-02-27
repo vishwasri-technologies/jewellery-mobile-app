@@ -1,10 +1,22 @@
+
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet,Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ScrollView,
+} from "react-native";
 import RadioGroup from "react-native-radio-buttons-group";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import BottomNavBar from "./BottomNavbar";
+import BottomNavBar from "./BottomNavbar"; // Ensure this file exists and is correctly placed
 
 const CancelOrder = () => {
   const [selectedId, setSelectedId] = useState(null);
@@ -18,62 +30,65 @@ const CancelOrder = () => {
     { id: "4", label: "The estimated delivery time is too long", value: "The estimated delivery time is too long" },
     { id: "5", label: "Other", value: "Other" },
   ];
+
   const handleCancelOrder = () => {
     if (!selectedId) {
-      Alert.alert('Validation Error', 'Please select a reason for cancellation.');
+      Alert.alert("Validation Error", "Please select a reason for cancellation.");
       return;
     }
 
     if (!reason.trim()) {
-      Alert.alert('Validation Error', 'Please provide a reason for cancellation.');
+      Alert.alert("Validation Error", "Please provide a reason for cancellation.");
       return;
     }
 
-    Alert.alert('Order Cancelled', 'Your order has been cancelled successfully.');
+    Alert.alert("Order Cancelled", "Your order has been cancelled successfully.");
   };
 
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="#47154B" />
-        </TouchableOpacity>
-        <Text style={styles.heading}>Cancel</Text>
-      </View>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        {/* Header */}
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back" size={24} color="#47154B" />
+          </TouchableOpacity>
+          <Text style={styles.heading}>Cancel</Text>
+        </View>
 
-      {/* Question */}
-      <Text style={styles.question}>  Why do you want to cancel your order?</Text>
+        {/* Question */}
+        <Text style={styles.question}>Why do you want to cancel your order?</Text>
 
-      {/* Radio Buttons */}
-      <View style={styles.radioContainer}>
-        <RadioGroup
-          radioButtons={radioButtons}
-          onPress={setSelectedId}
-          selectedId={selectedId}
-          containerStyle={styles.radioGroup}
-          layout="column"
-          size={16}
+        {/* Radio Buttons */}
+        <View style={styles.radioContainer}>
+          <RadioGroup
+            radioButtons={radioButtons}
+            onPress={setSelectedId}
+            selectedId={selectedId}
+            containerStyle={styles.radioGroup}
+            layout="column"
+            size={16}
+          />
+        </View>
+
+        {/* Reason Input */}
+        <Text style={styles.label}>Reason</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Type your reason here..."
+          multiline
+          numberOfLines={4}
+          value={reason}
+          onChangeText={setReason}
         />
-      </View>
 
-      {/* Reason Input */}
-      <Text style={styles.label}>Reason</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Type your reason here..."
-        multiline
-        numberOfLines={4}
-        value={reason}
-        onChangeText={setReason}
-      />
+        {/* Submit Button */}
+        <TouchableOpacity style={styles.button} onPress={handleCancelOrder}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
+      </ScrollView>
 
-      {/* Submit Button */}
-      <TouchableOpacity style={styles.button} onPress={handleCancelOrder}>
-        <Text style={styles.buttonText}>Submit</Text>
-      </TouchableOpacity>
-
-      {/* Bottom Navigation Bar - Fixed at Bottom */}
+      {/* Bottom Navigation Bar */}
       <View style={styles.bottomNavContainer}>
         <BottomNavBar />
       </View>
@@ -84,9 +99,11 @@ const CancelOrder = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: wp(4),
     backgroundColor: "#fff",
-    paddingBottom: hp(10), 
+  },
+  scrollContainer: {
+    padding: wp(4),
+    paddingBottom: hp(12), // Extra padding to prevent overlap with BottomNavBar
   },
   header: {
     flexDirection: "row",
@@ -146,9 +163,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-   
   },
 });
 
 export default CancelOrder;
+
 
