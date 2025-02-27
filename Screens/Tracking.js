@@ -16,18 +16,41 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Picker } from "@react-native-picker/picker";
+import axios from "axios";
 
 const { width } = Dimensions.get("window");
+
 
 const OrderTracking = () => {
   const [cart, setCart] = useState([]);
   const navigation = useNavigation();
   const route = useRoute();
+  const [profileAddress, setProfileAddress] = useState(null);
+  const [lastOrder, setLastOrder] = useState(null); // ✅ Store last order details
+  
+
+
   useEffect(() => {
     loadCart();
+    fetchProfileAddress();
+    fetchLastOrder();
   }, []);
 
-// Load cart from AsyncStorage
+  // ✅ Fetch last order from backend
+  const fetchLastOrder = async () => {
+    try {
+      const response = await axios.get("http://192.168.29.178:5000/last-order"); // Adjust backend URL
+      if (response.data.success) {
+        setLastOrder(response.data.order);
+      }
+    } catch (error) {
+      console.error("❌ Error fetching last order:", error.message);
+    }
+  };
+
+
+  // Load cart from AsyncStorage
+
   const loadCart = async () => {
     try {
       const cartData = await AsyncStorage.getItem("cart");
@@ -44,6 +67,7 @@ const OrderTracking = () => {
   };
 
   // Retrieve cart items from navigation params
+
   const { cartItems = [] } = route.params || {};
   const getTotalPrice = () => {
     return cart.reduce((total, item) => {
@@ -64,6 +88,19 @@ const sgst = (itemsPrice * 2.5) / 100;
 const cgst = (itemsPrice * 2.5) / 100;
 const subTotal = itemsPrice + deliveryCharge +sgst+ cgst;
 const totalAmount = subTotal ;
+  // const { cartItems = [] } = route.params || {};
+
+  const fetchProfileAddress = async () => {
+    try {
+      const response = await axios.get("http://192.168.29.178:5000/ProfileAddress");
+      if (response.data.length > 0) {
+        const latestAddress = response.data[response.data.length - 1]; // Get the most recent address
+        setProfileAddress(latestAddress);
+      }
+    } catch (error) {
+      console.error("Error fetching address:", error);
+    }
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -81,10 +118,10 @@ const totalAmount = subTotal ;
           </TouchableOpacity>
           <Text style={styles.headerText}>Order</Text>
         </View>
+        
 
         {/* Dynamic Product Details */}
-
-        {cart.length > 0 ? (
+         {/* {cart.length > 0 ? (
           cart.map((item) => (
             <View key={item.id} style={styles.cartItem}>
               <Image source={item.image} style={styles.image} />
@@ -110,7 +147,39 @@ const totalAmount = subTotal ;
           ))
         ) : (
           <Text style={styles.emptyText}>No items ordered yet!</Text>
-        )}
+        )} */}
+
+
+        {/* ✅ Fetch and Display Last Order Details */}
+{lastOrder && lastOrder.items.length > 0 ? (
+  lastOrder.items.map((item, index) => (
+    <View key={index} style={styles.cartItem}>
+      {/* If you store an image URL in the backend, use: source={{ uri: item.image }} */}
+      <Image source={{ uri: item.image }} style={styles.image} /> 
+
+      <View style={styles.itemDetails}>
+        <Text style={styles.itemName}>📌 {item.name}</Text>
+        
+        <Text style={styles.quantityLabel}>Qty:</Text>
+        <Picker
+          selectedValue={item.qty}
+          enabled={false} // Disable selection
+          style={[styles.quantityPicker, { color: "black" }]}
+          mode="dropdown"
+        >
+          <Picker.Item label={`${item.qty}`} value={item.qty} />
+        </Picker>
+
+        <Text style={styles.itemPrice}>
+          ₹{(parseFloat(item.price || "0") * parseInt(item.qty || "1")).toFixed(0)}
+        </Text>
+      </View>
+    </View>
+  ))
+) : (
+  <Text style={styles.emptyText}>No recent orders found!</Text>
+)}
+
 
         {/* Order Status */}
         <View style={styles.statusContainer}>
@@ -139,16 +208,21 @@ const totalAmount = subTotal ;
           </TouchableOpacity>
         </View>
 
-        {/* Delivery Address */}
         <View style={styles.addressContainer}>
-          <Text style={styles.sectionTitle}>Delivery Address</Text>
-          <Text style={styles.addressText}>
-            Delivered to: Shambavi, 518003 Kallur Estate
-          </Text>
-          <Text style={styles.addressText}>
-            Kallur Estate Near Shakulamma Temple, Nagula Chatu, Kallur, Kurnool
-          </Text>
-        </View>
+  <Text style={styles.sectionTitle}>Delivery Address</Text>
+  {profileAddress ? (
+    <Text style={styles.addressText}>
+      Delivered to:{" "}
+      {profileAddress.name}, {profileAddress.phone},{" "}
+      {profileAddress.zipcode || profileAddress.pincode},{" "}
+      {profileAddress.houseNo}, {profileAddress.locality},{" "}
+      {profileAddress.city}, {profileAddress.state},{" "}
+      {profileAddress.addressType}
+    </Text>
+  ) : (
+    <Text style={styles.addressText}>Fetching address...</Text>
+  )}
+</View>
 
            
         <View style={styles.orderDetails}>
@@ -233,6 +307,8 @@ const styles = StyleSheet.create({
     marginLeft: wp(2),
     top: hp(0.5),
   },
+  itemText: { fontSize: 16, marginBottom: 5 },
+  noOrderText: { textAlign: "center", fontSize: 16, color: "gray", marginTop: 20 },
  
 
   sectionTitle: { fontSize: 16, fontWeight: "bold", marginVertical: 19 },

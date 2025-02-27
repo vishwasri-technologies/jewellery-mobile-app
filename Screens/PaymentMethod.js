@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native"; // Import useRoute
 import { RadioButton } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import {
   View,
   Text,
@@ -9,6 +11,7 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
+  Alert,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -16,6 +19,7 @@ import {
 } from "react-native-responsive-screen";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import BottomNavbar from "./BottomNavbar";
+import RazorpayCheckout from "react-native-razorpay";
 
 const PaymentMethod = () => {
   const navigation = useNavigation();
@@ -31,6 +35,17 @@ const PaymentMethod = () => {
   const toggleShowAllBanks = () => {
     setShowAllBanks(!showAllBanks);
   };
+
+   // ✅ Extract orderId & amount from navigation
+   const { orderId, amount } = route.params || {};
+
+   console.log("📦 Received in Payment Screen:", { orderId, amount });
+ 
+   if (!orderId || !amount) {
+     Alert.alert("Error", "Order details are missing. Please try again.");
+     navigation.goBack();
+     return null; // Prevent UI rendering if data is missing
+   }
 
   const renderDropdownContent = (method) => {
     switch (method) {
@@ -103,14 +118,15 @@ const PaymentMethod = () => {
                 />
               </View>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.payButton}
-              onPress={() => navigation.navigate("orderconfirmation")}
-            >
-              <Text style={styles.payButtonText}>Pay ₹{price}</Text>
+            {/* Updated UPI pay button now calls handlePayment */}
+            <Text>Order ID: {orderId}</Text>
+      
+            <TouchableOpacity style={styles.payButton} onPress={(handleUPIPayment)}>
+              <Text style={styles.payButtonText}>Pay ₹{amount}</Text>
             </TouchableOpacity>
           </View>
         );
+      
       // case "NetBanking":
       //   return (
       //     <View>
@@ -253,9 +269,8 @@ const PaymentMethod = () => {
             >
               Pay conveniently at your doorstep with Cash on Delivery
             </Text>
-            <TouchableOpacity
-              style={styles.payButton}
-              onPress={() => navigation.navigate("orderconfirmation")}
+            <TouchableOpacity style={styles.payButton} 
+            onPress={handleCODPayment}
             >
               <Text style={styles.payButtonText}>Pay On Cash</Text>
             </TouchableOpacity>
@@ -265,6 +280,221 @@ const PaymentMethod = () => {
         return null;
     }
   };
+
+  const handleUPIPayment = async () => {
+        try {
+          // ✅ Get the last order from AsyncStorage
+          let storedOrder = await AsyncStorage.getItem("lastOrder");
+      
+          if (!storedOrder) {
+            Alert.alert("Error", "No order found. Please place an order first.");
+            return;
+          }
+      
+          let { orderId } = JSON.parse(storedOrder);
+          if (!orderId) {
+            Alert.alert("Error", "Order ID is missing. Please try again.");
+            return;
+          }
+      
+          console.log("📤 Fetching order details from backend for payment:", orderId);
+      
+          // ✅ Fetch order details from backend
+          const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`);
+      
+          const orderData = await orderResponse.json();
+      
+          if (!orderResponse.ok || !orderData.order) {
+            console.error("⚠️ Order not found in backend. Proceeding with payment...");
+    } else {
+      console.log("✅ Order Fetched from Backend:", orderData);
+    }
+      
+         
+          // ✅ Ensure `items` are included
+          const { items, totalAmount, deliveryAddress } = orderData.order;
+      
+          if (!items || items.length === 0) {
+            console.error("❌ Cart is empty in frontend (PaymentMethod.js)!", items);
+            Alert.alert("Error", "Cart cannot be empty during payment.");
+            return;
+          }
+
+          if (!deliveryAddress) {
+            console.error("❌ Delivery address missing in frontend!");
+            Alert.alert("Error", "Delivery address is required.");
+            return;
+          }
+      
+          // ✅ Call Backend to Create Order
+          const response = await fetch("http://192.168.29.178:5000/Cart", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              orderId,
+              items,  // ✅ Ensure cart items are sent to backend
+              totalAmount,
+              deliveryAddress,
+            }),
+          });
+      
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || "Error creating order");
+      
+          console.log("✅ Razorpay Order Created:", data);
+      
+          // ✅ Open Razorpay Payment Gateway
+          const options = {
+            description: "Jewelry Payment",
+            image: "https://your-logo-url.com/logo.png",
+            currency: "INR",
+            key: "rzp_test_bffQG9lZx8qvAs", // Replace with your actual key
+            amount: totalAmount * 100, // Convert rupees to paise
+            name: "Vishu Jewellery",
+            order_id: data.orderId, // Razorpay Order ID from backend
+            prefill: {
+              email: "akshayabonala@gmail.com",
+              contact: "9000000005",
+              name: "Akshaya",
+            },
+            theme: { color: "#F37254" },
+            method: "upi", // ✅ Ensure UPI method is allowed
+            upi: {
+              flow: "intent", // ✅ Enables Intent-Based Google Pay Flow
+            },
+          };
+      
+          RazorpayCheckout.open(options)
+            .then(async (paymentData) => {
+              console.log("✅ Payment Successful", paymentData);
+
+              const paymentId = paymentData.razorpay_payment_id;
+
+              if (!paymentData || !paymentId) {
+                  throw new Error("Invalid Payment Data Received: Missing paymentId");
+              }
+              
+
+              console.log("📤 Sending Payment Verification to Backend...", {
+                orderId: data.orderId, // ✅ Fix: Use the correct orderId
+                paymentId,
+                status: "Paid",
+              });
+      
+               // ✅ Verify Payment with Backend
+              const verifyResponse = await fetch(
+                "http://192.168.29.178:5000/verify-payment",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    orderId: data.orderId,
+                    paymentId,
+                    status: "Paid",
+                  }),
+                }
+              );
+      
+              const verifyData = await verifyResponse.json();
+
+              console.log("✅ Payment Verification Response:", verifyData); 
+
+              if (!verifyResponse.ok || verifyData.error) {
+                console.warn("⚠️ Payment verification failed, but payment was successful on Razorpay.");
+                Alert.alert("Warning", "Payment successful, but verification failed. Contact support.");
+                return;
+              }
+      
+              console.log("✅ Payment Verified:", verifyData);
+              Alert.alert("Success", "Payment completed successfully!");
+      
+              // ✅ Clear Cart ONLY after successful payment
+              console.log("🛒 Clearing cart...");
+              await AsyncStorage.removeItem("cart");
+              await AsyncStorage.removeItem("lastOrder"); // ✅ Clear order info as well
+      
+              // ✅ Navigate to Order Success Page
+              navigation.navigate("orderconfirmation");
+      
+            })
+
+        } catch (error) {
+          console.error("❌ Payment Error:", error.message);
+          Alert.alert("Payment Error","Transaction was unsuccessful.");
+        }
+      };
+      
+
+      const handleCODPayment = async () => {
+        try {
+          let storedOrder = await AsyncStorage.getItem("lastOrder");
+      
+          if (!storedOrder) {
+            Alert.alert("Error", "No order found. Please place an order first.");
+            return;
+          }
+      
+          let { orderId } = JSON.parse(storedOrder);
+      
+          if (!orderId) {
+            Alert.alert("Error", "Order ID is missing. Please try again.");
+            return;
+          }
+      
+          console.log("📤 Storing Cash on Delivery order in database:", orderId);
+      
+          // ✅ Fetch Order Details
+          const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`);
+          const orderData = await orderResponse.json();
+      
+          if (!orderResponse.ok || !orderData.order) {
+            console.warn("⚠️ Order not found in backend. Proceeding...");
+            orderData = { order: { totalAmount: price, deliveryAddress: "Unknown Address", items: [] } };
+          }
+      
+          const { totalAmount, deliveryAddress, items } = orderData.order;
+      
+          if (!deliveryAddress) {
+            console.error("❌ Delivery address missing!");
+            Alert.alert("Error", "Delivery address is required.");
+            return;
+          }
+      
+          // ✅ Call Backend to Store COD Order
+          const response = await fetch("http://192.168.29.178:5000/cod-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              items,
+              totalAmount,
+              deliveryAddress,
+            }),
+          });
+      
+          const data = await response.json();
+      
+          if (!response.ok) {
+            throw new Error(data.error || "Error placing COD order");
+          }
+      
+          console.log("✅ COD Order Stored Successfully:", data);
+      
+          Alert.alert("Success", "Your COD order has been placed successfully!");
+      
+          // ✅ Clear Cart After Successful Order Storage
+          console.log("🛒 Clearing cart...");
+          await AsyncStorage.removeItem("cart");
+          await AsyncStorage.removeItem("lastOrder");
+      
+          // ✅ Navigate to Order Confirmation Page
+          navigation.replace("orderconfirmation");
+        } catch (error) {
+          console.error("❌ COD Order Error:", error.message);
+          Alert.alert("Error", "Something went wrong while placing your order. Please try again.");
+        }
+      };
+      
+  
 
   return (
     <View style={styles.container}>
@@ -312,6 +542,8 @@ const PaymentMethod = () => {
           ))}
         </View>
       </ScrollView>
+
+      
       <BottomNavbar />
     </View>
   );

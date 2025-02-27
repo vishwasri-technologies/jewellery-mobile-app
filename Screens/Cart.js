@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useState, useEffect } from "react";
 import {
   widthPercentageToDP as wp,
@@ -106,62 +102,46 @@ const totalAmount = subTotal ;
     },
   ];
 
-  const proceedToPay = async () => {
-    if (cart.length === 0) {
-      Alert.alert("Cart is empty", "Please add items to your cart before proceeding.");
-      return;
-    }
-  
-    try {
-      const response = await fetch("http://192.168.29.178:5000/Cart", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          products: cart,
-          amount: getTotalPrice() + deliveryCharge,
-          method: "Online",
-        }),
-      });
-  
-      const data = await response.json();
-      if (data.orderId) {
-        // Navigate to Payment Page with order details
-        navigation.navigate("paymentMethod", {
-          price: getTotalPrice() + deliveryCharge,
-          orderId: data.orderId,
-        });
-      } else {
-        Alert.alert("Error", "Failed to create order. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error proceeding to pay:", error);
-      Alert.alert("Error", "Something went wrong. Please try again later.");
-    }
-  };
-  
-
   // Fetching the delivery address dynamically
   useEffect(() => {
-    const fetchAddress = () => {
-      const address = "123, Sunset Boulevard, Los Angeles";
-      setDeliveryAddress(address);
+    const fetchAddress = async () => {
+      try {
+        const response = await fetch("http://192.168.29.178:5000/ProfileAddress"); // Replace with actual backend URL
+        const addresses = await response.json();
+  
+        if (addresses.length > 0) {
+          // Set the latest address
+          setDeliveryAddress(addresses[addresses.length - 1]); 
+        } else {
+          setDeliveryAddress(null);
+        }
+      } catch (error) {
+        console.error("Error fetching address:", error);
+      }
     };
-
+  
     fetchAddress();
     loadCart();
   }, []);
+  
 
   // Load cart from AsyncStorage
   const loadCart = async () => {
     try {
       const cartData = await AsyncStorage.getItem("cart");
+      console.log("🛒 Cart data from AsyncStorage:", cartData);
+
       if (cartData) {
         setCart(JSON.parse(cartData));
+      } else {
+        setCart([]); // Ensure cart state is an empty array if null
       }
     } catch (error) {
       console.error("Failed to load cart from storage", error);
     }
   };
+
+  
 
   // Update quantity function
   const updateQuantity = (id, newQty) => {
@@ -228,6 +208,85 @@ const totalAmount = subTotal ;
 
  
 
+  
+
+  const handleOrder = async () => {
+    try {
+      if (!deliveryAddress) {
+        Alert.alert("Error", "Please add a delivery address before proceeding.");
+        return;
+      }
+
+      // ✅ Log cart before sending to backend
+    console.log("🛒 Cart Data Before Sending to Backend:", cart);
+
+    if (!cart || cart.length === 0) {
+      Alert.alert("Error", "Cart cannot be empty!");
+      return;
+    }
+  
+      const totalAmount = getTotalPrice() + deliveryCharge;
+  
+      // ✅ Convert price format (remove ₹ symbol and parse number)
+      const formattedItems = cart.map((item) => ({
+        id: item.id,
+        name: item.name,
+        price: parseFloat(item.price.replace(/[^\d.]/g, "")), // Convert price to number
+        qty: item.qty,
+        image: item.image,
+      }));
+  
+      const orderDetails = {
+        items: formattedItems,
+        totalAmount,
+        deliveryAddress: `${deliveryAddress.name}, ${deliveryAddress.houseNo}, ${deliveryAddress.locality}, ${deliveryAddress.city}, ${deliveryAddress.state}, ${deliveryAddress.pincode}, Phone: ${deliveryAddress.phone}`,
+        
+      };
+  
+      console.log("📤 Sending order details to backend:", JSON.stringify(orderDetails));
+  
+      // Send Order to Backend
+      const response = await fetch("http://192.168.29.178:5000/Cart", { // Replace with backend URL
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json", // ✅ Ensures proper request handling
+        },
+        body: JSON.stringify(orderDetails),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        console.error("❌ Backend Error:", data);
+        throw new Error(data.error || "Error storing order");
+      }
+  
+      console.log("✅ Order stored successfully in DB:", data);
+
+      // ✅ Check if `order._id` exists before proceeding
+    if (!data.order || !data.order._id) {
+      throw new Error("Order ID missing in response");
+    }
+
+    // ✅ Save Order ID in AsyncStorage to Prevent Duplicate Storage
+    await AsyncStorage.setItem("lastOrder", JSON.stringify({ orderId: data.order._id }));
+  
+      // ✅ **Navigate to Payment Screen After Storing Order**
+      navigation.navigate("paymentMethod", {
+        orderId: data.order._id, // Pass stored order ID
+        amount: totalAmount, // Pass order total amount
+      });
+  
+    } catch (error) {
+      console.error("❌ Order storage failed:", error.message);
+      Alert.alert("Order Error", error.message);
+    }
+  };
+  
+  
+  
+
 return (
     <ScrollView contentContainerStyle={styles.container}>
        <View style={styles.header}>
@@ -235,18 +294,24 @@ return (
           <Ionicons name="arrow-back" size={24} color="#47154B" />
         </TouchableOpacity>
      
-      <Text style={styles.heading}>Cart</Text>
-      </View>
-      <View style={styles.container}>
-        <View style={styles.addressBox}>
-          <Text style={styles.text}>
-            Enter your delivery address to continue with your order.
-          </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("addaddress")}>
-            <Text style={styles.addAddressText}>Add Address</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+
+      <Text style={styles.header}>Cart</Text>
+      <View style={styles.addressContainer}>
+ 
+  {deliveryAddress ? (
+    <View style={styles.addressBox}>
+      <Text style={styles.addressText}>
+      <Text >Delivery to:  </Text>
+        {deliveryAddress.name}, {deliveryAddress.pincode}, 
+        {deliveryAddress.houseNo}, {deliveryAddress.locality},
+        {deliveryAddress.city}, {deliveryAddress.state},
+        <Text style={styles.addressText}> {deliveryAddress.phone}</Text>
+      </Text>
+    </View>
+  ) : (
+    <Text style={styles.noAddressText}>No address found. Please add an address.</Text>
+  )}
+</View>
 
       {cart.length > 0 ? (
         cart.map((item) => (
@@ -336,9 +401,35 @@ return (
     )}
   />
 </View>
-     
-<View style={styles.orderDetails}>
-  <Text style={styles.orderHeader}>Order Details</Text>
+      <View style={styles.orderDetails}>
+        <Text style={styles.orderHeader}>Order Details</Text>
+
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Total Items:</Text>
+          <Text style={styles.orderValue}>{cart.length}</Text>
+        </View>
+
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Items Price:</Text>
+          <Text style={styles.orderValue}>₹ {getTotalPrice() + deliveryCharge}</Text>
+        </View>
+
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Delivery Charge:</Text>
+          <Text style={styles.orderValue}>
+            ₹ {cart.length > 0 ? deliveryCharge : 0}
+          </Text>
+        </View>
+
+        <View style={styles.orderRow}>
+          <Text style={styles.orderKey}>Sub Total:</Text>
+          <Text style={styles.orderValue}>
+            ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
+          </Text>
+        </View>
+
+
+      </View>
 
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>Total Items:</Text>
@@ -384,15 +475,12 @@ return (
   <Text style={styles.totalPayableText}>₹ {totalAmount.toFixed(2)}</Text>
   <TouchableOpacity
     style={styles.proceedButton}
-    onPress={() =>
-      navigation.navigate("paymentMethod", {
-        price: totalAmount,
-      })
-    }
+    onPress={(handleOrder)}
   >
     <Text style={styles.proceedText}>Proceed To Pay</Text>
   </TouchableOpacity>
 </View>
+
     </ScrollView>
   );
 };

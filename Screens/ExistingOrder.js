@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import axios from "axios";
 
 const { width } = Dimensions.get("window");
 
@@ -21,10 +22,28 @@ const ExistingOrder = () => {
     const navigation = useNavigation();
   const [cart, setCart] = useState([]);
   const route = useRoute();
+  const [lastOrder, setLastOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadCart();
+    fetchLastOrder();
   }, []);
+
+  // ✅ Fetch last order from backend
+  const fetchLastOrder = async () => {
+    try {
+      const response = await axios.get("http://192.168.29.178:5000/last-order");
+      if (response.data.success) {
+        setLastOrder(response.data.order);
+      }
+    } catch (error) {
+      console.error("❌ Error fetching last order:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const loadCart = async () => {
     try {
@@ -58,7 +77,7 @@ const ExistingOrder = () => {
       </View>
 
         {/* Order List */}
-        {cart.length > 0 ? (
+        {/* {cart.length > 0 ? (
           cart.map((item) => (
             <View key={item.id} style={styles.card}>
               <Image source={item.image} style={styles.productImage} />
@@ -71,6 +90,32 @@ const ExistingOrder = () => {
               </View>
             </View>
           ))
+        ) : (
+          <Text style={styles.emptyText}>No items ordered yet!</Text>
+        )}
+      </ScrollView> */}
+
+      {/* Order List */}
+      {loading ? (
+          <Text style={styles.loadingText}>Loading...</Text>
+        ) : lastOrder ? (
+          <>
+            {lastOrder.items.map((item, index) => (
+              <View key={index} style={styles.card}>
+                <Image source={{ uri: item.image }} style={styles.productImage} />
+                <View style={styles.productInfo}>
+                  <Text style={styles.productName}>{item.name}</Text>
+                  {/* <Text style={styles.productColor}>{item.colour || "Gold Colour"}</Text> */}
+                  <Text style={styles.productPrice}>
+                    ₹{(parseFloat(item.price || "0") * parseInt(item.qty || "1")).toFixed(0)}
+                  </Text>
+                  {/* ✅ Show Expected Delivery Text */}
+            <Text style={styles.deliveryText}> Expected delivery in 2 days</Text>
+                </View>
+              </View>
+            ))}
+            
+          </>
         ) : (
           <Text style={styles.emptyText}>No items ordered yet!</Text>
         )}
@@ -142,10 +187,20 @@ heading: {
   },
 
   emptyText: {
-    textAlign: "center",
+    // textAlign: "center",
     marginVertical: 20,
     fontSize: 16,
     color: "gray",
+  },
+
+  deliveryText: {
+    textAlign: "left",
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "green",
+    marginVertical: 10,
+    marginRight: 1,
+    marginLeft: 0,
   },
 });
 export default ExistingOrder;

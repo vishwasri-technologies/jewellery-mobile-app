@@ -22,6 +22,7 @@ const ProfileScreen = () => {
   const navigation = useNavigation();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   // Fetch profile from backend
   const fetchProfile = async () => {
     try {
@@ -35,10 +36,24 @@ const ProfileScreen = () => {
   };
 
   useEffect(() => {
-    fetchProfile();
+    if (!isLoggedIn) {
+      navigation.navigate("SignIn"); // Redirect to SignIn if not logged in
+    }
+    if (isLoggedIn) {
+      fetchProfile();
+    }
+
     const focusListener = navigation.addListener("focus", fetchProfile);
     return () => focusListener();
-  }, [navigation]);
+  }, [navigation, isLoggedIn]);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Set login state to false when logging out
+    navigation.reset({
+      index: 0, // Reset to the first screen
+      routes: [{ name: "SignIn" }], // Set SignIn as the first screen
+    });
+  };
 
   if (loading) {
     return (
@@ -86,7 +101,23 @@ const ProfileScreen = () => {
         <View style={styles.list}>
           <TouchableOpacity
             style={styles.menuItem}
-            onPress={() => navigation.navigate("profileorder")}
+            onPress={async () => {
+              try {
+                const response = await fetch("http://192.168.29.178:5000/last-order"); // Fetch last order
+                const data = await response.json();
+          
+                if (data.success && data.order) {
+                  // ✅ If orders exist, navigate to ExistingOrder screen
+                  navigation.navigate("existingorder");
+                } else {
+                  // ❌ If no orders exist, navigate to ProfileOrder screen
+                  navigation.navigate("profileorder");
+                }
+              } catch (error) {
+                console.error("❌ Error fetching last order:", error);
+                navigation.navigate("profileorder"); // Navigate to ProfileOrder if error occurs
+              }
+            }}
           >
             <Image
               source={require("../assets/profileImgs/orderhistory.png")} // Replace with actual image URL
@@ -198,7 +229,7 @@ const ProfileScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.logoutButton}
-            onPress={() => navigation.navigate("SignIn")}
+            onPress= {handleLogout}
           >
             <Text style={styles.logoutText}>Log Out</Text>
           </TouchableOpacity>

@@ -20,10 +20,11 @@
     "@react-navigation/material-top-tabs": "^7.1.0",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/stack": "^7.1.1",
-    "axios": "^1.7.9",
+    "axios": "^1.8.1",
     "bcrypt": "^5.1.1",
     "expo": "~52.0.27",
     "expo-auth-session": "~6.0.3",
+    "expo-dev-client": "~5.0.12",
     "expo-font": "^13.0.3",
     "expo-location": "~18.0.6",
     "expo-status-bar": "~2.0.1",
@@ -40,7 +41,10 @@
     "react-native-paper": "^5.13.1",
     "react-native-progress": "^5.0.1",
 
+
     "react-native-radio-buttons-group": "^3.1.0",
+
+    "react-native-razorpay": "^2.3.0",
 
     "react-native-reanimated": "^3.16.7",
     "react-native-responsive-dimensions": "^3.1.1",
@@ -50,7 +54,8 @@
     "react-native-screens": "^4.5.0",
     "react-native-size-matters": "^0.4.2",
     "react-native-tab-view": "^4.0.5",
-    "react-native-vector-icons": "^10.2.0"
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-webview": "13.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
