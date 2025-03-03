@@ -20,7 +20,7 @@ import { useWishlist } from "./WishlistContext";
 
 const ProductDetailsScreen = ({ route }) => {
   const { product, allProducts } = route.params;
- const navigation = useNavigation();
+  const navigation = useNavigation();
   const { wishlist, toggleWishlist } = useWishlist();
   const [isInWishlist, setIsInWishlist] = useState(false);
 
@@ -63,8 +63,8 @@ const ProductDetailsScreen = ({ route }) => {
   const modifiedIconStyle = {
     position: "absolute",
     top: 9,
-    right: -7, 
-    zIndex: 15, 
+    right: -7,
+    zIndex: 15,
   };
 
   const renderSimilarItem = ({ item }) => (
@@ -90,9 +90,7 @@ const ProductDetailsScreen = ({ route }) => {
         style={styles.backbutton}
         onPress={() => navigation.goBack()}
       >
-        <Image
-          source={require("../assets/productdetails/backbutton.png")}
-        />
+        <Icon name="arrow-left" size={wp("6%")} color="#47154B" />
       </TouchableOpacity>
       <View style={styles.productContainer}>
         <Image source={product.image} style={styles.image} />
@@ -167,16 +165,18 @@ const ProductDetailsScreen = ({ route }) => {
             style={styles.deliveryIcon}
           />
           <Text style={styles.deliveryText}>
-            <Text style={styles.boldText}>Non-Returnable Product</Text>. Once
-            purchased, it cannot be returned or exchanged.
+            <Text style={styles.boldText}>7 Days Easy Returns.</Text> Item can be
+            returned within 7 days of delivery for a refund or exchange.
           </Text>
         </View>
       </View>
 
       {/* Similar Products Title */}
-      <View style={styles.similarsection}>
-        <Text style={styles.similarsectionTitle}>Similar Products</Text>
-      </View>
+      {similarProducts.length >= 1 && (
+        <View style={styles.similarsection}>
+          <Text style={styles.similarsectionTitle}>Similar Products</Text>
+        </View>
+      )}
     </View>
   );
 
@@ -260,8 +260,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: hp(0.5),
   },
   section: {
-    marginTop: hp(3),
-    marginBottom: hp(1),
+    marginTop: hp(1.5),
+    marginBottom: hp(2),
     paddingHorizontal: hp(0.5),
   },
   sectionTitle: {
