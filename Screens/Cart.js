@@ -43,9 +43,24 @@ const allProductsList = [
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const [deliveryCharge] = useState(0);
+  // const [deliveryCharge] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const navigation = useNavigation();
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => {
+      const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, "")); // Extract only numbers
+      return total + (numericPrice || 0) * item.qty;
+    }, 0);
+  };
+  const deliveryCharge = cart.length > 0 ? 50 : 0;
+const itemsPrice = getTotalPrice();
+const sgst = (itemsPrice * 2.5) / 100;
+const cgst = (itemsPrice * 2.5) / 100;
+const subTotal = itemsPrice + deliveryCharge +sgst+ cgst;
+const totalAmount = subTotal ;
+
+
+
 
   const addOns = [
     {
@@ -178,12 +193,7 @@ const Cart = () => {
 
  
 
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => {
-      const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, "")); // Extract only numbers
-      return total + (numericPrice || 0) * item.qty;
-    }, 0);
-  };
+ 
 
 return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -294,63 +304,64 @@ return (
     )}
   />
 </View>
-      <View style={styles.orderDetails}>
-        <Text style={styles.orderHeader}>Order Details</Text>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Total Items:</Text>
-          <Text style={styles.orderValue}>{cart.length}</Text>
-        </View>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Items Price:</Text>
-          <Text style={styles.orderValue}>₹ {getTotalPrice()}</Text>
-        </View>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Delivery Charge:</Text>
-          <Text style={styles.orderValue}>
-            ₹ {cart.length > 0 ? deliveryCharge : 0}
-          </Text>
-        </View>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Sub Total:</Text>
-          <Text style={styles.orderValue}>
-            ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
-          </Text>
-        </View>
-
-
-      </View>
+     
+<View style={styles.orderDetails}>
+  <Text style={styles.orderHeader}>Order Details</Text>
 
   <View style={styles.orderRow}>
-    <Text style={[styles.orderKey, styles.totalAmount]}>
-      Amount Payable:
-    </Text>
-    <Text style={[styles.orderValue, styles.totalAmount]}>
-      ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
-    </Text>
+    <Text style={styles.orderKey}>Total Items:</Text>
+    <Text style={styles.orderValue}>{cart.length}</Text>
   </View>
 
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Items Price:</Text>
+    <Text style={styles.orderValue}>₹ {itemsPrice.toFixed(2)}</Text>
+  </View>
 
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Delivery Charge:</Text>
+    <Text style={styles.orderValue}>₹ {deliveryCharge}</Text>
+  </View>
 
-      {/* Row Container for Total Amount & Button */}
-      <View style={styles.paymentContainer}>
-        <Text style={styles.totalPayableText}>
-          ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
-        </Text>
-        <TouchableOpacity
-          style={styles.proceedButton}
-          onPress={() =>
-            navigation.navigate("paymentMethod", {
-              price: getTotalPrice() + deliveryCharge,
-            })
-          }
-        >
-          <Text style={styles.proceedText}>Proceed To Pay</Text>
-        </TouchableOpacity>
-      </View>
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>SGST (2.5%):</Text>
+    <Text style={styles.orderValue}>₹ {sgst.toFixed(2)}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>CGST (2.5%):</Text>
+    <Text style={styles.orderValue}>₹ {cgst.toFixed(2)}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Sub Total:</Text>
+    <Text style={styles.orderValue}>₹ {subTotal.toFixed(2)}</Text>
+  </View>
+</View>
+
+<View style={styles.orderRow}>
+  <Text style={[styles.orderKey, styles.totalAmount]}>
+    Amount Payable:
+  </Text>
+  <Text style={[styles.orderValue, styles.totalAmount]}>
+    ₹ {totalAmount.toFixed(2)}
+  </Text>
+</View>
+
+{/* Row Container for Total Amount & Button */}
+<View style={styles.paymentContainer}>
+  <Text style={styles.totalPayableText}>₹ {totalAmount.toFixed(2)}</Text>
+  <TouchableOpacity
+    style={styles.proceedButton}
+    onPress={() =>
+      navigation.navigate("paymentMethod", {
+        price: totalAmount,
+      })
+    }
+  >
+    <Text style={styles.proceedText}>Proceed To Pay</Text>
+  </TouchableOpacity>
+</View>
     </ScrollView>
   );
 };
@@ -362,22 +373,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingRight: 8,
   },
-  // header: {
-  //   fontSize: 24,
-  //   fontWeight: "bold",
-  //   textAlign: "center",
-  //   color: "#742b90",
-  //   marginTop: 30,
-  //   marginBottom:hp(2),
-   
-  // },
+
 
 
   header: {
-    flexDirection: 'row',  // Aligns items horizontally
-    alignItems: 'center',  // Vertically centers items
-    paddingHorizontal: wp(5),  // Ensure responsive horizontal padding
-    paddingTop: hp(6),  // Ensure responsive vertical padding
+    flexDirection: 'row',  
+    alignItems: 'center', 
+    paddingHorizontal: wp(5),
+    paddingTop: hp(6),  
     paddingBottom:hp(3),
   
   },
@@ -429,7 +432,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
    
-    // color: "#742b90",
   },
   proceedButton: {
     backgroundColor: "#742b90",

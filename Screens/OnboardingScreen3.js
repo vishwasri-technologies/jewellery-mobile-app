@@ -25,7 +25,7 @@ export default function OnboardingScreen3({ navigation }) {
       </Text>
 
       {/* Next Button */}
-      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('home')}>
         <Text style={styles.nextText3}>→</Text>
       </TouchableOpacity>
 
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     height: hp(54),
     resizeMode: 'contain',
     alignSelf: 'flex-end',
-    marginTop: hp(-20.0),
+    marginTop: hp(-20),
     marginRight: wp(20),
   },
   title3: {

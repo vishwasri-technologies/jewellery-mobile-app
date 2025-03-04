@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   heartContainer: {
     position: 'absolute',
     top: 14,
-    right: 9,
+    right: 5,
     zIndex: 10,
   },
   iconStack: {

@@ -26,6 +26,16 @@ const OrderTracking = () => {
   useEffect(() => {
     loadCart();
   }, []);
+
+
+
+
+
+
+
+
+
+
   // Load cart from AsyncStorage
   const loadCart = async () => {
     try {
@@ -44,6 +54,25 @@ const OrderTracking = () => {
 
   // Retrieve cart items from navigation params
   const { cartItems = [] } = route.params || {};
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => {
+      if (!item.price) return total; // Skip if price is undefined or null
+  
+      const numericPrice =
+        typeof item.price === "string"
+          ? parseFloat(item.price.replace(/[^\d.]/g, "")) // Remove non-numeric characters
+          : parseFloat(item.price); // If it's already a number
+  
+      return total + (numericPrice || 0) * item.qty;
+    }, 0);
+  };
+  
+  const deliveryCharge = cart.length > 0 ? 50 : 0;
+const itemsPrice = getTotalPrice();
+const sgst = (itemsPrice * 2.5) / 100;
+const cgst = (itemsPrice * 2.5) / 100;
+const subTotal = itemsPrice + deliveryCharge +sgst+ cgst;
+const totalAmount = subTotal ;
 
   return (
     <View style={styles.wrapper}>
@@ -130,35 +159,51 @@ const OrderTracking = () => {
           </Text>
         </View>
 
-        {/* Order Details */}
-        <View style={styles.orderDetailsContainer}>
-          <Text style={styles.sectionTitle}>Order Details</Text>
-
-          {/* Total Items */}
-          {renderOrderDetail("Total Items", `${cart.length} Items`)}
-          {renderOrderDetail(
-            "Items Price",
-            `₹${cart
-              .reduce((total, item) => total + item.price * item.qty, 0)
-              .toFixed(2)}`
-          )}
-          {renderOrderDetail("Delivery Charge", "₹0")}
-          {renderOrderDetail(
-            "Sub Total",
-            `₹${(
-              cart.reduce((total, item) => total + item.price * item.qty, 0) +
-              0
-            ).toFixed(2)}`
-          )}
-
-          {renderOrderDetail(
-            "Amount Paid",
-            `₹${(
-              cart.reduce((total, item) => total + item.price * item.qty, 0) +
-              0
-            ).toFixed(2)}`
-          )}
+           
+        <View style={styles.orderDetails}>
+          <Text style={styles.orderHeader}>Order Details</Text>
+        
+          <View style={styles.orderRow}>
+            <Text style={styles.orderKey}>Total Items:</Text>
+            <Text style={styles.orderValue}>{cart.length}</Text>
+          </View>
+        
+          <View style={styles.orderRow}>
+            <Text style={styles.orderKey}>Items Price:</Text>
+            <Text style={styles.orderValue}>₹ {itemsPrice.toFixed(2)}</Text>
+          </View>
+        
+          <View style={styles.orderRow}>
+            <Text style={styles.orderKey}>Delivery Charge:</Text>
+            <Text style={styles.orderValue}>₹ {deliveryCharge}</Text>
+          </View>
+        
+          <View style={styles.orderRow}>
+            <Text style={styles.orderKey}>SGST (2.5%):</Text>
+            <Text style={styles.orderValue}>₹ {sgst.toFixed(2)}</Text>
+          </View>
+        
+          <View style={styles.orderRow}>
+            <Text style={styles.orderKey}>CGST (2.5%):</Text>
+            <Text style={styles.orderValue}>₹ {cgst.toFixed(2)}</Text>
+          </View>
+        
+          <View style={styles.orderRow}>
+            <Text style={styles.orderKey}>Sub Total:</Text>
+            <Text style={styles.orderValue}>₹ {subTotal.toFixed(2)}</Text>
+          </View>
         </View>
+        
+        <View style={styles.orderRow}>
+          <Text style={[styles.orderKey, styles.totalAmount]}>
+            Amount Paid:
+          </Text>
+          <Text style={[styles.orderValue, styles.totalAmount]}>
+            ₹ {totalAmount.toFixed(2)}
+          </Text>
+        </View>
+        
+       
       </ScrollView>
 
       <BottomNavBar />
@@ -194,7 +239,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#47154B",
-    marginLeft: wp(35),
+    marginLeft: wp(2),
     top: hp(0.5),
   },
  
@@ -267,20 +312,7 @@ const styles = StyleSheet.create({
   
   addressContainer: { marginVertical: 10 },
   addressText: { color: "gray" },
-  orderDetailsContainer: { marginVertical: 10, paddingBottom: 30 },
-  orderRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 5,
-  },
-  orderValue: { color: "gray" },
-  header: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: hp("2%"),
-    paddingHorizontal: wp("4%"),
-  },
+ 
   backButton: {
     position: "absolute",
     left: wp("4%"),
@@ -303,10 +335,45 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: "0%",
     marginTop: 3,
-    flexBasis: "row",
+    flexBasis: "auto",
   },
   quantityPicker: { marginTop: "-34", marginLeft: 13 },
   emptyText: { textAlign: "center", marginVertical: 20, fontSize: 16 },
+  orderDetails: {
+   paddingLeft:0,
+  
+  },
+  orderHeader: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+    paddingLeft:4,
+   
+  },
+  orderRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 5,
+   
+  },
+  orderKey: {
+    fontSize: 16,
+    paddingBottom:10,
+    paddingLeft:10,
+  //  color:"gray",
+  },
+  orderValue: {
+    fontSize: 16,
+    textAlign:"left",
+    marginRight: 25,
+    // color:"gray",
+  },
+  totalAmount: {
+    fontSize: 16,
+    paddingBottom:25,
+  
+   },
+ 
 });
 
 export default OrderTracking;
