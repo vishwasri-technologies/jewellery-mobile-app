@@ -24,11 +24,24 @@ const ExistingOrder = () => {
   const route = useRoute();
   const [lastOrder, setLastOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [canceledOrder, setCanceledOrder] = useState(null);
 
   useEffect(() => {
     loadCart();
     fetchLastOrder();
+    fetchCanceledOrder();
   }, []);
+
+  const fetchCanceledOrder = async () => {
+    try {
+      const response = await axios.get("http://192.168.29.178:5000/last-order"); // Fetch last order
+      if (response.data.order && response.data.order.status === "canceled") {
+        setCanceledOrder(response.data.order);
+      }
+    } catch (error) {
+      console.error("❌ Error fetching canceled order:", error);
+    }
+  };
 
   // ✅ Fetch last order from backend
   const fetchLastOrder = async () => {
@@ -119,6 +132,19 @@ const ExistingOrder = () => {
         ) : (
           <Text style={styles.emptyText}>No items ordered yet!</Text>
         )}
+
+{/* for order cancellation */}
+{canceledOrder &&
+          canceledOrder.items.map((item) => (
+            <View key={item.id} style={styles.card}>
+              <Image source={{ uri: item.image }} style={styles.productImage} />
+              <View style={styles.productInfo}>
+                <Text style={styles.productName}>{item.name}</Text>
+                <Text style={styles.productPrice}>₹{item.price} (Qty: {item.qty})</Text>
+                <Text style={styles.canceledText}>Your order has been canceled.</Text>
+              </View>
+            </View>
+          ))}
       </ScrollView>
 
       <BottomNavBar />
@@ -128,7 +154,7 @@ const ExistingOrder = () => {
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1 },
-  container: { flex: 1, backgroundColor: "#fff", padding: 15 },
+  container: { flex: 1, backgroundColor: "#fff", padding: 15, },
 
 header: {
   flexDirection: 'row',  // Aligns items horizontally
@@ -159,6 +185,7 @@ heading: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 12,
+    
   },
   productImage: {
     width: 100,
@@ -172,6 +199,7 @@ heading: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
+    
   },
   productColor: {
     fontSize: 14,
@@ -194,6 +222,16 @@ heading: {
   },
 
   deliveryText: {
+    textAlign: "left",
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "green",
+    marginVertical: 10,
+    marginRight: 1,
+    marginLeft: 0,
+  },
+
+  canceledText: {
     textAlign: "left",
     fontSize: 16,
     fontWeight: "bold",

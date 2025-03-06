@@ -18,6 +18,33 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 
+import { womenbraceletProducts } from "./WomenBraceletsScreen";
+import { womenearringsProducts } from "./WomenEarRingsScreen";
+import { womensnecklaceProducts } from "./WomenNecklaceScreen";
+import { chainProducts } from "./MenChainsScreen";
+import { womenringProducts } from "./WomenRingsScreen";
+import { womenbangleProducts } from "./WomenBanglesScreen";
+import { womenblackbeedProducts } from "./WomenBlackBeedsScreen";
+import { womenchainProducts } from "./WomenChainsScreen";
+import {addOns} from "./Cart.js";
+import {allProducts} from "./All.js";
+
+// ✅ Combine all product lists into one
+const allProductsList = [
+  ...(womenbraceletProducts || []),
+  ...(womenearringsProducts || []),
+  ...(womensnecklaceProducts || []),
+  ...(chainProducts || []),
+  ...(womenringProducts || []),
+  ...(womenbangleProducts || []),
+  ...(womenblackbeedProducts || []),
+  ...(womenchainProducts || []),
+  ...(addOns || []),
+  ...(allProducts),
+
+];
+
+
 const { width } = Dimensions.get("window");
 
 
@@ -151,15 +178,40 @@ const totalAmount = subTotal ;
 
 
         {/* ✅ Fetch and Display Last Order Details */}
-{lastOrder && lastOrder.items.length > 0 ? (
+        {lastOrder && lastOrder.items.length > 0 ? (
   lastOrder.items.map((item, index) => (
     <View key={index} style={styles.cartItem}>
-      {/* If you store an image URL in the backend, use: source={{ uri: item.image }} */}
+      {/* Product Image */}
       <Image source={{ uri: item.image }} style={styles.image} /> 
 
       <View style={styles.itemDetails}>
-        <Text style={styles.itemName}>📌 {item.name}</Text>
-        
+        {/* ✅ Clickable Product Name to Navigate to ProductDetails */}
+        <TouchableOpacity
+  onPress={() => {
+    // ✅ Find the exact product from allProductsList by matching ID
+    const matchedProduct = allProductsList.find((p) => p.id === item.id);
+
+    if (matchedProduct) {
+      console.log("✅ Navigating to ProductDetails with:", matchedProduct);
+      navigation.push("ProductDetails", {
+        product: matchedProduct,  // ✅ Pass full product details
+        allProducts: allProductsList,
+      });
+    } else {
+      console.warn("⚠️ Product not found in allProductsList. Using fallback:", item);
+      navigation.push("ProductDetails", { 
+        product: item, // ✅ Use item as fallback if not found in `allProductsList`
+        allProducts: allProductsList
+      });
+    }
+  }}
+>
+  <Text style={styles.itemName}>📌 {item.name}</Text>
+</TouchableOpacity>
+
+
+
+        {/* Quantity Picker (Disabled) */}
         <Text style={styles.quantityLabel}>Qty:</Text>
         <Picker
           selectedValue={item.qty}
@@ -170,15 +222,15 @@ const totalAmount = subTotal ;
           <Picker.Item label={`${item.qty}`} value={item.qty} />
         </Picker>
 
+        {/* Product Price */}
         <Text style={styles.itemPrice}>
           ₹{(parseFloat(item.price || "0") * parseInt(item.qty || "1")).toFixed(0)}
         </Text>
       </View>
     </View>
   ))
-) : (
-  <Text style={styles.emptyText}>No recent orders found!</Text>
-)}
+) : null} 
+
 
 
         {/* Order Status */}
@@ -223,7 +275,6 @@ const totalAmount = subTotal ;
     <Text style={styles.addressText}>Fetching address...</Text>
   )}
 </View>
-
            
         <View style={styles.orderDetails}>
           <Text style={styles.orderHeader}>Order Details</Text>
@@ -267,8 +318,18 @@ const totalAmount = subTotal ;
             ₹ {totalAmount.toFixed(2)}
           </Text>
         </View>
-        
-       
+              
+        {/* Order Details */}
+         {/* ✅ Order Details Section - Now Fetched from Backend */}
+         {/* {lastOrder && (
+          <View style={styles.orderDetailsContainer}>
+            <Text style={styles.sectionTitle}>Order details</Text>
+            {renderOrderDetail("Total Items", `${lastOrder.items.length} Items`)}
+            {renderOrderDetail("Items Price", `₹${lastOrder.totalAmount - 0}`)}
+            {renderOrderDetail("Delivery Charge", "₹0")}
+            {renderOrderDetail("Total Amount", `₹${lastOrder.totalAmount}`)}
+          </View>
+        )} */}
       </ScrollView>
 
       <BottomNavBar />

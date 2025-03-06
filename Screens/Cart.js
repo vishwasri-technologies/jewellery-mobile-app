@@ -26,18 +26,65 @@ import necklaceImage from "../assets/categories/Women/Ring-1.png";
 import banglesImage from "../assets/categories/Women/Bangle-3.png";
 import banglesImage1 from "../assets/categories/Women/Bangle-2.png";
 import earring1 from "../assets/categories/Women/Ear-20.png";
+
 import  {womenringProducts } from "./WomenRingsScreen";
 import {womenbangleProducts  } from "./WomenBanglesScreen";
 import {womenearringsProducts} from "./WomenEarRingsScreen";
+
+export const addOns = [
+  {
+    id: "74",
+    name: "Elegant Ring with a twisted,\nlayered structure",
+
+    price: "\u20B980",
+    image: necklaceImage,
+     material: "Copper", 
+     care: "Clean with a soft, dry cloth",
+     colour: "Gold Colour",
+     category:"Rings"
+  },
+  {
+    id: "75",
+    name: "Traditional Bangles south Indian \nstyle",
+    price: "\u20B9399",
+    image: banglesImage,
+    material: "Copper", 
+    care: "Clean with a soft, dry cloth",
+    colour: "Gold Colour",
+    category:"Bangles"
+  },
+  {
+    id: "76",
+    name: "Unique Gold plated women \nBangles",
+    price: "\u20B9499",
+    image: banglesImage1,
+    material: "Copper", 
+    care: "Clean with a soft, dry cloth",
+    colour: "Gold Colour",
+    category:"Bangles"
+  },
+  {
+    id: "78",
+    name: "Golden Antique Charm \nJhumkas",
+    price: "\u20B9499",
+    image: earring1,
+    material: "Copper",
+     care: "Clean with a soft, dry cloth",
+     colour: "Gold Colour",
+     category:"Ear Rings"
+  },
+];
+
 const allProductsList = [
   ...( womenringProducts || []),
   ...(womenbangleProducts  || []),
-  ...(womenearringsProducts || [])
+  ...(womenearringsProducts || []),
+  ...(addOns || []),
 ];
 
 
 
-const Cart = () => {
+  const Cart = () => {
   const [cart, setCart] = useState([]);
   // const [deliveryCharge] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState("");
@@ -58,49 +105,7 @@ const totalAmount = subTotal ;
 
 
 
-  const addOns = [
-    {
-      id: "74",
-      name: "Elegant Ring with a twisted,\nlayered structure",
-
-      price: "\u20B980",
-      image: necklaceImage,
-       material: "Copper", 
-       care: "Clean with a soft, dry cloth",
-       colour: "Gold Colour",
-       category:"Rings"
-    },
-    {
-      id: "75",
-      name: "Traditional Bangles south Indian \nstyle",
-      price: "\u20B9399",
-      image: banglesImage,
-      material: "Copper", 
-      care: "Clean with a soft, dry cloth",
-      colour: "Gold Colour",
-      category:"Bangles"
-    },
-    {
-      id: "76",
-      name: "Unique Gold plated women \nBangles",
-      price: "\u20B9499",
-      image: banglesImage1,
-      material: "Copper", 
-      care: "Clean with a soft, dry cloth",
-      colour: "Gold Colour",
-      category:"Bangles"
-    },
-    {
-      id: "78",
-      name: "Golden Antique Charm \nJhumkas",
-      price: "\u20B9499",
-      image: earring1,
-      material: "Copper",
-       care: "Clean with a soft, dry cloth",
-       colour: "Gold Colour",
-       category:"Ear Rings"
-    },
-  ];
+ 
 
   // Fetching the delivery address dynamically
   useEffect(() => {
@@ -293,9 +298,8 @@ return (
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color="#47154B" />
         </TouchableOpacity>
-     
-
-      <Text style={styles.header}>Cart</Text>
+        <Text style={styles.heading}>Cart</Text>
+        <View style={{ width: 24 }} /> 
       <View style={styles.addressContainer}>
  
   {deliveryAddress ? (
@@ -503,14 +507,18 @@ const styles = StyleSheet.create({
     paddingBottom:hp(3),
   
   },
+  
   heading: {
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#47154B',
-    marginLeft:wp(30),
-    
+    position: 'absolute',  // Makes it independent of flex alignment
+    top: hp(6),  // Adjust this value to move it up
+    left: '50%',
+    transform: [{ translateX: -wp(5) }], // Centers it properly
   },
+  
   cartItem: { flexDirection: "row", alignItems: "center", marginVertical: 10 },
   image: { width: 120, height: 160, borderRadius: 0 },
   itemDetails: { flex: 1, marginLeft: 10 },

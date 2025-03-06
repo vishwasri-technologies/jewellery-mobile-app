@@ -31,19 +31,38 @@ const CancelOrder = () => {
     { id: "5", label: "Other", value: "Other" },
   ];
 
-  const handleCancelOrder = () => {
+  const handleCancelOrder = async () => {
     if (!selectedId) {
       Alert.alert("Validation Error", "Please select a reason for cancellation.");
       return;
     }
-
+  
     if (!reason.trim()) {
       Alert.alert("Validation Error", "Please provide a reason for cancellation.");
       return;
     }
-
-    Alert.alert("Order Cancelled", "Your order has been cancelled successfully.");
+  
+    try {
+      const response = await fetch("http://192.168.29.178:5000/cancel-last-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reason }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to cancel order");
+      }
+  
+      Alert.alert("Order Canceled", "Your order has been canceled successfully.");
+      navigation.navigate("existingorder"); // ✅ Navigate to existing orders
+    } catch (error) {
+      console.error("❌ Cancellation Error:", error);
+      Alert.alert("Error", "Something went wrong. Please try again.");
+    }
   };
+  
 
   return (
     <View style={styles.container}>

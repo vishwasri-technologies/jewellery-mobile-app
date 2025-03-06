@@ -17,7 +17,7 @@ import BottomNavBar from "./BottomNavbar";
 import HeartIcon from "./HeartIcon";
 import { Ionicons } from "@expo/vector-icons"; 
 
-const chainProducts = [
+export const chainProducts = [
   {
     id: "7",
 

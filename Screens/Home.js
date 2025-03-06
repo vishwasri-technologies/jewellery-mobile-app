@@ -339,9 +339,9 @@ return (
     <View key={product.id} style={styles.horizontalProduct}>
       <TouchableOpacity
         onPress={() =>
-          navigation.push("ProductDetails", {
+          navigation.navigate("ProductDetails", {
             product: product,
-            allProducts: allProductsList,
+            allProducts: allProductsList || [],
           })
         }
       >

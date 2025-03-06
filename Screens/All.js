@@ -8,7 +8,7 @@ import HeartIcon from './HeartIcon';
 import { Ionicons } from "@expo/vector-icons"; 
 
 
-const allProducts = [
+export const allProducts = [
   
   { id: '600', image: require('../assets/categories/Women/Ring-1.png'), name: 'Elegant ring with a twisted, layered structure', price: '\u20B980', material: "Copper", care: "Clean with a soft, dry cloth",colour: "Gold Colour",category:"Rings" },
 { id: '601', image: require('../assets/categories/Women/Bracelet-1.png'), name: 'Pastel Colour Stones Bracelet', price: '\u20B9299', material: "Copper", care: "Clean with a soft, dry cloth",colour: "White Colour",category:"Bracelets" },

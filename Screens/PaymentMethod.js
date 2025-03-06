@@ -291,7 +291,10 @@ const PaymentMethod = () => {
             return;
           }
       
-          let { orderId } = JSON.parse(storedOrder);
+          // let { orderId } = JSON.parse(storedOrder);
+          let orderData = JSON.parse(storedOrder);
+        let orderId = orderData.latestOrderId || orderData.orderId; // ✅ Ensure latest Order ID is used
+
           if (!orderId) {
             Alert.alert("Error", "Order ID is missing. Please try again.");
             return;
@@ -301,18 +304,16 @@ const PaymentMethod = () => {
       
           // ✅ Fetch order details from backend
           const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`);
+         let orderDataFromBackend = await orderResponse.json();
       
-          const orderData = await orderResponse.json();
-      
-          if (!orderResponse.ok || !orderData.order) {
+          if (!orderResponse.ok || !orderDataFromBackend.order) {
             console.error("⚠️ Order not found in backend. Proceeding with payment...");
-    } else {
-      console.log("✅ Order Fetched from Backend:", orderData);
+            orderDataFromBackend = { order: { totalAmount: 0, deliveryAddress: "Unknown", items: [] } };
     }
       
          
           // ✅ Ensure `items` are included
-          const { items, totalAmount, deliveryAddress } = orderData.order;
+          const { items, totalAmount, deliveryAddress } = orderDataFromBackend.order;
       
           if (!items || items.length === 0) {
             console.error("❌ Cart is empty in frontend (PaymentMethod.js)!", items);
@@ -342,19 +343,23 @@ const PaymentMethod = () => {
           if (!response.ok) throw new Error(data.error || "Error creating order");
       
           console.log("✅ Razorpay Order Created:", data);
+
+           // ✅ Store the new Razorpay order ID in AsyncStorage
+        await AsyncStorage.setItem("lastOrder", JSON.stringify({ latestOrderId: data.orderId }));
+
       
           // ✅ Open Razorpay Payment Gateway
           const options = {
-            description: "Jewelry Payment",
+            description: "Jewellery Payment",
             image: "https://your-logo-url.com/logo.png",
             currency: "INR",
             key: "rzp_test_bffQG9lZx8qvAs", // Replace with your actual key
             amount: totalAmount * 100, // Convert rupees to paise
-            name: "Vishu Jewellery",
+            name: "Vishu's Jewellery",
             order_id: data.orderId, // Razorpay Order ID from backend
             prefill: {
               email: "akshayabonala@gmail.com",
-              contact: "9000000005",
+              contact: "9000693535",
               name: "Akshaya",
             },
             theme: { color: "#F37254" },
@@ -373,7 +378,6 @@ const PaymentMethod = () => {
               if (!paymentData || !paymentId) {
                   throw new Error("Invalid Payment Data Received: Missing paymentId");
               }
-              
 
               console.log("📤 Sending Payment Verification to Backend...", {
                 orderId: data.orderId, // ✅ Fix: Use the correct orderId
@@ -434,7 +438,9 @@ const PaymentMethod = () => {
             return;
           }
       
-          let { orderId } = JSON.parse(storedOrder);
+          // 
+          let orderData = JSON.parse(storedOrder);
+          let orderId = orderData.orderId || orderData.latestOrderId; // ✅ Ensure latest Order ID is used
       
           if (!orderId) {
             Alert.alert("Error", "Order ID is missing. Please try again.");
@@ -445,14 +451,14 @@ const PaymentMethod = () => {
       
           // ✅ Fetch Order Details
           const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`);
-          const orderData = await orderResponse.json();
+          let orderDataFromBackend = await orderResponse.json();
       
-          if (!orderResponse.ok || !orderData.order) {
+          if (!orderResponse.ok || !orderDataFromBackend.order) {
             console.warn("⚠️ Order not found in backend. Proceeding...");
-            orderData = { order: { totalAmount: price, deliveryAddress: "Unknown Address", items: [] } };
+            orderDataFromBackend = { order: { totalAmount: price, deliveryAddress: "Unknown Address", items: [] } };
           }
       
-          const { totalAmount, deliveryAddress, items } = orderData.order;
+          const { totalAmount, deliveryAddress, items } =  orderDataFromBackend.order;
       
           if (!deliveryAddress) {
             console.error("❌ Delivery address missing!");
@@ -465,9 +471,11 @@ const PaymentMethod = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+              orderId, // ✅ Send Correct Order ID
               items,
               totalAmount,
               deliveryAddress,
+              paymentMode: "COD", // ✅ Indicate COD payment mode
             }),
           });
       
@@ -528,7 +536,7 @@ const PaymentMethod = () => {
                   onPress={() => toggleDropdown(method)}
                 >
                   <Image
-                    source={require("../assets/paymentMethod/+.png")}
+                    source={require("../assets/paymentMethod/plus.png")}
                     style={styles.plusbutton}
                   />
                 </TouchableOpacity>
