@@ -25,7 +25,7 @@ export default function OnboardingScreen3({ navigation }) {
       </Text>
 
       {/* Next Button */}
-      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('home')}>
         <Text style={styles.nextText3}>→</Text>
       </TouchableOpacity>
 
