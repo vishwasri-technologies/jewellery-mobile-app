@@ -27,16 +27,7 @@ const OrderTracking = () => {
     loadCart();
   }, []);
 
-
-
-
-
-
-
-
-
-
-  // Load cart from AsyncStorage
+// Load cart from AsyncStorage
   const loadCart = async () => {
     try {
       const cartData = await AsyncStorage.getItem("cart");

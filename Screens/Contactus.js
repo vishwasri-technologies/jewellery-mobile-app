@@ -23,9 +23,13 @@ const ContactUs = () => {
         We currently do not have a dedicated customer support team, but you can contact us directly through:
       </Text>
 
-      <Text style={styles.info}> Address: </Text>
-      <Text style={styles.info}> Email: </Text>
-      <Text style={styles.info}> Phone:</Text>
+      <Text style={styles.info}>
+  Email: <Text style={styles.value}> VISHWASRITECHNOLOGIES@vishcom.net</Text>
+</Text>
+<Text style={styles.info}>
+  Phone: <Text style={styles.value}> 7330669716</Text>
+</Text>
+
 
       <Text style={styles.heading1}>Response Time</Text>
       <Text style={styles.paragraph}>
@@ -40,7 +44,18 @@ const styles = StyleSheet.create({
   
   heading1: { fontSize: 18, fontWeight: "bold", marginTop: 15,paddingBottom:20, },
   paragraph: { fontSize: 16, lineHeight: 22, marginBottom: 10 },
-  info: { fontSize: 16, marginVertical: 5, fontWeight: "bold" },
+  info: {
+    fontSize: 16, 
+    color: 'black',
+    fontWeight:"bold",
+    marginBottom:10,
+   
+  },
+  value: {
+    fontSize: 13, 
+    color: 'black', 
+    fontWeight:400,
+  },
   header: {
     flexDirection: 'row',  
     alignItems: 'center',  

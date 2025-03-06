@@ -33,7 +33,7 @@ const TermsAndConditions = ({ navigation }) => {
         All content, including images, text, and branding, is the intellectual property of Vishu Jewellery and is protected. Unauthorized use, reproduction, or distribution is strictly prohibited. We value your privacy and handle personal data per our Privacy Policy, ensuring secure transactions and data protection. By using our app, you acknowledge that Vishu Jewellery is not liable for damages resulting from product misuse, third-party errors, or delays beyond our control. Our liability is limited to the total value of the purchased product. 
         </Text>
         <Text style={styles.paragraph}>
-        These Terms & Conditions are governed by the laws of India, and any disputes shall be resolved through arbitration or legal proceedings in the applicable jurisdiction. If you have any questions or concerns, feel free to contact us at [Email]. 
+        These Terms & Conditions are governed by the laws of India, and any disputes shall be resolved through arbitration or legal proceedings in the applicable jurisdiction. If you have any questions or concerns, feel free to contact us at [VISHWASRITECHNOLOGIES@vishcom.net]. 
         </Text>
         <Text style={styles.paragraph}>
         The revenue and transactions processed through the Vishu Jewellery App belong to and are managed by Vishwasri Technologies Private Limited.
