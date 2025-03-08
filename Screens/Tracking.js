@@ -314,7 +314,7 @@ const totalAmount = subTotal ;
 
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>Amount Paid:</Text>
-    <Text style={styles.orderValue}>₹ {lastOrder?.totalAmount || 0}</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.totalAmount.toFixed(2) || 0}</Text>
   </View>
 </View>
 
