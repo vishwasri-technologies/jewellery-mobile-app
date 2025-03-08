@@ -66,9 +66,12 @@ const OrderTracking = () => {
   // ✅ Fetch last order from backend
   const fetchLastOrder = async () => {
     try {
-      const response = await axios.get("http://192.168.29.178:5000/last-order"); // Adjust backend URL
+      const response = await axios.get("http://192.168.29.178:5000/last-order"); 
+      console.log("✅ Last Order Response:", response.data); // Debugging log
       if (response.data.success) {
         setLastOrder(response.data.order);
+      } else {
+        console.warn("⚠️ No last order found:", response.data);
       }
     } catch (error) {
       console.error("❌ Error fetching last order:", error.message);
@@ -178,7 +181,7 @@ const totalAmount = subTotal ;
 
 
         {/* ✅ Fetch and Display Last Order Details */}
-        {lastOrder && lastOrder.items.length > 0 ? (
+        {lastOrder && lastOrder.items && lastOrder.items.length > 0 ? (
   lastOrder.items.map((item, index) => (
     <View key={index} style={styles.cartItem}>
       {/* Product Image */}
@@ -276,60 +279,46 @@ const totalAmount = subTotal ;
   )}
 </View>
            
-        <View style={styles.orderDetails}>
-          <Text style={styles.orderHeader}>Order Details</Text>
-        
-          <View style={styles.orderRow}>
-            <Text style={styles.orderKey}>Total Items:</Text>
-            <Text style={styles.orderValue}>{cart.length}</Text>
-          </View>
-        
-          <View style={styles.orderRow}>
-            <Text style={styles.orderKey}>Items Price:</Text>
-            <Text style={styles.orderValue}>₹ {itemsPrice.toFixed(2)}</Text>
-          </View>
-        
-          <View style={styles.orderRow}>
-            <Text style={styles.orderKey}>Delivery Charge:</Text>
-            <Text style={styles.orderValue}>₹ {deliveryCharge}</Text>
-          </View>
-        
-          <View style={styles.orderRow}>
-            <Text style={styles.orderKey}>SGST (2.5%):</Text>
-            <Text style={styles.orderValue}>₹ {sgst.toFixed(2)}</Text>
-          </View>
-        
-          <View style={styles.orderRow}>
-            <Text style={styles.orderKey}>CGST (2.5%):</Text>
-            <Text style={styles.orderValue}>₹ {cgst.toFixed(2)}</Text>
-          </View>
-        
-          <View style={styles.orderRow}>
-            <Text style={styles.orderKey}>Sub Total:</Text>
-            <Text style={styles.orderValue}>₹ {subTotal.toFixed(2)}</Text>
-          </View>
-        </View>
-        
-        <View style={styles.orderRow}>
-          <Text style={[styles.orderKey, styles.totalAmount]}>
-            Amount Paid:
-          </Text>
-          <Text style={[styles.orderValue, styles.totalAmount]}>
-            ₹ {totalAmount.toFixed(2)}
-          </Text>
-        </View>
+<View style={styles.orderDetails}>
+  <Text style={styles.orderHeader}>Order Details</Text>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Total Items:</Text>
+    <Text style={styles.orderValue}>{lastOrder?.items.length || 0}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Items Price:</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.itemsPrice || 0}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Delivery Charge:</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.deliveryCharge || 0}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>SGST (2.5%):</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.sgst || 0}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>CGST (2.5%):</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.cgst || 0}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Sub Total:</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.subTotal || 0}</Text>
+  </View>
+
+  <View style={styles.orderRow}>
+    <Text style={styles.orderKey}>Amount Paid:</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.totalAmount || 0}</Text>
+  </View>
+</View>
+
               
-        {/* Order Details */}
-         {/* ✅ Order Details Section - Now Fetched from Backend */}
-         {/* {lastOrder && (
-          <View style={styles.orderDetailsContainer}>
-            <Text style={styles.sectionTitle}>Order details</Text>
-            {renderOrderDetail("Total Items", `${lastOrder.items.length} Items`)}
-            {renderOrderDetail("Items Price", `₹${lastOrder.totalAmount - 0}`)}
-            {renderOrderDetail("Delivery Charge", "₹0")}
-            {renderOrderDetail("Total Amount", `₹${lastOrder.totalAmount}`)}
-          </View>
-        )} */}
       </ScrollView>
 
       <BottomNavBar />

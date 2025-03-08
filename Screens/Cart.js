@@ -84,7 +84,7 @@ const allProductsList = [
 
 
 
-  const Cart = () => {
+const Cart = () => {
   const [cart, setCart] = useState([]);
   // const [deliveryCharge] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState("");
@@ -105,7 +105,8 @@ const totalAmount = subTotal ;
 
 
 
- 
+
+
 
   // Fetching the delivery address dynamically
   useEffect(() => {
@@ -127,8 +128,7 @@ const totalAmount = subTotal ;
   
     fetchAddress();
     loadCart();
-  }, []);
-  
+  }, []);
 
   // Load cart from AsyncStorage
   const loadCart = async () => {
@@ -143,10 +143,8 @@ const totalAmount = subTotal ;
       }
     } catch (error) {
       console.error("Failed to load cart from storage", error);
-    }
-  };
-
-  
+    }
+  };
 
   // Update quantity function
   const updateQuantity = (id, newQty) => {
@@ -209,11 +207,6 @@ const totalAmount = subTotal ;
     );
   };
 
- 
-
- 
-
-  
 
   const handleOrder = async () => {
     try {
@@ -230,7 +223,11 @@ const totalAmount = subTotal ;
       return;
     }
   
-      const totalAmount = getTotalPrice() + deliveryCharge;
+    const itemsPrice = getTotalPrice();
+    const sgst = (itemsPrice * 2.5) / 100;
+    const cgst = (itemsPrice * 2.5) / 100;
+    const deliveryCharge = cart.length > 0 ? 50 : 0;
+    const totalAmount = itemsPrice + deliveryCharge + sgst + cgst;
   
       // ✅ Convert price format (remove ₹ symbol and parse number)
       const formattedItems = cart.map((item) => ({
@@ -269,7 +266,7 @@ const totalAmount = subTotal ;
   
       console.log("✅ Order stored successfully in DB:", data);
 
-      // ✅ Check if `order._id` exists before proceeding
+      // ✅ Check if order._id exists before proceeding
     if (!data.order || !data.order._id) {
       throw new Error("Order ID missing in response");
     }
@@ -277,7 +274,7 @@ const totalAmount = subTotal ;
     // ✅ Save Order ID in AsyncStorage to Prevent Duplicate Storage
     await AsyncStorage.setItem("lastOrder", JSON.stringify({ orderId: data.order._id }));
   
-      // ✅ **Navigate to Payment Screen After Storing Order**
+      // ✅ Navigate to Payment Screen After Storing Order
       navigation.navigate("paymentMethod", {
         orderId: data.order._id, // Pass stored order ID
         amount: totalAmount, // Pass order total amount
@@ -288,33 +285,32 @@ const totalAmount = subTotal ;
       Alert.alert("Order Error", error.message);
     }
   };
-  
-  
-  
+
+ 
 
 return (
-    <ScrollView contentContainerStyle={styles.container}>
-       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="#47154B" />
-        </TouchableOpacity>
-        <Text style={styles.heading}>Cart</Text>
-        <View style={{ width: 24 }} /> 
-      <View style={styles.addressContainer}>
- 
-  {deliveryAddress ? (
-    <View style={styles.addressBox}>
-      <Text style={styles.addressText}>
-      <Text >Delivery to:  </Text>
-        {deliveryAddress.name}, {deliveryAddress.pincode}, 
-        {deliveryAddress.houseNo}, {deliveryAddress.locality},
-        {deliveryAddress.city}, {deliveryAddress.state},
-        <Text style={styles.addressText}> {deliveryAddress.phone}</Text>
-      </Text>
-    </View>
-  ) : (
-    <Text style={styles.noAddressText}>No address found. Please add an address.</Text>
-  )}
+  <ScrollView contentContainerStyle={styles.container}>
+  <View style={styles.header}/>
+   <TouchableOpacity onPress={() => navigation.goBack()}>
+     <Ionicons name="arrow-back" size={24} color="#47154B" />
+   </TouchableOpacity>
+   <Text style={styles.heading}>Cart</Text>
+   <View style={{ width: 24 }} /> 
+ <View style={styles.addressContainer}>
+
+{deliveryAddress ? (
+<View style={styles.addressBox}>
+ <Text style={styles.addressText}>
+ <Text >Delivery to:  </Text>
+   {deliveryAddress.name}, {deliveryAddress.pincode}, 
+   {deliveryAddress.houseNo}, {deliveryAddress.locality},
+   {deliveryAddress.city}, {deliveryAddress.state},
+   <Text style={styles.addressText}> {deliveryAddress.phone}</Text>
+ </Text>
+</View>
+) : (
+<Text style={styles.noAddressText}>No address found. Please add an address.</Text>
+)}
 </View>
 
       {cart.length > 0 ? (
@@ -405,35 +401,9 @@ return (
     )}
   />
 </View>
-      <View style={styles.orderDetails}>
-        <Text style={styles.orderHeader}>Order Details</Text>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Total Items:</Text>
-          <Text style={styles.orderValue}>{cart.length}</Text>
-        </View>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Items Price:</Text>
-          <Text style={styles.orderValue}>₹ {getTotalPrice() + deliveryCharge}</Text>
-        </View>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Delivery Charge:</Text>
-          <Text style={styles.orderValue}>
-            ₹ {cart.length > 0 ? deliveryCharge : 0}
-          </Text>
-        </View>
-
-        <View style={styles.orderRow}>
-          <Text style={styles.orderKey}>Sub Total:</Text>
-          <Text style={styles.orderValue}>
-            ₹ {cart.length > 0 ? getTotalPrice() + deliveryCharge : 0}
-          </Text>
-        </View>
-
-
-      </View>
+     
+<View style={styles.orderDetails}>
+  <Text style={styles.orderHeader}>Order Details</Text>
 
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>Total Items:</Text>
@@ -449,6 +419,7 @@ return (
     <Text style={styles.orderKey}>Delivery Charge:</Text>
     <Text style={styles.orderValue}>₹ {deliveryCharge}</Text>
   </View>
+
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>SGST (2.5%):</Text>
     <Text style={styles.orderValue}>₹ {sgst.toFixed(2)}</Text>
@@ -479,12 +450,12 @@ return (
   <Text style={styles.totalPayableText}>₹ {totalAmount.toFixed(2)}</Text>
   <TouchableOpacity
     style={styles.proceedButton}
-    onPress={(handleOrder)}
+    onPress={(handleOrder)
+    }
   >
     <Text style={styles.proceedText}>Proceed To Pay</Text>
   </TouchableOpacity>
 </View>
-
     </ScrollView>
   );
 };
@@ -507,18 +478,14 @@ const styles = StyleSheet.create({
     paddingBottom:hp(3),
   
   },
-  
   heading: {
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#47154B',
-    position: 'absolute',  // Makes it independent of flex alignment
-    top: hp(6),  // Adjust this value to move it up
-    left: '50%',
-    transform: [{ translateX: -wp(5) }], // Centers it properly
+    marginLeft:wp(30),
+    
   },
-  
   cartItem: { flexDirection: "row", alignItems: "center", marginVertical: 10 },
   image: { width: 120, height: 160, borderRadius: 0 },
   itemDetails: { flex: 1, marginLeft: 10 },
