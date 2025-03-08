@@ -291,9 +291,10 @@ const totalAmount = subTotal ;
 return (
   <ScrollView contentContainerStyle={styles.container}>
   <View style={styles.header}/>
-   <TouchableOpacity onPress={() => navigation.goBack()}>
-     <Ionicons name="arrow-back" size={24} color="#47154B" />
-   </TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.canGoBack() && navigation.goBack()}>
+  <Ionicons name="arrow-back" size={24} color="#47154B" marginLeft="15" />
+</TouchableOpacity>
+
    <Text style={styles.heading}>Cart</Text>
    <View style={{ width: 24 }} /> 
  <View style={styles.addressContainer}>
@@ -319,7 +320,9 @@ return (
             <Image source={item.image} style={styles.image} />
             <View style={styles.itemDetails}>
               <Text style={styles.itemName}>{item.name}</Text>
+             
               <Text style={styles.quantityLabel}>Qty:</Text>
+
               <Picker
                 selectedValue={item.qty}
                 onValueChange={(value) =>
@@ -330,11 +333,12 @@ return (
                 {[...Array(1000).keys()].map((num) => (
                   <Picker.Item
                     key={num + 1}
-                    label={`${num + 1}`}
+                    label={`  ${num + 1}`}
                     value={num + 1}
                   />
                 ))}
               </Picker>
+             
               <Text style={styles.itemPrice}>{item.price}</Text>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Icon
@@ -473,17 +477,19 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',  
     alignItems: 'center', 
-    paddingHorizontal: wp(5),
-    paddingTop: hp(6),  
+    // paddingHorizontal: wp(5),
+    paddingTop: hp(2),  
     paddingBottom:hp(3),
+
   
   },
   heading: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#47154B',
-    marginLeft:wp(30),
+    paddingBottom:25,marginTop:-28,
+   
     
   },
   cartItem: { flexDirection: "row", alignItems: "center", marginVertical: 10 },
@@ -549,7 +555,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: "0%",
     marginTop: 3,
-    flexBasis: "auto",
+
   },
   quantityPicker: { marginTop: "-34", marginLeft: 13 },
 

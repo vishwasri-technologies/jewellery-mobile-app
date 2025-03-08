@@ -13,13 +13,16 @@ import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import axios from "axios";
 
 const { width } = Dimensions.get("window");
 
 const ExistingOrder = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const [cart, setCart] = useState([]);
   const route = useRoute();
   const [lastOrder, setLastOrder] = useState(null);
@@ -57,7 +60,6 @@ const ExistingOrder = () => {
     }
   };
 
-
   const loadCart = async () => {
     try {
       const cartData = await AsyncStorage.getItem("cart");
@@ -80,14 +82,14 @@ const ExistingOrder = () => {
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} keyboardShouldPersistTaps="always" >
         {/* Header */}
         <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="#47154B" />
-        </TouchableOpacity>
-      <Text style={styles.heading}>Order</Text>
-      </View>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back" size={24} color="#47154B" />
+          </TouchableOpacity>
+          <Text style={styles.heading}>Order</Text>
+        </View>
 
         {/* Order List */}
         {/* {cart.length > 0 ? (
@@ -108,42 +110,63 @@ const ExistingOrder = () => {
         )}
       </ScrollView> */}
 
-      {/* Order List */}
-      {loading ? (
+        {/* Order List */}
+        {loading ? (
           <Text style={styles.loadingText}>Loading...</Text>
         ) : lastOrder ? (
           <>
             {lastOrder.items.map((item, index) => (
               <View key={index} style={styles.card}>
-                <Image source={{ uri: item.image }} style={styles.productImage} />
+                <Image
+                  source={{ uri: item.image }}
+                  style={styles.productImage}
+                />
                 <View style={styles.productInfo}>
                   <Text style={styles.productName}>{item.name}</Text>
                   {/* <Text style={styles.productColor}>{item.colour || "Gold Colour"}</Text> */}
                   <Text style={styles.productPrice}>
-                    ₹{(parseFloat(item.price || "0") * parseInt(item.qty || "1")).toFixed(0)}
+                    ₹
+                    {(
+                      parseFloat(item.price || "0") * parseInt(item.qty || "1")
+                    ).toFixed(0)}
                   </Text>
                   {/* ✅ Show Expected Delivery Text */}
-            <Text style={styles.deliveryText}> Expected delivery in 2 days</Text>
+                  <Text style={styles.deliveryText}>
+                    {" "}
+                    Expected delivery in 2 days
+                  </Text>
                 </View>
               </View>
             ))}
-            
           </>
         ) : (
           <Text style={styles.emptyText}>No items ordered yet!</Text>
         )}
 
-{/* for order cancellation */}
-{canceledOrder &&
+        {/* for order cancellation */}
+        {canceledOrder &&
           canceledOrder.items.map((item) => (
-            <View key={item.id} style={styles.card}>
+            <TouchableOpacity
+            key={index}
+            onPress={() => {
+              console.log("Card Pressed! Navigating...");
+              navigation.navigate("tracking");
+            }}
+            activeOpacity={0.7}
+            style={styles.card}
+          >
+          
               <Image source={{ uri: item.image }} style={styles.productImage} />
               <View style={styles.productInfo}>
                 <Text style={styles.productName}>{item.name}</Text>
-                <Text style={styles.productPrice}>₹{item.price} (Qty: {item.qty})</Text>
-                <Text style={styles.canceledText}>Your order has been canceled.</Text>
+                <Text style={styles.productPrice}>
+                  ₹{item.price} (Qty: {item.qty})
+                </Text>
+                <Text style={styles.canceledText}>
+                  Your order has been canceled.
+                </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           ))}
       </ScrollView>
 
@@ -154,25 +177,22 @@ const ExistingOrder = () => {
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1 },
-  container: { flex: 1, backgroundColor: "#fff", padding: 15, },
+  container: { flex: 1, backgroundColor: "#fff", padding: 15 },
 
-header: {
-  flexDirection: 'row',  // Aligns items horizontally
-  alignItems: 'center',  // Vertically centers items
-  paddingHorizontal: wp(5),  // Ensure responsive horizontal padding
-  paddingTop: hp(4),  // Ensure responsive vertical padding
-  paddingBottom:hp(3),
-
-},
-heading: {
-  fontSize: 22,
-  fontWeight: 'bold',
-  textAlign: 'center',
-  color: '#47154B',
-  marginLeft:wp(28),
-  
-},
-
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: wp(5),
+    paddingTop: hp(4),
+    paddingBottom: hp(3),
+  },
+  heading: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#47154B",
+    marginLeft: wp(28),
+  },
 
   card: {
     backgroundColor: "#fff",
@@ -185,7 +205,6 @@ heading: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 12,
-    
   },
   productImage: {
     width: 100,
@@ -199,7 +218,6 @@ heading: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
-    
   },
   productColor: {
     fontSize: 14,
@@ -242,4 +260,3 @@ heading: {
   },
 });
 export default ExistingOrder;
-
