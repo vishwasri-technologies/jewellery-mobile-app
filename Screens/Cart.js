@@ -549,7 +549,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: "0%",
     marginTop: 3,
-    flexBasis: "row",
+    flexBasis: "auto",
   },
   quantityPicker: { marginTop: "-34", marginLeft: 13 },
 
