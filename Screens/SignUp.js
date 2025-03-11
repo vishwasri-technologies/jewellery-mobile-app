@@ -245,7 +245,7 @@ if (!emailPattern.test(emailPhone) && !phonePattern.test(emailPhone)) {
             <Text style={styles.buttonText}>Sign up</Text>
           </TouchableOpacity>
 
-          <View style={styles.socialContainer}>
+          {/* <View style={styles.socialContainer}>
             <TouchableOpacity onPress={() => console.log("Google Login Clicked")}>
               <Image source={googleIcon} style={styles.icon} />
             </TouchableOpacity>
@@ -257,7 +257,7 @@ if (!emailPattern.test(emailPhone) && !phonePattern.test(emailPhone)) {
             <TouchableOpacity onPress={() => console.log("Apple Login Clicked")}>
               <Image source={appleIcon} style={styles.icon2} />
             </TouchableOpacity>
-          </View>
+          </View> */}
 
           <Text style={styles.switchText}>
             Already have an account?{' '}

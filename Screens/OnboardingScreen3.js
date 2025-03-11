@@ -25,7 +25,7 @@ export default function OnboardingScreen3({ navigation }) {
       </Text>
 
       {/* Next Button */}
-      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('home')}>
+      <TouchableOpacity style={styles.nextButton3} onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.nextText3}>→</Text>
       </TouchableOpacity>
 
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     width: wp(90),
-    height: hp(54),
+    height: hp(62.5),
     marginTop: hp(3.5),
   },
   bottomCone: {
@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
   },
   image3: {
     width: wp(80),
-    height: hp(54),
-    resizeMode: 'contain',
-    alignSelf: 'flex-end',
-    marginTop: hp(-20),
+    height: hp('60%'),
+    maxHeight:hp('100%'),
+    resizeMode:"cover",
+    marginTop: hp(-15),
     marginRight: wp(20),
   },
   title3: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     color: '#4E1B50',
     textAlign: 'center',
     marginVertical: hp(1),
-    marginTop: hp(7),
+    marginTop: hp(1),
   },
   description3: {
     fontSize: wp(4),
@@ -123,6 +123,13 @@ const styles = StyleSheet.create({
     bottom:hp("0.3")
   },
 });
+
+
+
+
+
+
+
 
 
 

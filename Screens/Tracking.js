@@ -222,7 +222,7 @@ const totalAmount = subTotal ;
           style={[styles.quantityPicker, { color: "black" }]}
           mode="dropdown"
         >
-          <Picker.Item label={`${item.qty}`} value={item.qty} />
+          <Picker.Item label={`  ${item.qty}`} value={item.qty} />
         </Picker>
 
         {/* Product Price */}

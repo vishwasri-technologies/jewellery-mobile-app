@@ -116,13 +116,15 @@ const ExistingOrder = () => {
         ) : lastOrder ? (
           <>
             {lastOrder.items.map((item, index) => (
-              <View key={index} style={styles.card}>
-                <Image
+              <View key={index} style={styles.card} >
+                <Image  
                   source={{ uri: item.image }}
                   style={styles.productImage}
                 />
                 <View style={styles.productInfo}>
-                  <Text style={styles.productName}>{item.name}</Text>
+                  <Text style={styles.productName}   onPress={() => {
+      navigation.navigate("tracking");
+            }}>{item.name}</Text>
                   {/* <Text style={styles.productColor}>{item.colour || "Gold Colour"}</Text> */}
                   <Text style={styles.productPrice}>
                     ₹
@@ -148,10 +150,6 @@ const ExistingOrder = () => {
           canceledOrder.items.map((item) => (
             <TouchableOpacity
             key={index}
-            onPress={() => {
-              console.log("Card Pressed! Navigating...");
-              navigation.navigate("tracking");
-            }}
             activeOpacity={0.7}
             style={styles.card}
           >
@@ -160,7 +158,7 @@ const ExistingOrder = () => {
               <View style={styles.productInfo}>
                 <Text style={styles.productName}>{item.name}</Text>
                 <Text style={styles.productPrice}>
-                  ₹{item.price} (Qty: {item.qty})
+                  ₹{item.price} (Qty:{item.qty})
                 </Text>
                 <Text style={styles.canceledText}>
                   Your order has been canceled.
