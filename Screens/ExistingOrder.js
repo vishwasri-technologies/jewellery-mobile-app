@@ -163,7 +163,7 @@ const ExistingOrder = () => {
 
         {/* for order cancellation */}
         {canceledOrder &&
-          canceledOrder.items.map((item) => (
+          canceledOrder.items.map((item, index) => (
             <TouchableOpacity
             key={index}
             activeOpacity={0.7}
