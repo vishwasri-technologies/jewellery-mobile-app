@@ -66,7 +66,14 @@ const OrderTracking = () => {
   // ✅ Fetch last order from backend
   const fetchLastOrder = async () => {
     try {
-      const response = await axios.get("http://192.168.29.178:5000/last-order"); 
+      const token = await AsyncStorage.getItem("authToken"); // ✅ Retrieve auth token
+    if (!token) {
+      console.warn("⚠️ No authentication token found. User might be logged out.");
+      return;
+    }
+      const response = await axios.get("http://192.168.29.178:5000/last-order", {
+        headers: { Authorization: `Bearer ${token}` }, // ✅ Include authentication
+      }); 
       console.log("✅ Last Order Response:", response.data); // Debugging log
       if (response.data.success) {
         setLastOrder(response.data.order);
@@ -122,7 +129,14 @@ const totalAmount = subTotal ;
 
   const fetchProfileAddress = async () => {
     try {
-      const response = await axios.get("http://192.168.29.178:5000/ProfileAddress");
+      const token = await AsyncStorage.getItem("authToken"); // ✅ Retrieve auth token
+    if (!token) {
+      console.warn("⚠️ No authentication token found. User might be logged out.");
+      return;
+    }
+      const response = await axios.get("http://192.168.29.178:5000/ProfileAddress", {
+        headers: { Authorization: `Bearer ${token}` }, // ✅ Include authentication
+      });
       if (response.data.length > 0) {
         const latestAddress = response.data[response.data.length - 1]; // Get the most recent address
         setProfileAddress(latestAddress);
@@ -299,17 +313,17 @@ const totalAmount = subTotal ;
 
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>SGST (2.5%):</Text>
-    <Text style={styles.orderValue}>₹ {lastOrder?.sgst || 0}</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.sgst.toFixed(2) || 0}</Text>
   </View>
 
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>CGST (2.5%):</Text>
-    <Text style={styles.orderValue}>₹ {lastOrder?.cgst || 0}</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.cgst.toFixed(2) || 0}</Text>
   </View>
 
   <View style={styles.orderRow}>
     <Text style={styles.orderKey}>Sub Total:</Text>
-    <Text style={styles.orderValue}>₹ {lastOrder?.subTotal || 0}</Text>
+    <Text style={styles.orderValue}>₹ {lastOrder?.subTotal.toFixed(2) || 0}</Text>
   </View>
 
   <View style={styles.orderRow}>

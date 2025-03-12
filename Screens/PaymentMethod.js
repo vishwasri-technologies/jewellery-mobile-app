@@ -127,140 +127,6 @@ const PaymentMethod = () => {
           </View>
         );
       
-      // case "NetBanking":
-      //   return (
-      //     <View>
-      //       <TouchableOpacity
-      //         style={styles.Option}
-      //         onPress={() => setChecked("axisbank")}
-      //         key="axisbank"
-      //       >
-      //         <Image
-      //           source={require("../assets/paymentMethod/Axis.png")}
-      //           style={styles.optionIcon}
-      //         />
-      //         <Text style={styles.optionText}>Axis Bank</Text>
-      //         <View style={styles.radioButton}>
-      //           <RadioButton
-      //             value="axisbank"
-      //             status={checked === "axisbank" ? "checked" : "unchecked"}
-      //             onPress={() => setChecked("axisbank")}
-      //           />
-      //         </View>
-      //       </TouchableOpacity>
-      //       <TouchableOpacity
-      //         style={styles.Option}
-      //         onPress={() => setChecked("icici")}
-      //         key="icici"
-      //       >
-      //         <Image
-      //           source={require("../assets/paymentMethod/ICICI.png")}
-      //           style={styles.optionIcon}
-      //         />
-      //         <Text style={styles.optionText}>ICICI Bank</Text>
-      //         <View style={styles.radioButton}>
-      //           <RadioButton
-      //             style={styles.radioButton}
-      //             value="icici"
-      //             status={checked === "icici" ? "checked" : "unchecked"}
-      //             onPress={() => setChecked("icici")}
-      //           />
-      //         </View>
-      //       </TouchableOpacity>
-      //       <TouchableOpacity
-      //         style={styles.Option}
-      //         onPress={() => setChecked("hdfc")}
-      //         key="hdfc"
-      //       >
-      //         <Image
-      //           source={require("../assets/paymentMethod/HDFC.png")}
-      //           style={styles.optionIcon}
-      //         />
-      //         <Text style={styles.optionText}>HDFC Bank</Text>
-      //         <View style={styles.radioButton}>
-      //           <RadioButton
-      //             value="hdfc"
-      //             status={checked === "hdfc" ? "checked" : "unchecked"}
-      //             onPress={() => setChecked("hdfc")}
-      //           />
-      //         </View>
-      //       </TouchableOpacity>
-      //       <TouchableOpacity
-      //         style={styles.Option}
-      //         onPress={() => setChecked("sbi")}
-      //         key="sbi"
-      //       >
-      //         <Image
-      //           source={require("../assets/paymentMethod/SBI.png")}
-      //           style={styles.optionIcon}
-      //         />
-      //         <Text style={styles.optionText}>SBI Bank</Text>
-      //         <View style={styles.radioButton}>
-      //           <RadioButton
-      //             value="sbi"
-      //             status={checked === "sbi" ? "checked" : "unchecked"}
-      //             onPress={() => setChecked("sbi")}
-      //           />
-      //         </View>
-      //       </TouchableOpacity>
-      //       <TouchableOpacity
-      //         style={styles.Option}
-      //         onPress={() => setChecked("kotak")}
-      //         key="kotak"
-      //       >
-      //         <Image
-      //           source={require("../assets/paymentMethod/Kotak.png")}
-      //           style={styles.optionIcon}
-      //         />
-      //         <Text style={styles.optionText}>Kotak Mahindra Bank</Text>
-      //         <View style={styles.radioButton}>
-      //           <RadioButton
-      //             value="kotak"
-      //             status={checked === "kotak" ? "checked" : "unchecked"}
-      //             onPress={() => setChecked("kotak")}
-      //           />
-      //         </View>
-      //       </TouchableOpacity>
-      //       <TouchableOpacity style={styles.payButton} onPress={() => navigation.navigate("orderconfirmation")}>
-      //         <Text style={styles.payButtonText}>Pay ₹{price}</Text>
-      //       </TouchableOpacity>
-      //     </View>
-      //   );
-      // case "Credit/Debit Card":
-      //   return (
-      //     <View style={styles.cardContainer}>
-      //       {/* <Text style={styles.cardLabel}>Card Number</Text> */}
-      //       <View style={styles.cardInputContainer}>
-      //         <TextInput
-      //           style={styles.cardInput}
-      //           placeholder="Enter card number"
-      //           keyboardType="numeric"
-      //         />
-      //       </View>
-      //       <View style={styles.cardDetailsContainer}>
-      //         <View style={styles.cardDetail}>
-      //           {/* <Text style={styles.cardLabel}>MM/YY</Text> */}
-      //           <TextInput
-      //             style={styles.cardInput}
-      //             placeholder="MM/YY"
-      //             keyboardType="numeric"
-      //           />
-      //         </View>
-      //         <View style={styles.cardDetail}>
-      //           {/* <Text style={styles.cardLabel}>CVV</Text> */}
-      //           <TextInput
-      //             style={styles.cardInput}
-      //             placeholder="CVV"
-      //             keyboardType="numeric"
-      //             secureTextEntry={true}
-      //           />
-      //         </View>
-      //       </View>
-      //       <TouchableOpacity style={styles.payButton} onPress={() => navigation.navigate("orderconfirmation")}>
-      //         <Text style={styles.payButtonText}>Pay ₹{price}</Text>
-      //       </TouchableOpacity>
-      //     </View>
-      //   );
       case "Cash On Delivery":
         return (
           <View>
@@ -283,6 +149,13 @@ const PaymentMethod = () => {
 
   const handleUPIPayment = async () => {
         try {
+
+          const token = await AsyncStorage.getItem("authToken"); // ✅ Get user authentication token
+    if (!token) {
+      Alert.alert("Unauthorized", "Please log in to proceed with payment.");
+      return;
+    }
+
           // ✅ Get the last order from AsyncStorage
           let storedOrder = await AsyncStorage.getItem("lastOrder");
       
@@ -303,7 +176,10 @@ const PaymentMethod = () => {
           console.log("📤 Fetching order details from backend for payment:", orderId);
       
           // ✅ Fetch order details from backend
-          const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`);
+          const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`, {
+            headers: { Authorization: `Bearer ${token}` }, // ✅ Send auth token
+          });
+
          let orderDataFromBackend = await orderResponse.json();
       
           if (!orderResponse.ok || !orderDataFromBackend.order) {
@@ -313,9 +189,9 @@ const PaymentMethod = () => {
       
          
           // ✅ Ensure `items` are included
-          const { items, totalAmount, deliveryAddress } = orderDataFromBackend.order;
+          const { items, totalAmount, deliveryAddress } = orderDataFromBackend.order || {};
       
-          if (!items || items.length === 0) {
+          if (!items || !Array.isArray(items) || items.length === 0) {
             console.error("❌ Cart is empty in frontend (PaymentMethod.js)!", items);
             Alert.alert("Error", "Cart cannot be empty during payment.");
             return;
@@ -330,7 +206,9 @@ const PaymentMethod = () => {
           // ✅ Call Backend to Create Order
           const response = await fetch("http://192.168.29.178:5000/Cart", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+             },
             body: JSON.stringify({
               orderId,
               items,  // ✅ Ensure cart items are sent to backend
@@ -390,7 +268,9 @@ const PaymentMethod = () => {
                 "http://192.168.29.178:5000/verify-payment",
                 {
                   method: "POST",
-                  headers: { "Content-Type": "application/json" },
+                  headers: { "Content-Type": "application/json",
+                              Authorization: `Bearer ${token}`
+                   },
                   body: JSON.stringify({
                     orderId: data.orderId,
                     paymentId,
@@ -431,6 +311,11 @@ const PaymentMethod = () => {
 
       const handleCODPayment = async () => {
         try {
+          const token = await AsyncStorage.getItem("authToken"); // ✅ Get auth token
+    if (!token) {
+      Alert.alert("Unauthorized", "Please log in to proceed with COD order.");
+      return;
+    }
           let storedOrder = await AsyncStorage.getItem("lastOrder");
       
           if (!storedOrder) {
@@ -450,7 +335,10 @@ const PaymentMethod = () => {
           console.log("📤 Storing Cash on Delivery order in database:", orderId);
       
           // ✅ Fetch Order Details
-          const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`);
+          const orderResponse = await fetch(`http://192.168.29.178:5000/get-order/${orderId}`, {
+            headers: { Authorization: `Bearer ${token}` }, // ✅ Include authentication
+          });
+
           let orderDataFromBackend = await orderResponse.json();
       
           if (!orderResponse.ok || !orderDataFromBackend.order) {
@@ -469,7 +357,9 @@ const PaymentMethod = () => {
           // ✅ Call Backend to Store COD Order
           const response = await fetch("http://192.168.29.178:5000/cod-order", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+             },
             body: JSON.stringify({
               orderId, // ✅ Send Correct Order ID
               items,

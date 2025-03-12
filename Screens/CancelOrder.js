@@ -16,7 +16,8 @@ import {
 } from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import BottomNavBar from "./BottomNavbar"; // Ensure this file exists and is correctly placed
+import BottomNavBar from "./BottomNavbar"; 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CancelOrder = () => {
   const [selectedId, setSelectedId] = useState(null);
@@ -43,9 +44,16 @@ const CancelOrder = () => {
     }
   
     try {
+      const token = await AsyncStorage.getItem("authToken"); // ✅ Retrieve auth token
+    if (!token) {
+      Alert.alert("Unauthorized", "Please log in to cancel your order.");
+      return;
+    }
       const response = await fetch("http://192.168.29.178:5000/cancel-last-order", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+                   Authorization: `Bearer ${token}`
+         },
         body: JSON.stringify({ reason }),
       });
   

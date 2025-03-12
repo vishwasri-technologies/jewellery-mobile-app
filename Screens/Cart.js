@@ -112,7 +112,21 @@ const totalAmount = subTotal ;
   useEffect(() => {
     const fetchAddress = async () => {
       try {
-        const response = await fetch("http://192.168.29.178:5000/ProfileAddress"); // Replace with actual backend URL
+
+        const authToken = await AsyncStorage.getItem("authToken"); 
+
+        if (!authToken) {
+          console.error("❌ Authentication token not found!");
+          return;
+        }
+
+        const response = await fetch("http://192.168.29.178:5000/ProfileAddress", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`, 
+    },
+  }); 
         const addresses = await response.json();
   
         if (addresses.length > 0) {
@@ -246,6 +260,12 @@ const totalAmount = subTotal ;
       };
   
       console.log("📤 Sending order details to backend:", JSON.stringify(orderDetails));
+
+      const token = await AsyncStorage.getItem("authToken"); // ✅ Retrieve token from storage
+
+    if (!token) {
+      throw new Error("Authentication token missing. Please log in again.");
+    }
   
       // Send Order to Backend
       const response = await fetch("http://192.168.29.178:5000/Cart", { // Replace with backend URL
@@ -253,6 +273,7 @@ const totalAmount = subTotal ;
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json", // ✅ Ensures proper request handling
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify(orderDetails),
       });

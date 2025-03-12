@@ -133,6 +133,7 @@ import googleIcon from "../assets/google-icon.png";
 import facebookIcon from "../assets/fb-icon.png";
 import appleIcon from "../assets/apple-iconn.png";
 import signup from "../assets/signup-img.png";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUp = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -181,6 +182,7 @@ if (!emailPattern.test(emailPhone) && !phonePattern.test(emailPhone)) {
       console.log("Server Response:", data);
       
       if (response.ok) {
+        await AsyncStorage.setItem('authToken', data.token); 
         Alert.alert('Success', data.message);
         navigation.navigate('SignIn'); // Redirect to SignIn screen after successful signup
       } else {

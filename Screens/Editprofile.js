@@ -7,6 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import BottomNavbar from "./BottomNavbar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const EditProfile = () => {
   const navigation = useNavigation();
@@ -42,11 +43,24 @@ const EditProfile = () => {
     if (!validateInputs()) return; // Stop if validation fails
 
     try {
+      const token = await AsyncStorage.getItem("authToken"); // 🔹 Get token from storage
+
+    if (!token) {
+      throw new Error("❌ Authentication token not found!");
+    }
+
       const response = await axios.post("http://192.168.29.178:5000/Editprofile", {
         firstName,
         lastName,
         emailOrmobile, // ✅ Use correct variable name
-      });
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`, // 🔹 Include authentication token
+        },
+      }
+    );
 
       Alert.alert("Success", "Profile saved successfully!");
       navigation.goBack(); // ✅ Navigate back after saving

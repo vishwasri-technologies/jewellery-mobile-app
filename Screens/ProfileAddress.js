@@ -4,18 +4,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AddressList = ({ navigation, route }) => {
 
-  // const addresses = [
-  //   {
-  //     id: "1",
-  //     name: "Shambavi",
-  //     pincode: "518003",
-  //     details: "Kallur Estate Near Shukulamma Temple, Nagula Chatu, Kalluru, Kurnool",
-  //     phone: "80093 42392",
-  //   },
-  // ];
 
   const [addresses, setAddresses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +24,23 @@ const AddressList = ({ navigation, route }) => {
 
   const fetchAddresses = async () => {
     try {
-      const response = await fetch("http://192.168.29.178:5000/ProfileAddress"); // Replace with your actual backend URL
+      const token = await AsyncStorage.getItem("authToken"); // 🔹 Get token from storage
+
+    if (!token) {
+      throw new Error("❌ Authentication token not found!");
+    }
+
+    const response = await fetch("http://192.168.29.178:5000/ProfileAddress", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`, // 🔹 Include authentication token
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`❌ Server error: ${response.status} - ${response.statusText}`);
+    }
       const data = await response.json();
       setAddresses(data);
     } catch (error) {
@@ -44,10 +52,17 @@ const AddressList = ({ navigation, route }) => {
 
   const deleteAddress = async (id) => {
     try {
+      const token = await AsyncStorage.getItem("authToken"); // 🔹 Get token from storage
+
+    if (!token) {
+      throw new Error("❌ Authentication token not found!");
+    }
+
       const response = await fetch(`http://192.168.29.178:5000/ProfileAddress/${id}`, {
         method: "DELETE",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         }
       });
   

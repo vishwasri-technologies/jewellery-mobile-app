@@ -174,7 +174,7 @@ const SignIn = () => {
       });
 
       if (response.data.token) {
-        await AsyncStorage.setItem("userToken", response.data.token);
+        await AsyncStorage.setItem("authToken", response.data.token);
         Alert.alert("Success", "Signed in successfully", [
           { text: "OK", onPress: () => navigation.navigate("location") },
         ]);

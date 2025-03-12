@@ -6,6 +6,7 @@ import { Checkbox } from 'react-native-paper';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { useRoute } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const EditAddress = () => {
@@ -70,9 +71,15 @@ const EditAddress = () => {
     const updatedAddress = { name, phone, pincode, state, city, locality, houseNo, addressType };
 
     try {
+      const token = await AsyncStorage.getItem("authToken"); // 🔹 Get token from storage
+
+    if (!token) {
+      throw new Error("❌ Authentication token not found!");
+    }
       const response = await fetch(`http://192.168.29.178:5000/EditAddress/${address._id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+                   "Authorization": `Bearer ${token}`, },
         body: JSON.stringify(updatedAddress),
       });
 

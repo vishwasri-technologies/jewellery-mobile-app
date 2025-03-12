@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const NotificationScreen = ({ navigation }) => {
   // const userName = "John Doe"; // Replace with dynamic user data
   const [userName, setUserName] = useState("");
@@ -10,7 +10,14 @@ const NotificationScreen = ({ navigation }) => {
     // Fetch user's first name from the backend
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://192.168.29.178:5000/Notify"); // Replace with actual API URL
+        const token = await AsyncStorage.getItem("authToken"); // ✅ Get auth token
+        if (!token) {
+          Alert.alert("Unauthorized", "Please log in to view your last order.");
+          return;
+        }
+        const response = await fetch("http://192.168.29.178:5000/Notify", {
+          headers: { Authorization: `Bearer ${token}` }, // ✅ Include authentication token
+        }); // Replace with actual API URL
         const data = await response.json();
         
         if (data.firstName) {

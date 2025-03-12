@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView,Image, Alert } from "react-native";
 import { Checkbox } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
@@ -62,9 +63,18 @@ const AddAddress = () => {
     const addressData = { name, phone, pincode, state, city, locality, houseNo, addressType };
 
     try {
+      const token = await AsyncStorage.getItem("authToken"); // 🔹 Get token from storage
+
+    if (!token) {
+      Alert.alert("❌ Authentication Error", "Please log in again.");
+      navigation.navigate("SignIn"); // 🔹 Redirect to login if token is missing
+      return;
+    }
       const response = await fetch("http://192.168.29.178:5000/Addaddress", { // ✅ Corrected API URL
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+                   "Authorization": `Bearer ${token}`,
+         },
         body: JSON.stringify(addressData),
       });
 

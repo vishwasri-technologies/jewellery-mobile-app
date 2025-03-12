@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   View,
@@ -26,7 +27,11 @@ const ProfileScreen = () => {
   // Fetch profile from backend
   const fetchProfile = async () => {
     try {
-      const response = await axios.get("http://192.168.29.178:5000/Profile"); // Replace with actual API URL
+      const token = await AsyncStorage.getItem('authToken');
+      const response = await axios.get("http://192.168.29.178:5000/Profile", {
+        headers: { Authorization: `Bearer ${token}` }, // Send token in request header
+      }); // Replace with actual API URL
+      
       setProfile(response.data[response.data.length - 1]); // Get the most recent profile
     } catch (error) {
       console.error("Error fetching profile:", error);
@@ -103,7 +108,15 @@ const ProfileScreen = () => {
             style={styles.menuItem}
             onPress={async () => {
               try {
-                const response = await fetch("http://192.168.29.178:5000/last-order"); // Fetch last order
+                const token = await AsyncStorage.getItem("authToken"); // ✅ Retrieve auth token
+    if (!token) {
+      Alert.alert("Unauthorized", "Please log in to cancel your order.");
+      navigation.navigate("profileorder"); 
+      return;
+    }
+                const response = await fetch("http://192.168.29.178:5000/last-order", {
+                  headers: { Authorization: `Bearer ${token}` }, // ✅ Include authentication token
+                }); // Fetch last order
                 const data = await response.json();
           
                 if (data.success && data.order) {

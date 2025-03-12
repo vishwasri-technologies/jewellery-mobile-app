@@ -37,7 +37,15 @@ const ExistingOrder = () => {
 
   const fetchCanceledOrder = async () => {
     try {
-      const response = await axios.get("http://192.168.29.178:5000/last-order"); // Fetch last order
+      const token = await AsyncStorage.getItem("authToken"); // ✅ Get auth token
+      if (!token) {
+        Alert.alert("Unauthorized", "Please log in to view your last order.");
+        return;
+      }
+      const response = await axios.get("http://192.168.29.178:5000/last-order", {
+        headers: { Authorization: `Bearer ${token}` }, // ✅ Include token
+      }); 
+
       if (response.data.order && response.data.order.status === "canceled") {
         setCanceledOrder(response.data.order);
       }
@@ -49,7 +57,15 @@ const ExistingOrder = () => {
   // ✅ Fetch last order from backend
   const fetchLastOrder = async () => {
     try {
-      const response = await axios.get("http://192.168.29.178:5000/last-order");
+      const token = await AsyncStorage.getItem("authToken"); // ✅ Get auth token
+      if (!token) {
+        Alert.alert("Unauthorized", "Please log in to view your last order.");
+        return;
+      }
+      const response = await axios.get("http://192.168.29.178:5000/last-order", {
+        headers: { Authorization: `Bearer ${token}` }, // ✅ Include token
+      });
+      
       if (response.data.success) {
         setLastOrder(response.data.order);
       }
@@ -175,7 +191,9 @@ const ExistingOrder = () => {
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1 },
+
   container: { flex: 1, backgroundColor: "#fff", padding: 15 },
+
 
   header: {
     flexDirection: "row",
