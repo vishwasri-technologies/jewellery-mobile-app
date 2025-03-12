@@ -155,8 +155,8 @@ const ProductDetailsScreen = ({ route }) => {
             style={styles.deliveryIcon}
           />
           <Text style={styles.deliveryText}>
-            Delivery within <Text style={styles.boldText}>3 hours</Text>.
-            Express shipping options available for urgent deliveries.
+            Delivery in <Text style={styles.boldText}>2-3 Days</Text>.
+           
           </Text>
         </View>
         <View style={styles.deliveryDetailRow}>
