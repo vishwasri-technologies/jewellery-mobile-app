@@ -52,13 +52,18 @@ const ProfileScreen = () => {
     return () => focusListener();
   }, [navigation, isLoggedIn]);
 
-  const handleLogout = () => {
-    setIsLoggedIn(false); // Set login state to false when logging out
-    navigation.reset({
-      index: 0, // Reset to the first screen
-      routes: [{ name: "SignIn" }], // Set SignIn as the first screen
-    });
-  };
+//   const handleLogout = () => {
+//     setIsLoggedIn(false); // Set login state to false when logging out
+//     navigation.reset({
+//       index: 0, // Reset to the first screen
+//       routes: [{ name: "SignIn" }], // Set SignIn as the first screen
+//     });
+//   };
+const handleLogout = async () => {
+  await AsyncStorage.removeItem("authToken"); // Clear token
+  navigation.replace("SignIn"); // Redirect to Login
+};
+
 
   if (loading) {
     return (

@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
+import AppLaunch from "./Screens/AppLaunch";
 
 import { WishlistProvider } from "./Screens/WishlistContext";
 
@@ -62,6 +63,7 @@ export default function App() {
       <NavigationContainer>
         <StatusBar style="light" backgroundColor="#47154B" />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="AppLaunch" component={AppLaunch} />
           <Stack.Screen name="Splash" component={SplashScreen} />
           <Stack.Screen name="Onboarding1" component={OnboardingScreen1} />
           <Stack.Screen name="Onboarding2" component={OnboardingScreen2} />
