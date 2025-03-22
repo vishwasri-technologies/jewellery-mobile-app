@@ -27,18 +27,38 @@ const ProfileScreen = () => {
   // Fetch profile from backend
   const fetchProfile = async () => {
     try {
-      const token = await AsyncStorage.getItem('authToken');
+      const token = await AsyncStorage.getItem("authToken");
+      console.log("Auth Token:", token); // Check if token exists
+  
+      if (!token) {
+        console.log("No token found, redirecting to login.");
+        navigation.replace("SignIn");
+        return;
+      }
+  
       const response = await axios.get("http://192.168.29.178:5000/Profile", {
-        headers: { Authorization: `Bearer ${token}` }, // Send token in request header
-      }); // Replace with actual API URL
-      
-      setProfile(response.data[response.data.length - 1]); // Get the most recent profile
+        headers: { Authorization: `Bearer ${token}` },
+      });
+  
+      if (!response.data || response.data.profile === null) {
+        console.log("No profile found, setting default.");
+        setProfile({ firstName: "Guest", emailOrmobile: "N/A" });
+      } else {
+        setProfile(response.data);
+      }
     } catch (error) {
-      console.error("Error fetching profile:", error);
+      console.error("Error fetching profile:", error.response?.data || error.message);
+      if (error.response?.data?.message === "Invalid token") {
+        console.log("Token is invalid, redirecting to login.");
+        await AsyncStorage.removeItem("authToken"); // Remove the invalid token
+        navigation.replace("SignIn"); // Redirect user to login
+      }
+      setProfile({ firstName: "Guest", emailOrmobile: "N/A" });
     } finally {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     if (!isLoggedIn) {
